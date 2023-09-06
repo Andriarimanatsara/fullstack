@@ -1,0 +1,6 @@
+{
+    "HOST":"localhost",
+    "USER":"root",
+    "PASSWORD":"root",
+    "DATABASE":"testajax"
+}
