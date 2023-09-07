@@ -127,6 +127,16 @@ const isImg=(req,file,cb)=>{
 }
 
 const upload = multer({ storage:storage,fileFilter:isImg });
+
+router.post('/add_product', (req, res) => {
+  let data=req.body;
+  let sqlString="INSERT INTO produit(idCategorie, nomProduit, description, prixUnitaire) values('"+data.category+"','"+data.name+"','"+data.description+"','"+data.price+"')";
+  let query= connection.query(sqlString,(err,results) => {
+    if(err) return res.json(err);
+    return { status: "success", data: req.body };
+  });
+});
+
 router.post('/updateProduit/:id', upload.single('photo'), (req, res) => {
   const id=req.params.id;
   //console.log(req.file)
