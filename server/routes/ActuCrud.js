@@ -21,7 +21,7 @@ app.use(cors())
 
 router.get('/listes', (req, res) => {
   //let sqlString="SELECT * FROM Produit";
-  let sqlString="select Categorie.id as idCategorie,Categorie.nomCategorie,Produit.id as idProduit,Produit.nomProduit,Produit.prixUnitaire,Produit.photo from Categorie LEFT JOIN Produit ON Categorie.id = Produit.idCategorie"
+  let sqlString="select categorie.id as idCategorie,categorie.nomCategorie,produit.id as idProduit,produit.nomProduit,produit.prixUnitaire,produit.photo from categorie LEFT JOIN produit ON categorie.id = produit.idCategorie"
   let query= connection.query(sqlString,(err,rows) => {
     /*if(err) return res.json(err);
     return res.json(rows);*/
@@ -62,65 +62,10 @@ router.get('/listesCat', (req, res) => {
 
 router.get('/listesDescri/:idProduit', (req, res) => {
   const idProduit=req.params.idProduit;
-  let sqlString="SELECT * FROM Produit where id="+idProduit;
+  let sqlString="SELECT * FROM produit where id="+idProduit;
   let query= connection.query(sqlString,(err,rows) => {
     if(err) return res.json(err);
     return res.json(rows);
-  });
-});
-
-////////////////update\\\\\\\\\\\\\\\\\\\\\\\\
-router.get('/listesPanier', (req, res) => {
-  let sqlString="SELECT Panier.id as id,idActualite,quantite,prixQnte,titre,article FROM Panier join actualite on Panier.idActualite=actualite.id";
-  let query= connection.query(sqlString,(err,rows) => {
-    if(err) return res.json(err);
-    return res.json(rows);
-  });
-});
-
-router.get('/listesPanier/:idActualite', (req, res) => {
-  const idActualite=req.params.idActualite;
-  let sqlString="SELECT id,titre,article,statut as prixQnte  FROM actualite where id="+idActualite;
-  let query= connection.query(sqlString,(err,rows) => {
-    if(err) return res.json(err);
-    return res.json(rows);
-  });
-});
-
-router.get('/addPanier/:idActualite/:prixQnte', (req, res) => {
-  const idActualite=req.params.idActualite;
-  const prixQnte=req.params.prixQnte;
-  let sqlString="INSERT INTO Panier(idActualite,prixQnte)values("+idActualite+","+prixQnte+")";
-  let query= connection.query(sqlString,(err,results) => {
-    if(err) return res.json(err);
-    return res.json("add successfuly");
-  });
-});
-
-router.delete('/deletePanier/:id', (req, res) => {
-  const idPanier=req.params.id;
-  let sqlString="DELETE FROM Panier where id="+idPanier;
-  let query= connection.query(sqlString,(err,results) => {
-    if(err) return res.json(err);
-    return res.json("delete successfuly");
-  });
-});
-
-router.put('/updatePanier/:id', (req, res) => {
-  const idActu=req.params.id;
-  let data={quantite:req.body.quantite,prixQnte:req.body.prixQnte};
-  let sqlString="UPDATE Panier SET quantite="+data.quantite+", prixQnte="+data.prixQnte+" where id="+idActu;
-  let query= connection.query(sqlString,(err,results) => {
-    if(err) return res.json(err);
-    return res.json("update successfuly");
-  });
-});
-
-router.delete('/deleteAllPan', (req, res) => {
-  let sqlString="DELETE FROM Panier";
-  let query= connection.query(sqlString,(err,results) => {
-    if(err) return res.json(err);
-    return res.json("delete successfuly");
   });
 });
 
@@ -131,7 +76,7 @@ router.get('/listesPg', (req, res) => {
   const startIndex = (page - 1) * perPage;
   const endIndex = startIndex + perPage;
 
-  let sqlString = `SELECT * FROM Produit LIMIT ${startIndex}, ${perPage}`;
+  let sqlString = `SELECT * FROM produit LIMIT ${startIndex}, ${perPage}`;
   let query = connection.query(sqlString, (err, rows) => {
     if (err) return res.json(err);
 
@@ -157,7 +102,7 @@ router.get('/listesPg', (req, res) => {
 
 router.get('/listesProdCat/:idCat', (req, res) => {
   const idCat=req.params.idCat;
-  let sqlString="SELECT * FROM Produit where idCategorie="+idCat;
+  let sqlString="SELECT * FROM produit where idCategorie="+idCat;
   let query= connection.query(sqlString,(err,rows) => {
     if(err) return res.json(err);
     return res.json(rows);
@@ -186,7 +131,7 @@ router.post('/updateProduit/:id', upload.single('photo'), (req, res) => {
   const id=req.params.id;
   //console.log(req.file)
   let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,photo:req.file ? req.file.originalname : '',prixUnitaire:req.body.prixUnitaire};
-  /*let sqlString = "UPDATE Produit SET idCategorie='" + data.idCategorie + "', nomProduit='" + data.nomProduit + "', description='" + data.description + "', photo='" + data.photo + "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
+  /*let sqlString = "UPDATE produit SET idCategorie='" + data.idCategorie + "', nomProduit='" + data.nomProduit + "', description='" + data.description + "', photo='" + data.photo + "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
   
   const filePath = `./client/public/img/${data.photo}`;
   if (fs.existsSync(filePath)) {
@@ -209,7 +154,7 @@ router.post('/updateProduit/:id', upload.single('photo'), (req, res) => {
     res.json({status:422,message:"fill all the details"})
   }
   try{
-    let sqlString = "UPDATE Produit SET idCategorie=" + data.idCategorie + ", nomProduit='" + data.nomProduit + "', description='" + data.description + "', photo='" + data.photo + "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
+    let sqlString = "UPDATE produit SET idCategorie=" + data.idCategorie + ", nomProduit='" + data.nomProduit + "', description='" + data.description + "', photo='" + data.photo + "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
     let query = connection.query(sqlString,(err, results) => {
       if (err) {
         res.json(err);
