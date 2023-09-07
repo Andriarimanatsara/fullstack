@@ -18,8 +18,6 @@ app.use('/ActuCrud', ActuCrud);
 const ActuCrudSeq = require('./routes/ActuCrudSeq');
 app.use('/ActuCrudSeq', ActuCrudSeq);
 
-const ProdCrud = require('./routes/ProdCrud');
-app.use('/ProdCrud', ProdCrud);
 
 async function startServer() {
   try {

@@ -4,12 +4,9 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Add from "./Views/Add";
-import Liste from "./Views/Liste";
 import ListeIndex from "./Views/ListeIndex";
 import ListeProduit from "./Views/ListeProduit";
 import Cart from "./Views/Cart";
-import Update from "./Views/Update";
 import Register from "./Views/Register";
 
 import ListeProdAdmin from "./Views/ListeProdAdmin";
