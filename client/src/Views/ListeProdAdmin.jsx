@@ -71,6 +71,16 @@ const ListeProduitAdmin = () => {
             setCurrentPage(currentPage + 1);
         }
     };
+
+    const fetchAllListe = async () => {
+        try {
+            const res = await axios.get(`${configData.REACT_APP_SERVER}/ActuCrud/lists_paging?page=${currentPage}&perPage=${itemsPerPage}`);
+            setLists(res.data.data);
+            setTotalPages(res.data.totalPages);
+        } catch (error) {
+            console.log(error);
+        }
+    };
     
     const handleRemoveItem = async (id) => {
         try {
