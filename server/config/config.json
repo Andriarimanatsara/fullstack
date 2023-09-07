@@ -1,23 +1,23 @@
 {
     "development": {
-      "username": "root",
-      "password": "root",
-      "database": "testajax",
-      "host": "localhost",
+      "host":"149.202.43.174",
+      "username":"ovh-user",
+      "password":"ovhACCESS",
+      "database":"EcommerceVato",
       "dialect": "mysql"
     },
     "test": {
-      "username": "root",
-      "password": null,
-      "database": "database_test",
-      "host": "127.0.0.1",
+      "host":"149.202.43.174",
+      "username":"ovh-user",
+      "password":"ovhACCESS",
+      "database":"EcommerceVato",
       "dialect": "mysql"
     },
     "production": {
-      "username": "root",
-      "password": null,
-      "database": "database_production",
-      "host": "127.0.0.1",
+      "host":"149.202.43.174",
+      "username":"ovh-user",
+      "password":"ovhACCESS",
+      "database":"EcommerceVato",
       "dialect": "mysql"
     }
   }
