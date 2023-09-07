@@ -130,10 +130,10 @@ const upload = multer({ storage:storage,fileFilter:isImg });
 
 router.post('/add_product', (req, res) => {
   let data=req.body;
-  let sqlString="INSERT INTO produit(idCategorie, nomProduit, description, prixUnitaire) values('"+data.category+"','"+data.name+"','"+data.description+"','"+data.price+"')";
+  let sqlString="INSERT INTO produit(idCategorie, nomProduit, description, prixUnitaire, photo) values('"+data.category+"','"+data.name+"','"+data.description+"','"+data.price+"','"+data.picture+"')";
   let query= connection.query(sqlString,(err,results) => {
     if(err) return res.json(err);
-    return { status: "success", data: req.body };
+    return res.json({ status: 201,data: req.body })
   });
 });
 
@@ -142,7 +142,7 @@ router.post('/add_category', (req, res) => {
   let sqlString="INSERT INTO categorie(nomCategorie, description) values('"+data.name+"','"+data.description+"')";
   let query= connection.query(sqlString,(err,results) => {
     if(err) return res.json(err);
-    return { status: "success", data: req.body };
+    return res.json({status:201,data:req.body})
   });
 });
 
