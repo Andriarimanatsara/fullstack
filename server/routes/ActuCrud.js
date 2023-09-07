@@ -194,19 +194,9 @@ router.post('/update_product/:id', upload.single('photo'), (req, res) => {
 });
 ////////////////update\\\\\\\\\\\\\\\\\\\\\\\\
 
-router.put('/updateBase/:id', (req, res) => {
-  const idActu=req.params.id;
-  let data={title:req.body.title,article:req.body.article,statut:req.body.statut};
-  let sqlString="UPDATE actualite SET titre='"+data.title+"', article='"+data.article+"', statut="+data.statut+" where id="+idActu;
-  let query= connection.query(sqlString,(err,results) => {
-    if(err) return res.json(err);
-    return res.json("update successfuly");
-  });
-});
-
-router.delete('/deleteBase/:id', (req, res) => {
-  const idActu=req.params.id;
-  let sqlString="DELETE FROM actualite where id="+idActu;
+router.delete('/delete_product/:id', (req, res) => {
+  const id=req.params.id;
+  let sqlString="DELETE FROM produit where id="+id;
   let query= connection.query(sqlString,(err,results) => {
     if(err) return res.json(err);
     return res.json("delete successfuly");

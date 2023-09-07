@@ -14,6 +14,7 @@ const ListeProduit = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6; // Nombre d'articles par page
     const [totalPages, setTotalPages] = useState(1); // Nombre total de pages
+    const navigate= useNavigate();
 
     const countTotalProductsInCart = () => {
         const panierExistants = JSON.parse(localStorage.getItem('panier')) || [];

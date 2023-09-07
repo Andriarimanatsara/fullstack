@@ -72,6 +72,16 @@ const ListeProduitAdmin = () => {
         }
     };
     
+    const handleRemoveItem = async (id) => {
+        try {
+          // Effectuer une requête pour supprimer l'article du panier
+          await axios.delete(configData.REACT_APP_SERVER+"/ActuCrud/lists_category/"`${id}`);/////////
+          // Rafraîchir la liste du panier après la suppression
+          fetchAllListe();
+        } catch (error) {
+          console.log(error);
+        }
+    };
 
     const handleCat= async(idCat)=>{
         try {

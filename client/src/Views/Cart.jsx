@@ -32,7 +32,6 @@ const Cart = () =>{
         // Gestionnaire pour vider le panier lorsque l'utilisateur ferme la fenêtre/onglet
         const handleBeforeUnload = () => {
             localStorage.removeItem("panier");
-            deletePan();
         };
 
         // Ajoutez l'événement beforeunload au moment du montage du composant
