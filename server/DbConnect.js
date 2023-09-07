@@ -15,6 +15,7 @@ try {
 
 const connection = mysql.createConnection({
     host: config.HOST,
+    port: config.PORT,
     user: config.USER,
     password: config.PASSWORD,
     database: config.DATABASE

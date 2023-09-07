@@ -1,6 +1,7 @@
 {
-    "HOST":"localhost",
-    "USER":"root",
-    "PASSWORD":"root",
-    "DATABASE":"testajax"
+    "HOST":"149.202.43.174",
+    "USER":"ovh-user",
+    "PASSWORD":"ovhACCESS",
+    "DATABASE":"EcommerceVato",
+    "PORT": 3306
 }
