@@ -27,7 +27,7 @@ router.get('/listes', (req, res) => {
     return res.json(rows);*/
     if(err){
       console.error(err);
-      res.status(500).json({ err: 'Une erreur est survenue.' });
+      res.status(500).json({ title: 'Une erreur est survenue.', content: err.message, fatal: err.fatal });
     } else {
       const categories = {};
       rows.forEach(row => {
