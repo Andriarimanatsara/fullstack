@@ -19,12 +19,10 @@ app.use(express.static('public'));
 
 app.use(cors())
 
-router.get('/listes', (req, res) => {
-  //let sqlString="SELECT * FROM Produit";
+//listes
+router.get('/lists_product', (req, res) => {
   let sqlString="select categorie.id as idCategorie,categorie.nomCategorie,produit.id as idProduit,produit.nomProduit,produit.prixUnitaire,produit.photo from categorie LEFT JOIN produit ON categorie.id = produit.idCategorie"
   let query= connection.query(sqlString,(err,rows) => {
-    /*if(err) return res.json(err);
-    return res.json(rows);*/
     if(err){
       console.error(err);
       res.status(500).json({ title: 'Une erreur est survenue.', content: err.message, fatal: err.fatal });
@@ -52,7 +50,8 @@ router.get('/listes', (req, res) => {
   });
 });
 
-router.get('/listesCat', (req, res) => {
+//listesCat
+router.get('/lists_category', (req, res) => {
   let sqlString="SELECT * FROM Categorie";
   let query= connection.query(sqlString,(err,rows) => {
     if(err) return res.json(err);
@@ -60,16 +59,18 @@ router.get('/listesCat', (req, res) => {
   });
 });
 
-router.get('/listesDescri/:idProduit', (req, res) => {
-  const idProduit=req.params.idProduit;
-  let sqlString="SELECT * FROM produit where id="+idProduit;
+//listesDescri/:idProduit
+router.get('/lists_by_product/:idProduct', (req, res) => {
+  const idProduct=req.params.idProduct;
+  let sqlString="SELECT * FROM produit where id="+idProduct;
   let query= connection.query(sqlString,(err,rows) => {
     if(err) return res.json(err);
     return res.json(rows);
   });
 });
 
-router.get('/listesPg', (req, res) => {
+//listesPg
+router.get('/lists_paging', (req, res) => {
   const page = parseInt(req.query.page) || 1; // Page par défaut est 1
   const perPage = parseInt(req.query.perPage) || 10; // Nombre d'éléments par page par défaut est 10
 
@@ -100,9 +101,10 @@ router.get('/listesPg', (req, res) => {
   });
 });
 
-router.get('/listesProdCat/:idCat', (req, res) => {
-  const idCat=req.params.idCat;
-  let sqlString="SELECT * FROM produit where idCategorie="+idCat;
+//listesProdCat/:idCat
+router.get('/lists_by_category/:idCategory', (req, res) => {
+  const idCategory=req.params.idCategory;
+  let sqlString="SELECT * FROM produit where idCategorie="+idCategory;
   let query= connection.query(sqlString,(err,rows) => {
     if(err) return res.json(err);
     return res.json(rows);
@@ -146,7 +148,8 @@ router.post('/add_category', (req, res) => {
   });
 });
 
-router.post('/updateProduit/:id', upload.single('photo'), (req, res) => {
+//updateProduit
+router.post('/update_product/:id', upload.single('photo'), (req, res) => {
   const id=req.params.id;
   //console.log(req.file)
   let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,photo:req.file ? req.file.originalname : '',prixUnitaire:req.body.prixUnitaire};

@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import configData from '../conf.json';
 
 const ListeIndex = () =>{
-    const[listes,setListe]=useState([]);
+    const[lists,setLists]=useState([]);
     const countTotalProductsInCart = () => {
         const panierExistants = JSON.parse(localStorage.getItem('panier')) || [];
         let totalCount = 0;
@@ -23,22 +23,10 @@ const ListeIndex = () =>{
     };
     const [cartItemCount, setCartItemCount] = useState(countTotalProductsInCart());
 
-    /*useEffect(()=>{
-        const fetchAllListe=async()=>{
-            try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/listes")
-                setListe(res.data);
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchAllListe()
-    },[]);*/
-
     useEffect(() => {
-        axios.get(configData.REACT_APP_SERVER+"/ActuCrud/listes")
+        axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_product")
           .then(response => {
-            setListe(response.data);
+            setLists(response.data);
           })
           .catch(error => {
             console.error(error);
@@ -194,7 +182,7 @@ const ListeIndex = () =>{
             <div className="recent-product product">
                 <div className="container-fluid">
                     
-                    {listes.map(liste=>(
+                    {lists.map(liste=>(
                         <div key={liste.idCategorie}>
                             <div className="section-header">
                                 <h1>{liste.nomCategorie}</h1>

@@ -5,7 +5,7 @@ import axios from 'axios'
 import configData from '../conf.json';
 
 const UpdateAdmin = () =>{
-    const[listeCat,setListeCat]=useState([]);
+    const[listsCat,setListsCat]=useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     const navigate= useNavigate();
     
@@ -15,8 +15,8 @@ const UpdateAdmin = () =>{
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/listesCat")
-                setListeCat(res.data);
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category")
+                setListsCat(res.data);
             } catch (error) {
                 console.log(error)
             }
@@ -50,7 +50,7 @@ const UpdateAdmin = () =>{
         }
         //console.log(produit)
         try {
-            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/updateProduit/"+idUp,produit,config)///////
+            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/update_product/"+idUp,produit,config)///////
             /*if (response.status===200) {
                 // Le fichier a été téléchargé avec succès
                 setErrorMessage('');
@@ -176,7 +176,7 @@ const UpdateAdmin = () =>{
                                 <div className="col-md-6">
                                     <label>Categorie</label>
                                     <select onChange={handleChange} name="idCategorie" class="form-control" style={{width: '100%'}}>
-                                        {listeCat.map(listeCt=>(
+                                        {listsCat.map(listeCt=>(
                                             <option key={listeCt.id} value={listeCt.id}>{listeCt.nomCategorie}</option>
                                         ))} 
                                     </select>

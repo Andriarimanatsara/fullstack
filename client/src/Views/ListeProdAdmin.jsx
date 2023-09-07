@@ -9,8 +9,8 @@ import "slick-carousel/slick/slick-theme.css";
 import configData from '../conf.json';
 
 const ListeProduitAdmin = () => {
-    const [listes, setListe] = useState([]);
-    const[listeCat,setListeCat]=useState([]);
+    const [lists, setLists] = useState([]);
+    const[listsCat,setListsCat]=useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 2; // Nombre d'articles par page
     const [totalPages, setTotalPages] = useState(1); // Nombre total de pages
@@ -18,8 +18,8 @@ const ListeProduitAdmin = () => {
     useEffect(() => {
         const fetchAllListe = async () => {
             try {
-                const res = await axios.get(`${configData.REACT_APP_SERVER}/ActuCrud/listesPg?page=${currentPage}&perPage=${itemsPerPage}`);
-                setListe(res.data.data);
+                const res = await axios.get(`${configData.REACT_APP_SERVER}/ActuCrud/lists_paging?page=${currentPage}&perPage=${itemsPerPage}`);
+                setLists(res.data.data);
                 setTotalPages(res.data.totalPages);
             } catch (error) {
                 console.log(error);
@@ -31,8 +31,8 @@ const ListeProduitAdmin = () => {
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/listesCat")
-                setListeCat(res.data);
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category")
+                setListsCat(res.data);
             } catch (error) {
                 console.log(error)
             }
@@ -72,38 +72,11 @@ const ListeProduitAdmin = () => {
         }
     };
     
-///////////////////\\\\\\\\\\\\\\\\\\\\\\\
-
-
-    const navigate= useNavigate();
-
-    const[listesP,setListeP]=useState({
-        idActualite:null,
-        statut:null,
-    });
-
-    const handleChange =(e) => {
-        setListeP((prev) => ({...prev,[e.target.name]:e.target.value }));
-    };
-
-    
-
-    const handleRemoveItem = async (id) => {
-        try {
-          // Effectuer une requête pour supprimer l'article du panier
-          await axios.delete(`http://localhost:8800/ActuCrud/deletePanier/${id}`);/////////
-          // Rafraîchir la liste du panier après la suppression
-          //fetchAllListe();
-        } catch (error) {
-          console.log(error);
-        }
-    };
-
 
     const handleCat= async(idCat)=>{
         try {
-            const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/listesProdCat/"+idCat);
-            setListe(res.data);
+            const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_by_category/"+idCat);
+            setLists(res.data);
         } catch (error) {
             console.log(error)            
         }
@@ -200,7 +173,7 @@ const ListeProduitAdmin = () => {
                     <div className="row">
                         <div className="col-lg-8">
                             <div className="row">
-                                {listes.map((liste) => (
+                                {lists.map((liste) => (
                                     <div key={liste.id}>
                                         <div className="product-item" style={{ margin: '2%'}}>
                                             <div className="product-title">
@@ -243,7 +216,7 @@ const ListeProduitAdmin = () => {
                                 <h2 className="title">Category</h2>
                                 <nav className="navbar bg-light">
                                     <ul className="navbar-nav">
-                                        {listeCat.map(listeCt=>(
+                                        {listsCat.map(listeCt=>(
                                             <div key={listeCt.id}>
                                                 <li className="nav-item">
                                                     <a className="btn" onClick={()=>handleCat(listeCt.id)}><i className="fa fa-mobile-alt"></i>{listeCt.nomCategorie}</a>

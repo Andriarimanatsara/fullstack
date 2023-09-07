@@ -26,13 +26,6 @@ const Cart = () =>{
         fetchAllListe();
         
         ////////////////update\\\\\\\\\\\\\\\\\\\\
-        const deletePan = async () => {
-            try {
-              await axios.delete(`http://localhost:8800/ActuCrud/deleteAllPan`);
-            } catch (error) {
-              console.log(error);
-            }
-        };
         const articlesPanier = JSON.parse(localStorage.getItem("panier")) || [];
         setListePanier(articlesPanier);
 

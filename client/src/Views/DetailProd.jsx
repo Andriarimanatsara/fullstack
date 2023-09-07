@@ -28,7 +28,7 @@ const ListeProduit = () => {
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/listesDescri/"+idProd)
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_by_product/"+idProd)
                 setListes(res.data);
             } catch (error) {
                 console.log(error)

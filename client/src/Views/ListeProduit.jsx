@@ -9,8 +9,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 ///////////////////\\\\\\\\\\\\\\\\\\\\\\\
 const ListeProduit = () => {
-    const [listes, setListe] = useState([]);
-    const[listeCat,setListeCat]=useState([]);
+    const [lists, setLists] = useState([]);
+    const[listsCat,setListsCat]=useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6; // Nombre d'articles par page
     const [totalPages, setTotalPages] = useState(1); // Nombre total de pages
@@ -29,8 +29,8 @@ const ListeProduit = () => {
     useEffect(() => {
         const fetchAllListe = async () => {
             try {
-                const res = await axios.get(`http://localhost:8800/ActuCrud/listesPg?page=${currentPage}&perPage=${itemsPerPage}`);
-                setListe(res.data.data);
+                const res = await axios.get(`http://localhost:8800/ActuCrud/lists_paging?page=${currentPage}&perPage=${itemsPerPage}`);
+                setLists(res.data.data);
                 setTotalPages(res.data.totalPages);
             } catch (error) {
                 console.log(error);
@@ -42,8 +42,8 @@ const ListeProduit = () => {
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/listesCat")
-                setListeCat(res.data);
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category")
+                setListsCat(res.data);
             } catch (error) {
                 console.log(error)
             }
@@ -81,19 +81,6 @@ const ListeProduit = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
         }
-    };
-///////////////////\\\\\\\\\\\\\\\\\\\\\\\
-
-
-    const navigate= useNavigate();
-
-    const[listesP,setListeP]=useState({
-        idActualite:null,
-        statut:null,
-    });
-
-    const handleChange =(e) => {
-        setListeP((prev) => ({...prev,[e.target.name]:e.target.value }));
     };
 
     const handleClickIndex= async(id,prixUnitaire,photo,nomProduit)=>{
@@ -155,8 +142,8 @@ const ListeProduit = () => {
 
     const handleCat= async(idCat)=>{
         try {
-            const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/listesProdCat/"+idCat);
-            setListe(res.data);
+            const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_by_category/"+idCat);
+            setLists(res.data);
         } catch (error) {
             console.log(error)            
         }
@@ -260,7 +247,7 @@ const ListeProduit = () => {
                     <div className="row">
                         <div className="col-lg-8">
                             <div className="row">
-                                {listes.map((liste) => (
+                                {lists.map((liste) => (
                                     <div key={liste.id}>
                                         <div className="product-item" style={{ margin: '5%' }}>
                                             <div className="product-title">
@@ -302,7 +289,7 @@ const ListeProduit = () => {
                                 <h2 className="title">Category</h2>
                                 <nav className="navbar bg-light">
                                     <ul className="navbar-nav">
-                                        {listeCat.map(listeCt=>(
+                                        {listsCat.map(listeCt=>(
                                             <div key={listeCt.id}>
                                                 <li className="nav-item">
                                                     <a className="btn" onClick={()=>handleCat(listeCt.id)}><i className="fa fa-mobile-alt"></i>{listeCt.nomCategorie}</a>
@@ -315,7 +302,7 @@ const ListeProduit = () => {
                             <div className="sidebar-widget widget-slider">
                                 <div className="sidebar-slider normal-slider">
                                     <Slider {...settings}>
-                                        {listes.map((liste) => (
+                                        {lists.map((liste) => (
                                             <div key={liste.id}>
                                                 <div className="product-item" style={{ margin: '5%' }}>
                                                     <div className="product-title">
