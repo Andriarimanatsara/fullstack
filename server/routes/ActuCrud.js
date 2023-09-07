@@ -137,6 +137,15 @@ router.post('/add_product', (req, res) => {
   });
 });
 
+router.post('/add_category', (req, res) => {
+  let data=req.body;
+  let sqlString="INSERT INTO categorie(nomCategorie, description) values('"+data.name+"','"+data.description+"')";
+  let query= connection.query(sqlString,(err,results) => {
+    if(err) return res.json(err);
+    return { status: "success", data: req.body };
+  });
+});
+
 router.post('/updateProduit/:id', upload.single('photo'), (req, res) => {
   const id=req.params.id;
   //console.log(req.file)
