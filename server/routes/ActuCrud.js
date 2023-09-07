@@ -21,7 +21,7 @@ app.use(cors())
 
 router.get('/listes', (req, res) => {
   //let sqlString="SELECT * FROM Produit";
-  let sqlString="select categorie.id as idCategorie,categorie.nomCategorie,produit.id as idProduit,produit.nomProduit,produit.prixUnitaire,produit.photo from Categorie LEFT JOIN produit ON categorie.id = produit.idCategorie"
+  let sqlString="select Categorie.id as idCategorie,Categorie.nomCategorie,Produit.id as idProduit,Produit.nomProduit,Produit.prixUnitaire,Produit.photo from Categorie LEFT JOIN Produit ON Categorie.id = Produit.idCategorie"
   let query= connection.query(sqlString,(err,rows) => {
     /*if(err) return res.json(err);
     return res.json(rows);*/
