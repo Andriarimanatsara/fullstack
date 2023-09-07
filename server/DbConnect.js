@@ -14,17 +14,13 @@ try {
 }
 
 const connection = mysql.createConnection({
-    host: config.HOST,
-    port: config.PORT,
-    user: config.USER,
-    password: config.PASSWORD,
-    database: config.DATABASE
+    host:"149.202.43.174",
+    user:"ovh-user",
+    password:"ovhACCESS",
+    database:"EcommerceVato",
+    port: 3306
 
-    /*host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE*/
-  });
+});
   
   connection.connect((err) => {
     if (err) {
