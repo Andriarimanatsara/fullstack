@@ -51,7 +51,7 @@ router.post('/inscription', (req, res) => {
     const { login, password,email,tel } = req.body;
     const verificationCode = '0404k';//generateVerificationCode(); // Implement your code generation logic
   
-    const sql = 'INSERT INTO utilisateurclient (login, password, email,tel) VALUES (?, ?, ?,?)';
+    const sql = 'INSERT INTO utilisateur_client (login, password, email,tel) VALUES (?, ?, ?,?)';
     connection.query(sql, [login,password, email, tel], (err, result) => {
       if (err) {
         console.error(err);
@@ -113,7 +113,7 @@ router.post('/inscription', async (request, response) => {
     const { login, password,email,tel } = request.body;
     try { 
         // Vérifiez si l'utilisateur existe déjà
-        const checkUserSql = 'SELECT * FROM utilisateurclient WHERE email = ?';
+        const checkUserSql = 'SELECT * FROM utilisateur_client WHERE email = ?';
         connection.query(checkUserSql, [email], (checkErr, checkResults) => {
             if (checkErr) {
                 console.error(checkErr);
@@ -129,7 +129,7 @@ router.post('/inscription', async (request, response) => {
             }
             
             else {
-                const sql = 'INSERT INTO utilisateurclient (login, password, email, tel) VALUES (?, ?, ?, ?)';
+                const sql = 'INSERT INTO utilisateur_client (login, password, email, tel) VALUES (?, ?, ?, ?)';
                 connection.query(sql, [login, password, email, tel], async (err, result) => {
                     if (err) {
                         console.error(err);

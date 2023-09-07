@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: 0
         }
     }, {
-        tableName: 'UtilisateurClient', // Spécifiez le nom de table souhaité
+        tableName: 'utilisateur_client', // Spécifiez le nom de table souhaité
         timestamps: false // Désactive les timestamps
     });
 
