@@ -212,26 +212,29 @@ const ListeIndex = () =>{
                                 ))}
                             </Slider>
                             ) : (
-                                <div>
+                                <div className="row">
                                     {liste.produits.map(listeP => (
-                                        <div key={listeP.idProduit} className="product-item" style={{ margin: '5%' }}>
-                                            <div className="product-title">
-                                                <a href="#">{listeP.nomProduit}</a>
-                                            </div>
-                                            <div className="product-image">
-                                                <a href="product-detail.html">
-                                                    <img src={`/img/${listeP.photo}`} alt="Product Image" style={{ width: '100%', height: 'auto' }}/>
-                                                </a>
-                                                <div className="product-action">
-                                                    <a onClick={()=>handleClickPan(listeP.idProduit,listeP.prixUnitaire,listeP.photo,listeP.nomProduit)}><i className="fa fa-cart-plus"></i></a>
+                                        <div className="col-md-4">
+                                            <div className="product-item" key={liste.idProduit}>
+                                                <div className="product-title">
+                                                    <a>{listeP.nomProduit}</a>
                                                 </div>
-                                            </div>
-                                            <div class="product-price">
-                                                <h3><span>$</span>{listeP.prixUnitaire}</h3>
-                                                <a class="btn" onClick={()=>handleClickIndex(listeP.idProduit,listeP.prixUnitaire,listeP.photo,listeP.nomProduit)}><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                                <div className="product-image">
+                                                    <a>
+                                                        <img src={`/img/${listeP.photo}`} alt="Product Image" style={{ width: '100%', height: 'auto' }}/>
+                                                    </a>
+                                                    <div className="product-action">
+                                                        <a onClick={()=>handleClickPan(listeP.idProduit,listeP.prixUnitaire,listeP.photo,listeP.nomProduit)}><i className="fa fa-cart-plus"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div className="product-price">
+                                                    <h3><span>$</span>{listeP.prixUnitaire}</h3>
+                                                    <a className="btn" onClick={()=>handleClickIndex(listeP.idProduit,listeP.prixUnitaire,listeP.photo,listeP.nomProduit)}><i className="fa fa-shopping-cart"></i>Buy Now</a>
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
+                                    
                                 </div>
                             )}
                         </div>

@@ -249,14 +249,14 @@ const ListeProduit = () => {
                         <div className="col-lg-8">
                             <div className="row">
                                 {lists.map((liste) => (
-                                    <div key={liste.id}>
-                                        <div className="product-item" style={{ margin: '5%' }}>
+                                    <div className="col-md-4">
+                                        <div className="product-item" key={liste.id}>
                                             <div className="product-title">
-                                                <a href="#">{liste.nomProduit}</a>
+                                                <a>{liste.nomProduit}</a>
                                             </div>
                                             <div className="product-image">
                                                 <a>
-                                                <Link to={`/detailProd/${liste.id}`} ><img src={`/img/${liste.photo}`} alt="Product Image"/></Link>
+                                                    <Link to={`/detailProd/${liste.id}`} ><img src={`/img/${liste.photo}`} alt="Product Image"/></Link>
                                                 </a>
                                                 
                                             </div>
@@ -267,6 +267,7 @@ const ListeProduit = () => {
                                         </div>
                                     </div>
                                 ))}
+                                
                             </div>
                             <div className="col-md-12">
                                 <nav aria-label="Page navigation example">

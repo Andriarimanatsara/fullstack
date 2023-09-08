@@ -194,6 +194,28 @@ const ListeProduitAdmin = () => {
                         <div className="col-lg-8">
                             <div className="row">
                                 {lists.map((liste) => (
+                                    <div className="col-md-4">
+                                        <div className="product-item" key={liste.id}>
+                                            <div className="product-title">
+                                                <a>{liste.nomProduit}</a>
+                                            </div>
+                                            <div className="product-image">
+                                                <a>
+                                                    <img src={`/img/${liste.photo}`} alt="Product Image" />
+                                                </a>
+                                                
+                                            </div>
+                                            <div className="product-price">
+                                                <h3><span>$</span>{liste.prixUnitaire}</h3>
+                                                <div className="row">
+                                                    <a className="btn" style={{ margin: '2%'}}><Link to={`/updateAdmin/${liste.id}`}>Update</Link></a>
+                                                    <a className="btn" onClick={()=>handleRemoveItem(liste.id)}>Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                                {lists.map((liste) => (
                                     <div key={liste.id}>
                                         <div className="product-item" style={{ margin: '2%'}}>
                                             <div className="product-title">
