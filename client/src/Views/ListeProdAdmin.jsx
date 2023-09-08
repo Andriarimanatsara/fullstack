@@ -130,15 +130,15 @@ const ListeProduitAdmin = () => {
 
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
-                                <a className="nav-item nav-link active"><Link to="/" style={{color:'black'}} >Home</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'black'}} >Products</Link></a>
+                                <a className="nav-item nav-link active"><Link to="/" style={{color:'white'}} >Home</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'white'}} >Products</Link></a>
                                 <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/cart" style={{color:'black'}} >Cart</Link></a>
+                                <a className="nav-item nav-link"><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
                                 <a className="nav-item nav-link">Checkout</a>
                                 <div className="nav-item dropdown">
                                     <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
                                     <div className="dropdown-menu">
-                                        <a className="dropdown-item"><Link to="/register" style={{color:'black'}} >Login & Register</Link></a>
+                                        <a className="dropdown-item"><Link to="/register" style={{color:'white'}} >Login & Register</Link></a>
                                         <a className="dropdown-item">Contact Us</a>
                                     </div>
                                 </div>
