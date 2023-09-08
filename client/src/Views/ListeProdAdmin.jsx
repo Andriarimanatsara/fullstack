@@ -133,6 +133,8 @@ const ListeProduitAdmin = () => {
                                 <a className="nav-item nav-link active"><Link to="/" style={{color:'white'}} >Home</Link></a>
                                 <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'white'}} >Products</Link></a>
                                 <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Prod Admin</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addAdmin" style={{color:'white'}} >Add Prod Admin</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Add Cat Admin</Link></a>
                                 <a className="nav-item nav-link"><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
                                 <a className="nav-item nav-link">Checkout</a>
                                 <div className="nav-item dropdown">

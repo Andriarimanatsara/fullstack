@@ -51,7 +51,7 @@ const AddAdmin = () =>{
         }
         //console.log(produit)
         try {
-            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/updateProduit/"+idUp,produit,config)///////
+            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/add_product/",produit,config)///////
             /*if (response.status===200) {
                 // Le fichier a été téléchargé avec succès
                 setErrorMessage('');
@@ -101,17 +101,18 @@ const AddAdmin = () =>{
 
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
-                                <a className="nav-item nav-link active"><Link to="/" >Home</Link></a>
-                                <a href="product-list.html" className="nav-item nav-link"><Link to="/listeProdduit" >Products</Link></a>
-                                <a href="product-detail.html" className="nav-item nav-link"><Link to="/listeProAdmin" >Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/cart" >Cart</Link></a>
-                                <a href="checkout.html" className="nav-item nav-link">Checkout</a>
-                                <a href="my-account.html" className="nav-item nav-link">My Account</a>
+                                <a className="nav-item nav-link active"><Link to="/" style={{color:'white'}} >Home</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'white'}} >Products</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" style={{color:'white'}} >Prod Admin</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addAdmin">Add Prod Admin</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Add Cat Admin</Link></a>
+                                <a className="nav-item nav-link"><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
+                                <a className="nav-item nav-link">Checkout</a>
                                 <div className="nav-item dropdown">
                                     <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
                                     <div className="dropdown-menu">
-                                        <a className="dropdown-item"><Link to="/register" >Login & Register</Link></a>
-                                        <a href="contact.html" className="dropdown-item">Contact Us</a>
+                                        <a className="dropdown-item"><Link to="/register" style={{color:'white'}} >Login & Register</Link></a>
+                                        <a className="dropdown-item">Contact Us</a>
                                     </div>
                                 </div>
                             </div>

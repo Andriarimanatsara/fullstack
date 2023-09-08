@@ -12,6 +12,7 @@ import Register from "./Views/Register";
 import ListeProdAdmin from "./Views/ListeProdAdmin";
 import UpdateAdmin from "./Views/UpdateAdmin";
 import AddAdmin from "./Views/AddAdmin";
+import AddCategory from "./Views/AddCategory";
 
 import DetailProd from "./Views/DetailProd";
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/listeProdAdmin" element={<ListeProdAdmin />}/>
           <Route path="/updateAdmin/:id" element={<UpdateAdmin />}/>
           <Route path="/addAdmin" element={<AddAdmin />}/>
+          <Route path="/addCategory" element={<AddCategory />}/>
 
           <Route path="/detailProd/:id" element={<DetailProd />}/>
         </Routes>

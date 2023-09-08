@@ -2,75 +2,37 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {useLocation, useNavigate} from "react-router-dom"
 import axios from 'axios'
+
 import configData from '../conf.json';
 
-const UpdateAdmin = () =>{
-    const[listsCat,setListsCat]=useState([]);
-    const [errorMessage, setErrorMessage] = useState('');
+const AddCategory = () =>{
     const navigate= useNavigate();
     
     const location= useLocation();
-    const idUp=location.pathname.split("/")[2]
 
-    useEffect(()=>{
-        const fetchAllListe=async()=>{
-            try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category")
-                setListsCat(res.data);
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchAllListe()
-    },[]);
 
-    const[produit,setProduit]=useState({
-        idCategorie:"",
-        nomProduit:"",
+    const[category,setCategory]=useState({
+        nameCategory:"",
         description:"",
-        photo:"",
-        prixUnitaire:null,
     });
 
     const handleChange = (e) => {
-        if (e.target.name === 'photo') {
-          const selectedFile = e.target.files[0];
-          setProduit((prev) => ({ ...prev, [e.target.name]: selectedFile }));
-        } else {
-          setProduit((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-        }
+      setCategory((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
     
-    const handleUpdate= async e=>{
-        e.preventDefault()
-        const config={
-            headers:{
-                "Content-type":"multipart/form-data"
-            }
-        }
-        //console.log(produit)
+    const handleInsert= async e=>{
+       
         try {
-            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/update_product/"+idUp,produit,config)///////
-            /*if (response.status===200) {
-                // Le fichier a été téléchargé avec succès
-                setErrorMessage('');
-                navigate("/listeProdAdmin");
-            } else if (response.status === 409) {
-                // Le fichier existe déjà
-                setErrorMessage('Le fichier existe déjà');
-            }*/
-            /*if(response.data.status===201)
+            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/add_category/",category)///////
+            if(response.data.status===201)
             {
                 navigate("/listeProdAdmin");
             }else{
-                alert("error");
-            }*/
-            navigate("/listeProdAdmin");
-            //console.log(response);
+                navigate("/listeProdAdmin");
+            }            
         } catch (error) {
-            console.error('Erreur lors du téléchargement du fichier', error);
+            console.error('Erreur insertion', error);
         }
-        //console.log("tsy maintsy miseo");
     };
 
     return (
@@ -102,10 +64,10 @@ const UpdateAdmin = () =>{
                             <div className="navbar-nav mr-auto">
                                 <a className="nav-item nav-link active"><Link to="/" style={{color:'white'}} >Home</Link></a>
                                 <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'white'}} >Products</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Prod Admin</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" style={{color:'white'}} >Prod Admin</Link></a>
                                 <a className="nav-item nav-link"><Link to="/addAdmin" style={{color:'white'}} >Add Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Add Cat Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addCategory" >Add Cat Admin</Link></a>
+                                <a className="nav-item nav-link" ><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
                                 <a className="nav-item nav-link">Checkout</a>
                                 <div className="nav-item dropdown">
                                     <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
@@ -139,21 +101,7 @@ const UpdateAdmin = () =>{
                                 </a>
                             </div>
                         </div>
-                        <div className="col-md-6">
-                            <div className="search">
-                                <input type="text" placeholder="Search"/>
-                                <button><i className="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="user">
-                                
-                                <a href="cart.html" className="btn cart">
-                                    <i className="fa fa-shopping-cart"></i>
-                                    <span>(0)</span>
-                                </a>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -173,37 +121,18 @@ const UpdateAdmin = () =>{
                     <div className="row">
                         <div className="col-lg-6">
                             <div className="login-form">
-                            <div className="row">
                                 <div className="col-md-6">
-                                    <label>Categorie</label>
-                                    <select onChange={handleChange} name="idCategorie" class="form-control" style={{width: '100%'}}>
-                                        {listsCat.map(listeCt=>(
-                                            <option key={listeCt.id} value={listeCt.id}>{listeCt.nomCategorie}</option>
-                                        ))} 
-                                    </select>
-                                </div>
-                                <div className="col-md-6">
-                                    <label>Nom Produit</label>
-                                    <input className="form-control" type="text" placeholder="Nom Produit" onChange={handleChange} name="nomProduit" />
+                                    <label>Nom Categorie</label>
+                                    <input className="form-control" type="text" placeholder="Nom Categorie" onChange={handleChange} name="nameCategory" />
                                 </div>
 
                                 <div className="col-md-6">
                                     <label>Description</label>
-                                    <textarea class="form-control" onChange={handleChange} name="description" rows="3" value={produit.description} ></textarea>
-                                </div>
-                                <div className="col-md-6">
-                                    <label>Photo</label>
-                                    <input className="form-control" type="file" placeholder="Photo" onChange={handleChange} name="photo" />
-                                    {errorMessage && <p>{errorMessage}</p>}
-                                </div>
-                                <div className="col-md-6">
-                                    <label>Prix Unitaire</label>
-                                    <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" />
+                                    <textarea class="form-control" onChange={handleChange} name="description" rows="3" ></textarea>
                                 </div>
                                 <div className="col-md-12">
-                                    <button className="btn" onClick={handleUpdate}>Update</button>           
+                                    <button className="btn" onClick={handleInsert}>Insert</button>           
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -229,4 +158,4 @@ const UpdateAdmin = () =>{
     )
 }
 
-export default UpdateAdmin
+export default AddCategory

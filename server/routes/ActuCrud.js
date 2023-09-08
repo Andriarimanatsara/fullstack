@@ -130,17 +130,29 @@ const isImg=(req,file,cb)=>{
 
 const upload = multer({ storage:storage,fileFilter:isImg });
 
-router.post('/add_product', (req, res) => {
-  let data=req.body;
-  let sqlString="INSERT INTO produit(idCategorie, nomProduit, description, prixUnitaire, photo) values('"+data.category+"','"+data.name+"','"+data.description+"','"+data.price+"','"+data.picture+"')";
-  let query= connection.query(sqlString,(err,results) => {
-    if(err) return res.json(err);
-    return res.json({ status: 201,data: req.body })
-  });
+router.post('/add_product', upload.single('photo'), (req, res) => {
+  let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,photo:req.file ? req.file.originalname : '',prixUnitaire:req.body.prixUnitaire};
+  if(!data.idCategorie || !data.nomProduit || !data.description || !data.photo || !data.prixUnitaire)
+  {
+    res.json({status:422,message:"fill all the details"})
+  }
+  try{
+    let sqlString = "INSERT INTO Produit(idCategorie,nomProduit,description,photo,prixUnitaire)values(" + data.idCategorie + ",'" + data.nomProduit + "','" + data.description + "','" + data.photo + "'," + data.prixUnitaire + ")";
+    let query = connection.query(sqlString,(err, results) => {
+      if (err) {
+        res.json(err);
+      }else{
+        console.log("data updated")
+        res.json({status:201,data:req.body})
+      }
+    })
+  }catch(error){
+    res.json({status:422,error})
+  }
 });
 
 router.post('/add_category', (req, res) => {
-  let data=req.body;
+  let data={name:req.body.name,decription:req.body.description};
   let sqlString="INSERT INTO categorie(nomCategorie, description) values('"+data.name+"','"+data.description+"')";
   let query= connection.query(sqlString,(err,results) => {
     if(err) return res.json(err);
