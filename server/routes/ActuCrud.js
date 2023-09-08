@@ -82,7 +82,7 @@ router.get('/lists_paging', (req, res) => {
     if (err) return res.json(err);
 
     // Récupérer le nombre total d'éléments pour la pagination
-    connection.query('SELECT COUNT(*) AS totalCount FROM Produit', (countErr, countRows) => {
+    connection.query('SELECT COUNT(*) AS totalCount FROM produit', (countErr, countRows) => {
       if (countErr) return res.json(countErr);
 
       const totalCount = countRows[0].totalCount;
