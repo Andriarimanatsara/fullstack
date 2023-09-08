@@ -52,7 +52,7 @@ router.get('/lists_product', (req, res) => {
 
 //listesCat
 router.get('/lists_category', (req, res) => {
-  let sqlString="SELECT * FROM Categorie";
+  let sqlString="SELECT * FROM categorie";
   let query= connection.query(sqlString,(err,rows) => {
     if(err) return res.json(err);
     return res.json(rows);
