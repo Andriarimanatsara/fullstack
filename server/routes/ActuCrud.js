@@ -59,6 +59,16 @@ router.get('/lists_category', (req, res) => {
   });
 });
 
+router.post('/update_category/:id', (req, res) => {
+  const id=req.params.id;
+  let data={name:req.body.name,decription:req.body.description};
+  let sqlString="UPDATE categorie SET nomCategorie='' , description='"+data.name+"','"+data.description+"')";
+  let query= connection.query(sqlString,(err,results) => {
+    if(err) return res.json(err);
+    return res.json({status:201,data:req.body})
+  });
+});
+
 //listesDescri/:idProduit
 router.get('/lists_by_product/:idProduct', (req, res) => {
   const idProduct=req.params.idProduct;
