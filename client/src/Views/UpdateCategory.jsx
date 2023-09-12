@@ -44,11 +44,13 @@ const UpdateCategory = () =>{
                     <div className="row">
                         <div className="col-sm-6">
                             <i className="fa fa-envelope"></i>
-                            support@email.com
+                            stonesmidas@gmail.com
                         </div>
                         <div className="col-sm-6">
                             <i className="fa fa-phone-alt"></i>
-                            +012-345-6789
+                            +261 32 98 869 81
+                            <i className="fa fa-whatsApp-alt"></i>
+                            +261 38 65 069 82
                         </div>
                     </div>
                 </div>
@@ -83,7 +85,7 @@ const UpdateCategory = () =>{
                         <div className="col-md-3">
                             <div className="logo">
                                 <a href="index.html">
-                                    <img src="img/logo.png" alt="Logo"/>
+                                    <img src="img/logo-midas.png" alt="Logo"/>
                                 </a>
                             </div>
                         </div>

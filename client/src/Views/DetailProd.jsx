@@ -102,15 +102,18 @@ const ListeProduit = () => {
                     <div className="row">
                         <div className="col-sm-6">
                             <i className="fa fa-envelope"></i>
-                            support@email.com
+                            stonesmidas@gmail.com
                         </div>
                         <div className="col-sm-6">
                             <i className="fa fa-phone-alt"></i>
-                            +012-345-6789
+                            +261 32 98 869 81
+                            <i className="fa fa-whatsApp-alt"></i>
+                            +261 38 65 069 82
                         </div>
                     </div>
                 </div>
             </div>
+
             <div className="nav">
                 <div className="container-fluid">
                     <nav className="navbar navbar-expand-md bg-dark navbar-dark">
@@ -144,7 +147,7 @@ const ListeProduit = () => {
                         <div className="col-md-3">
                             <div className="logo">
                                 <a href="index.html">
-                                    <img src="img/logo.png" alt="Logo"/>
+                                    <img src="img/logo-midas.png" alt="Logo"/>
                                 </a>
                             </div>
                         </div>

@@ -84,11 +84,13 @@ const Contact = () =>{
                     <div className="row">
                         <div className="col-sm-6">
                             <i className="fa fa-envelope"></i>
-                            support@email.com
+                            stonesmidas@gmail.com
                         </div>
                         <div className="col-sm-6">
                             <i className="fa fa-phone-alt"></i>
-                            +012-345-6789
+                            +261 32 98 869 81
+                            <i className="fa fa-whatsApp-alt"></i>
+                            +261 38 65 069 82
                         </div>
                     </div>
                 </div>
@@ -128,7 +130,7 @@ const Contact = () =>{
                         <div className="col-md-3">
                             <div className="logo">
                                 <a href="index.html">
-                                    <img src="img/logo.png" alt="Logo"/>
+                                    <img src="img/logo-midas.png" alt="Logo"/>
                                 </a>
                             </div>
                         </div>
@@ -150,7 +152,7 @@ const Contact = () =>{
                     <ul className="breadcrumb">
                         <li className="breadcrumb-item"><a><Link to="/" >Home</Link></a></li>
                         <li className="breadcrumb-item"><a><Link to="/listeProduit" >Products</Link></a></li>
-                        <li className="breadcrumb-item active"><Link to="/register" >Login & Register</Link></li>
+                        <li className="breadcrumb-item active"><Link to="/login" >Login</Link></li>
                     </ul>
                 </div>
             </div>
@@ -161,10 +163,11 @@ const Contact = () =>{
                         <div className="col-lg-4">
                             
                                 <div className="contact-info">
-                                    <h2>Contact Us</h2>
-                                    <h3><i className="fa fa-map-marker"></i>123 Office, Los Angeles, CA, USA</h3>
-                                    <h3><i className="fa fa-envelope"></i>office@example.com</h3>
-                                    <h3><i className="fa fa-phone"></i>+123-456-7890</h3>
+                                    <h2>Contacter Nous</h2>
+                                    <h3><i className="fa fa-map-marker"></i>Madagascar antananarivo</h3>
+                                    <h3><i className="fa fa-envelope"></i>stonesmidas@gmail.com</h3>
+                                    <h3><i className="fa fa-whatsApp"></i>+261 32 98 869 81</h3>
+                                    <h3><i className="fa fa-phone"></i>+261 34 65 069 82</h3>
                                     <div className="social">
                                         <a href=""><i className="fab fa-twitter"></i></a>
                                         <a href=""><i className="fab fa-facebook-f"></i></a>

@@ -170,11 +170,13 @@ router.post('/inscription', async (request, response) => {
 });
 
 function sendMailContact(name,email,subject,message) {
+  var body = '<h1>Bonjour,</h1><p>Nous avons reçu une demande par email.</p><p> L\'émail suivant nous prend en contact :'+ email +'sur notre site web.</p> \n'
+    + '<p>De la part de: '+name+'</p> \n <p> Voici son requête: <b>"'+ message +'"</b>.</p><p>Cordialement,</p> <p>L\'équipe de notre service</p>';
   const mailOptions = {
       from: email,
-      to: 'albertonambinina@gmail.com',
+      to: 'stonesmidas@gmail.com',
       subject: subject,
-      html: message
+      html: body
   };
   
   const rep = {}
