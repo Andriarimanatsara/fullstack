@@ -158,7 +158,7 @@ const ListeIndex = () =>{
             <div className="bottom-bar">
                 <div className="container-fluid">
                     <div className="row align-items-center">
-                        <div className="col-md-6">
+                        <div className="col-md-3">
                             <div className="logo">
                                 <a>
                                     <img src="img/logo-midas.png" alt="Logo"/>
