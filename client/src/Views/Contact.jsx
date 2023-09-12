@@ -89,7 +89,7 @@ const Contact = () =>{
                         <div className="col-sm-6">
                             <i className="fa fa-phone-alt"></i>
                             +261 32 98 869 81
-                            <i className="fa fa-whatsApp-alt"></i>
+                            <i className="fa fa-whatsapp-alt"></i>
                             +261 38 65 069 82
                         </div>
                     </div>
@@ -134,7 +134,7 @@ const Contact = () =>{
                                 </a>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-md-9">
                             <div className="user">
                                 
                                 <a href="cart.html" className="btn cart">
@@ -183,10 +183,10 @@ const Contact = () =>{
                                 <form>
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <input type="text" className="form-control" placeholder="Your Name" onChange={handleChange} name="nameUser" />
+                                            <input type="text" className="form-control" placeholder="Votre Nom" onChange={handleChange} name="nameUser" />
                                         </div>
                                         <div className="col-md-6">
-                                            <input type="email" className="form-control" placeholder="Your Email" onChange={handleChange} name="emailUser" />
+                                            <input type="email" className="form-control" placeholder="Votre Email" onChange={handleChange} name="emailUser" />
                                         </div>
                                     </div>
                                     <div className="form-group">
@@ -196,7 +196,7 @@ const Contact = () =>{
                                         <textarea className="form-control" rows="5" placeholder="Message" onChange={handleChange} name="message" ></textarea>
                                     </div>
                                     {errorMessage && <b><p className="error-message" style={{color:'red'}}>{errorMessage}</p></b>}
-                                    <div><button className="btn" type="submit" onClick={handleInsert}>Send Message</button></div>
+                                    <div><button className="btn" type="submit" onClick={handleInsert}>Envoie Email</button></div>
                                 </form>
                             </div>
                         </div>

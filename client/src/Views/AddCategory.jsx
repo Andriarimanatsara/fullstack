@@ -47,7 +47,7 @@ const AddCategory = () =>{
                         <div className="col-sm-6">
                             <i className="fa fa-phone-alt"></i>
                             +261 32 98 869 81
-                            <i className="fa fa-whatsApp-alt"></i>
+                            <i className="fa fa-whatsapp-alt"></i>
                             +261 38 65 069 82
                         </div>
                     </div>
