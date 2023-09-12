@@ -110,10 +110,10 @@ router.get('/lists_by_category/:idCategory', (req, res) => {
   const startIndex = (page - 1) * perPage;
   const endIndex = startIndex + perPage;
 
-  let sqlString="SELECT * FROM Produit where idCategorie="+idCategory+" LIMIT "+startIndex+", "+perPage;
+  let sqlString="SELECT * FROM produit where idCategorie="+idCategory+" LIMIT "+startIndex+", "+perPage;
   let query= connection.query(sqlString,(err,rows) => {
     if(err) return res.json(err);
-    connection.query('SELECT COUNT(*) AS totalCount FROM Produit where idCategorie='+idCategory, (countErr, countRows) => {
+    connection.query('SELECT COUNT(*) AS totalCount FROM produit where idCategorie='+idCategory, (countErr, countRows) => {
       if (countErr) return res.json(countErr);
 
       const totalCount = countRows[0].totalCount;
@@ -157,7 +157,7 @@ router.post('/add_product', upload.single('photo'), (req, res) => {
     res.json({status:422,message:"fill all the details"})
   }
   try{
-    let sqlString = "INSERT INTO Produit(idCategorie,nomProduit,description,photo,prixUnitaire)values(" + data.idCategorie + ",'" + data.nomProduit + "','" + data.description + "','" + data.photo + "'," + data.prixUnitaire + ")";
+    let sqlString = "INSERT INTO produit(idCategorie,nomProduit,description,photo,prixUnitaire)values(" + data.idCategorie + ",'" + data.nomProduit + "','" + data.description + "','" + data.photo + "'," + data.prixUnitaire + ")";
     let query = connection.query(sqlString,(err, results) => {
       if (err) {
         res.json(err);
@@ -248,7 +248,7 @@ router.get('/delete_category/:id', (req, res) => {
   const categoryId = req.params.id;
 
   // Étape 1 : Supprimer les produits associés à la catégorie
-  const deleteProductsQuery ="DELETE FROM Produit WHERE idCategorie ="+categoryId;
+  const deleteProductsQuery ="DELETE FROM produit WHERE idCategorie ="+categoryId;
   connection.query(deleteProductsQuery, (err, productDeletionResults) => {
     if (err) {
       return res.json(err);
@@ -267,7 +267,7 @@ router.get('/delete_category/:id', (req, res) => {
 });
 
 router.get('/contactUs', (req, res) => {
-  let sqlString="SELECT * FROM Admin ";
+  let sqlString="SELECT * FROM admin ";
   let query= connection.query(sqlString,(err,rows) => {
     if(err) return res.json(err);
     return res.json(rows);

@@ -209,7 +209,7 @@ router.post('/insert_contact', async (req, res) => {
       message: req.body.message,
     };
 
-    const sqlString = "INSERT INTO Contact(nameUser,emailUser,subject,message) values(?,?,?,?)";
+    const sqlString = "INSERT INTO contact(nameUser,emailUser,subject,message) values(?,?,?,?)";
     const results = await connection.query(sqlString, [data.nameUser, data.emailUser, data.subject, data.message]);
 
     const response = await sendMailContact(data.nameUser, data.emailUser, data.subject, data.message);
