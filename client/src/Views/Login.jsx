@@ -24,7 +24,6 @@ const Login = () =>{
     };
     const [cartItemCount, setCartItemCount] = useState(countTotalProductsInCart());
     useEffect(()=>{
-        contactUs();
         const handleBeforeUnload = () => {
             localStorage.removeItem("panier");
         };
