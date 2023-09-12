@@ -100,30 +100,14 @@ const UpdateAdmin = () =>{
 
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
-                                <a className="nav-item nav-link active"><Link to="/" style={{color:'white'}} >Home</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'white'}} >Products</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" style={{color:'white'}} >Add Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Add Cat Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
-                                <a className="nav-item nav-link">Checkout</a>
-                                <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
-                                    <div className="dropdown-menu">
-                                        <a className="dropdown-item"><Link to="/register" style={{color:'white'}} >Login & Register</Link></a>
-                                        <a className="dropdown-item">Contact Us</a>
-                                    </div>
-                                </div>
+                                
+                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" style={{color:'white'}} >Produits</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addAdmin" >Ajouter Produit</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeCategory" >Categories</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addCategory" >Ajouter Categorie</Link></a>
+                                
                             </div>
-                            <div className="navbar-nav ml-auto">
-                                <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                                    <div className="dropdown-menu">
-                                        <a href="#" className="dropdown-item">Login</a>
-                                        <a href="#" className="dropdown-item">Register</a>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </nav>
                 </div>
@@ -139,34 +123,12 @@ const UpdateAdmin = () =>{
                                 </a>
                             </div>
                         </div>
-                        <div className="col-md-6">
-                            <div className="search">
-                                <input type="text" placeholder="Search"/>
-                                <button><i className="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="user">
-                                
-                                <a href="cart.html" className="btn cart">
-                                    <i className="fa fa-shopping-cart"></i>
-                                    <span>(0)</span>
-                                </a>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
             
-            <div className="breadcrumb-wrap">
-                <div className="container-fluid">
-                    <ul className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="#">Home</a></li>
-                        <li className="breadcrumb-item"><a href="#">Products</a></li>
-                        <li className="breadcrumb-item active">Login & Register</li>
-                    </ul>
-                </div>
-            </div>
+            
             
             <div className="login">
                 <div className="container-fluid">
@@ -176,7 +138,7 @@ const UpdateAdmin = () =>{
                             <div className="row">
                                 <div className="col-md-6">
                                     <label>Categorie</label>
-                                    <select onChange={handleChange} name="idCategorie" class="form-control" style={{width: '100%'}}>
+                                    <select onChange={handleChange} name="idCategorie" className="form-control" style={{width: '100%'}}>
                                         {listsCat.map(listeCt=>(
                                             <option key={listeCt.id} value={listeCt.id}>{listeCt.nomCategorie}</option>
                                         ))} 
@@ -189,7 +151,7 @@ const UpdateAdmin = () =>{
 
                                 <div className="col-md-6">
                                     <label>Description</label>
-                                    <textarea class="form-control" onChange={handleChange} name="description" rows="3" value={produit.description} ></textarea>
+                                    <textarea className="form-control" onChange={handleChange} name="description" rows="3" value={produit.description} ></textarea>
                                 </div>
                                 <div className="col-md-6">
                                     <label>Photo</label>
@@ -210,19 +172,7 @@ const UpdateAdmin = () =>{
                 </div>
             </div>
             
-            <div className="footer-bottom">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 copyright">
-                            <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
-                        </div>
-
-                        <div className="col-md-6 template-by">
-                            <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         
 
         </div>

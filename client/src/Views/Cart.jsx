@@ -83,17 +83,6 @@ const Cart = () =>{
         }
     };
     const handleUpdateCart = async () => {
-        /*try {
-            // Boucle pour mettre à jour les paniers modifiés dans la base de données
-            for (const modifiedPanier of modifiedPaniers) {
-                await axios.put(`http://localhost:8800/ActuCrud/updatePanier/${modifiedPanier.id}`, modifiedPanier);
-            }
-            // Réinitialiser le tableau des paniers modifiés après la mise à jour
-            setModifiedPaniers([]);
-            alert("update successfuly!");
-        } catch (error) {
-            console.log(error);
-        }*/
         const updatedCart = modifiedPaniers.reduce((cart, modifiedItem) => {
             const existingItemIndex = cart.findIndex(item => item.id === modifiedItem.id);
             if (existingItemIndex !== -1) {
@@ -115,15 +104,14 @@ const Cart = () =>{
         );
     };
 
-    const handleRemoveItem = async (id) => {
-        try {
-          // Effectuer une requête pour supprimer l'article du panier
-          await axios.delete(`http://localhost:8800/ActuCrud/deletePanier/${id}`);
-          // Rafraîchir la liste du panier après la suppression
-          fetchAllListe();
-        } catch (error) {
-          console.log(error);
-        }
+    const handleRemoveItem = (id) => {
+        // Supprimer l'élément du panier en fonction de l'ID
+        const updatedListePanier = listePanier.filter((item) => item.id !== id);
+
+        // Mettre à jour le state et le localStorage avec la nouvelle liste de panier
+        setListePanier(updatedListePanier);
+        countTotalProductsInCart();
+        localStorage.setItem("panier", JSON.stringify(updatedListePanier));
     };
 
     return (
@@ -152,31 +140,20 @@ const Cart = () =>{
                         </button>
 
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div className="navbar-nav mr-auto">
-                                <a className="nav-item nav-link active"><Link to="/" style={{color:'white'}} >Home</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'white'}} >Products</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" style={{color:'white'}} >Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" style={{color:'white'}} >Add Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Add Cat Admin</Link></a>
-                                <a className="nav-item nav-link" ><Link to="/cart" >Cart</Link></a>
-                                <a className="nav-item nav-link">Checkout</a>
+                            <div className="navbar-nav mr-auto">
+                                <a className="nav-item nav-link active"><Link to="/" >Home</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProduit" >Produits</Link></a>
+                                
+                                <a className="nav-item nav-link" ><Link to="/cart" style={{color:'white'}} >Panier</Link></a>
                                 <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
+                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Plus de Pages</a>
                                     <div className="dropdown-menu">
-                                        <a className="dropdown-item"><Link to="/register" style={{color:'white'}} >Login & Register</Link></a>
-                                        <a className="dropdown-item">Contact Us</a>
+                                        <a className="dropdown-item"><Link to="/login" >Login</Link></a>
+                                        <a className="dropdown-item"><Link to="/contact" >Contacter Nous</Link></a>
                                     </div>
                                 </div>
                             </div>
-                            <div className="navbar-nav ml-auto">
-                                <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                                    <div className="dropdown-menu">
-                                        <a href="#" className="dropdown-item">Login</a>
-                                        <a href="#" className="dropdown-item">Register</a>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </nav>
                 </div>
@@ -214,9 +191,9 @@ const Cart = () =>{
             <div className="breadcrumb-wrap">
                 <div className="container-fluid">
                     <ul className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="#">Home</a></li>
-                        <li className="breadcrumb-item"><a href="#">Products</a></li>
-                        <li className="breadcrumb-item active">Cart</li>
+                        <li className="breadcrumb-item"><a><Link to="/" >Home</Link></a></li>
+                        <li className="breadcrumb-item"><a><Link to="/listeProduit" >Products</Link></a></li>
+                        <li className="breadcrumb-item active"><Link to="/register" >Login & Register</Link></li>
                     </ul>
                 </div>
             </div>
@@ -311,57 +288,7 @@ const Cart = () =>{
                 </div>
             </div>
             
-            <div className="footer">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-lg-3 col-md-6">
-                            <div className="footer-widget">
-                                <h2>Get in Touch</h2>
-                                <div className="contact-info">
-                                    <p><i className="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                                    <p><i className="fa fa-envelope"></i>email@example.com</p>
-                                    <p><i className="fa fa-phone"></i>+123-456-7890</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-                    
-                    <div className="row payment align-items-center">
-                        <div className="col-md-6">
-                            <div className="payment-method">
-                                <h2>We Accept:</h2>
-                                <img src="img/payment-method.png" alt="Payment Method" />
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="payment-security">
-                                <h2>Secured By:</h2>
-                                <img src="img/godaddy.svg" alt="Payment Security" />
-                                <img src="img/norton.svg" alt="Payment Security" />
-                                <img src="img/ssl.svg" alt="Payment Security" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
             
-        
-            <div className="footer-bottom">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 copyright">
-                            <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
-                        </div>
-
-                        <div className="col-md-6 template-by">
-                            <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         
 
         </div>

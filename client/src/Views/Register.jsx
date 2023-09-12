@@ -65,25 +65,25 @@ const Register = () =>{
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
                                 <a className="nav-item nav-link active"><Link to="/" >Home</Link></a>
-                                <a href="product-list.html" className="nav-item nav-link"><Link to="/listeProduit" >Products</Link></a>
-                                <a href="product-detail.html" className="nav-item nav-link">Product Detail</a>
+                                <a className="nav-item nav-link"><Link to="/listeProduit" >Products</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Prod Admin</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addAdmin" >Add Prod Admin</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeCategory" >List Cat Admin</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addCategory" >Add Cat Admin</Link></a>
                                 <a className="nav-item nav-link"><Link to="/cart" >Cart</Link></a>
-                                <a href="checkout.html" className="nav-item nav-link">Checkout</a>
-                                <a href="my-account.html" className="nav-item nav-link">My Account</a>
                                 <div className="nav-item dropdown">
                                     <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
                                     <div className="dropdown-menu">
-                                        <a className="dropdown-item"><Link to="/register" >Login & Register</Link></a>
-                                        <a href="contact.html" className="dropdown-item">Contact Us</a>
+                                        <a className="dropdown-item"><Link to="/register" style={{color:'white'}} >Login & Register</Link></a>
+                                        <a className="dropdown-item"><Link to="/contact" >Contact Us</Link></a>
                                     </div>
                                 </div>
                             </div>
                             <div className="navbar-nav ml-auto">
                                 <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
                                     <div className="dropdown-menu">
-                                        <a href="#" className="dropdown-item">Login</a>
-                                        <a href="#" className="dropdown-item">Register</a>
+                                        <a className="dropdown-item">Login</a>
+                                        <a className="dropdown-item">Register</a>
                                     </div>
                                 </div>
                             </div>
@@ -124,9 +124,9 @@ const Register = () =>{
             <div className="breadcrumb-wrap">
                 <div className="container-fluid">
                     <ul className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="#">Home</a></li>
-                        <li className="breadcrumb-item"><a href="#">Products</a></li>
-                        <li className="breadcrumb-item active">Login & Register</li>
+                        <li className="breadcrumb-item"><a><Link to="/" >Home</Link></a></li>
+                        <li className="breadcrumb-item"><a><Link to="/listeProduit" >Products</Link></a></li>
+                        <li className="breadcrumb-item active"><Link to="/register" >Login & Register</Link></li>
                     </ul>
                 </div>
             </div>

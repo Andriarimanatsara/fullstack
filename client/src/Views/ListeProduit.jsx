@@ -49,7 +49,18 @@ const ListeProduit = () => {
                 console.log(error)
             }
         }
-        fetchAllListe()
+        fetchAllListe();
+        const handleBeforeUnload = () => {
+            localStorage.removeItem("panier");
+        };
+
+        // Ajoutez l'événement beforeunload au moment du montage du composant
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
     },[]);
     // ... (rest of your code)
 
@@ -57,7 +68,7 @@ const ListeProduit = () => {
     const paginationButtons = [];
     for (let i = 1; i <= totalPages; i++) {
         paginationButtons.push(
-            <li class="page-item"><a class="page-link" key={i} onClick={() => handlePageChange(i)} >
+            <li className="page-item"><a className="page-link" key={i} onClick={() => handlePageChange(i)} >
                 {i}
             </a></li>
         );
@@ -143,8 +154,11 @@ const ListeProduit = () => {
 
     const handleCat= async(idCat)=>{
         try {
-            const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_by_category/"+idCat);
-            setLists(res.data);
+            const init=1;
+            const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_by_category/"+idCat+"?page="+init+"&perPage="+itemsPerPage);
+            setLists(res.data.data);
+            setTotalPages(res.data.totalPages);
+            setCurrentPage(init);
         } catch (error) {
             console.log(error)            
         }
@@ -178,30 +192,19 @@ const ListeProduit = () => {
 
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
-                                <a className="nav-item nav-link active"><Link to="/" style={{color:'white'}} >Home</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProduit" >Products</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" style={{color:'white'}} >Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" style={{color:'white'}} >Add Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Add Cat Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
-                                <a className="nav-item nav-link">Checkout</a>
+                                <a className="nav-item nav-link active"><Link to="/" >Home</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'white'}} >Produits</Link></a>
+                                
+                                <a className="nav-item nav-link"><Link to="/cart" >Panier</Link></a>
                                 <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
+                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Plus de Pages</a>
                                     <div className="dropdown-menu">
-                                        <a className="dropdown-item"><Link to="/register" style={{color:'white'}} >Login & Register</Link></a>
-                                        <a className="dropdown-item">Contact Us</a>
+                                        <a className="dropdown-item"><Link to="/login" >Login</Link></a>
+                                        <a className="dropdown-item"><Link to="/contact" >Contacter Nous</Link></a>
                                     </div>
                                 </div>
                             </div>
-                            <div className="navbar-nav ml-auto">
-                                <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                                    <div className="dropdown-menu">
-                                        <a href="#" className="dropdown-item">Login</a>
-                                        <a href="#" className="dropdown-item">Register</a>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </nav>
                 </div>
@@ -238,9 +241,9 @@ const ListeProduit = () => {
             <div className="breadcrumb-wrap">
                 <div className="container-fluid">
                     <ul className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="#">Home</a></li>
-                        <li className="breadcrumb-item"><a href="#">Products</a></li>
-                        <li className="breadcrumb-item active">Product List</li>
+                        <li className="breadcrumb-item"><a><Link to="/" >Home</Link></a></li>
+                        <li className="breadcrumb-item"><a><Link to="/listeProduit" >Products</Link></a></li>
+                        <li className="breadcrumb-item active"><Link to="/login" >Login & Register</Link></li>
                     </ul>
                 </div>
             </div>
@@ -334,22 +337,7 @@ const ListeProduit = () => {
                 </div>
             </div>
             
-            <div className="footer">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-lg-3 col-md-6">
-                            <div className="footer-widget">
-                                <h2>Get in Touch</h2>
-                                <div className="contact-info">
-                                    <p><i className="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                                    <p><i className="fa fa-envelope"></i>email@example.com</p>
-                                    <p><i className="fa fa-phone"></i>+123-456-7890</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>  
+              
         </div>
     )
 }

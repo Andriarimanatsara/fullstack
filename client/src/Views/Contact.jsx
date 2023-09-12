@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
-import Slider from "react-slick";
-import configData from '../conf.json';
 import {useLocation, useNavigate} from "react-router-dom"
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import axios from 'axios'
 
-const Login = () =>{
+import configData from '../conf.json';
+
+const Contact = () =>{
+    const[admin,setAdmin]=useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     const navigate= useNavigate();
     
@@ -24,6 +23,29 @@ const Login = () =>{
     };
     const [cartItemCount, setCartItemCount] = useState(countTotalProductsInCart());
 
+    useEffect(()=>{
+        const contactUs=async()=>{
+            try {
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/contactUs")
+                setAdmin(res.data);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        contactUs()
+    },[]);
+
+    const[contact,setContact]=useState({
+        nameUser:"",
+        emailUser:"",
+        subject:"",
+        message:"",
+    });
+
+    const handleChange = (e) => {
+      setContact((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
     const handleBeforeUnload = () => {
         localStorage.removeItem("panier");
     };
@@ -35,38 +57,27 @@ const Login = () =>{
     return () => {
         window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-
-    const[admin,setAdmin]=useState({
-        name:"",
-        email:"",
-    });
-
-    const handleChange = (e) => {
-      setAdmin((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    };
     
     const handleInsert= async e=>{
         e.preventDefault()
         try {
-            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrudSeq/loging",admin)
-            console.log(response);
-            if(response.status===200)
-            {
-                //console.log(response.value)
-                navigate("/listeProdAdmin");
-            }else{
-                navigate("/login");
-                setErrorMessage(response.data.message);
-            }            
+            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrudSeq/insert_contact",contact)
+            if (response.status === 200) {
+                setErrorMessage('');
+                //navigate("/");
+            } else {
+                setErrorMessage(response.data.error);
+                //alert(response.data.erreur);
+            }  
+            console.log(response);       
         } catch (error) {
             console.log("Erreur insertion=="+error)            
         }
-        console.log(admin);
+        console.log(contact);
     };
-    
 
     return (
-        <div>
+        <div className='afficheContent'>
             <div className="top-bar">
                 <div className="container-fluid">
                     <div className="row">
@@ -99,8 +110,8 @@ const Login = () =>{
                                 <div className="nav-item dropdown">
                                     <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Plus de Pages</a>
                                     <div className="dropdown-menu">
-                                        <a className="dropdown-item"><Link to="/login" style={{color:'white'}} >Login</Link></a>
-                                        <a className="dropdown-item"><Link to="/contact" >Contacter Nous</Link></a>
+                                        <a className="dropdown-item"><Link to="/login" >Login </Link></a>
+                                        <a className="dropdown-item"><Link to="/contact" style={{color:'white'}} >Contacter Nous</Link></a>
                                     </div>
                                 </div>
                             </div>
@@ -118,12 +129,6 @@ const Login = () =>{
                                 <a href="index.html">
                                     <img src="img/logo.png" alt="Logo"/>
                                 </a>
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="search">
-                                <input type="text" placeholder="Search"/>
-                                <button><i className="fa fa-search"></i></button>
                             </div>
                         </div>
                         <div className="col-md-3">
@@ -149,36 +154,61 @@ const Login = () =>{
                 </div>
             </div>
             
-            <div className="login">
+            <div className="contact">
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-lg-6">
-                            <div className="login-form">
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label>E-mail / Username</label>
-                                        <input className="form-control" type="text" placeholder="E-mail / Username" onChange={handleChange} name="email"/>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <label>Password</label>
-                                        <input className="form-control" type="password" placeholder="Password" onChange={handleChange} name="password"/>
-                                    </div>
-                                    {errorMessage && <p>{errorMessage}</p>}
-                                    <div className="col-md-12">
-                                        <button className="btn" onClick={handleInsert}>Login</button>
+                        <div className="col-lg-4">
+                            
+                                <div className="contact-info">
+                                    <h2>Contact Us</h2>
+                                    <h3><i className="fa fa-map-marker"></i>123 Office, Los Angeles, CA, USA</h3>
+                                    <h3><i className="fa fa-envelope"></i>office@example.com</h3>
+                                    <h3><i className="fa fa-phone"></i>+123-456-7890</h3>
+                                    <div className="social">
+                                        <a href=""><i className="fab fa-twitter"></i></a>
+                                        <a href=""><i className="fab fa-facebook-f"></i></a>
+                                        <a href=""><i className="fab fa-linkedin-in"></i></a>
+                                        <a href=""><i className="fab fa-instagram"></i></a>
+                                        <a href=""><i className="fab fa-youtube"></i></a>
                                     </div>
                                 </div>
+                            
+                        </div>
+                        <div className="col-lg-4">
+                            <div className="contact-form">
+                                <form>
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <input type="text" className="form-control" placeholder="Your Name" onChange={handleChange} name="nameUser" />
+                                        </div>
+                                        <div className="col-md-6">
+                                            <input type="email" className="form-control" placeholder="Your Email" onChange={handleChange} name="emailUser" />
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="text" className="form-control" placeholder="Subject" onChange={handleChange} name="subject" />
+                                    </div>
+                                    <div className="form-group">
+                                        <textarea className="form-control" rows="5" placeholder="Message" onChange={handleChange} name="message" ></textarea>
+                                    </div>
+                                    {errorMessage && <b><p className="error-message" style={{color:'red'}}>{errorMessage}</p></b>}
+                                    <div><button className="btn" type="submit" onClick={handleInsert}>Send Message</button></div>
+                                </form>
+                            </div>
+                        </div>
+                        <div className="col-lg-12">
+                            <div className="contact-map">
+                                {/*  https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.733248043701!2d-118.24532098539802!3d34.05071312525937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c648fa1d4803%3A0xdec27bf11f9fd336!2s123%20S%20Los%20Angeles%20St%2C%20Los%20Angeles%2C%20CA%2090012%2C%20USA!5e0!3m2!1sen!2sbd!4v1585634930544!5m2!1sen!2sbd*/}
+                                <iframe src="https://www.google.mg/maps/place/Amobohimiandra,+Tananarive/@-18.9281349,47.5446385,222m/data=!3m1!1e3!4m6!3m5!1s0x21f07dc47873b7fd:0x37bcd762f0ee0416!8m2!3d-18.930577!4d47.5404327!16s%2Fg%2F1tf8jd9m?entry=ttu" frameborder="0" style={{border:'0'}} allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            
         
 
         </div>
     )
 }
 
-export default Login
+export default Contact

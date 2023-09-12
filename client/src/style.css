@@ -12,6 +12,9 @@
     align-items: center;
 }
 
+.afficheContent{
+    background-color: rgb(240, 219, 219);
+}
 
 .delete{
     border: none;

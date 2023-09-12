@@ -169,4 +169,81 @@ router.post('/inscription', async (request, response) => {
     }
 });
 
-  module.exports = router;
+function sendMailContact(name,email,subject,message) {
+  const mailOptions = {
+      from: email,
+      to: 'albertonambinina@gmail.com',
+      subject: subject,
+      html: message
+  };
+  
+  const rep = {}
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.error(err);
+      rep = {
+          message: 'KO',
+          erreur: 'Erreur lors de l\'envoi de l\'email de confirmation',
+          value:null,
+          code: 500
+      };
+    } else {
+      console.log('Email sent: ' + info.response);
+      rep = {
+          message: 'OK',
+          value: null,
+          code: 200
+      };
+    }
+  });
+  return rep;
+}
+router.post('/insert_contact', async (req, res) => {
+  try {
+    const data = {
+      nameUser: req.body.nameUser,
+      emailUser: req.body.emailUser,
+      subject: req.body.subject,
+      message: req.body.message,
+    };
+
+    const sqlString = "INSERT INTO Contact(nameUser,emailUser,subject,message) values(?,?,?,?)";
+    const results = await connection.query(sqlString, [data.nameUser, data.emailUser, data.subject, data.message]);
+
+    const response = await sendMailContact(data.nameUser, data.emailUser, data.subject, data.message);
+    
+    if (response.message === 'KO') {
+      return res.status(500).json({ message: 'Error during email sending', error: response.error });
+    }
+
+    return res.status(200).json({ message: 'OK' });
+  } catch (error) {
+    console.error("Error inserting data: ", error);
+    return res.status(500).json({ message: 'Error during registration process', error: error });
+  }
+});
+
+router.post('/loging', async (request, response) => {
+  const {email,password } = request.body;
+  const rep = {}
+  try { 
+      // Vérifiez si l'utilisateur existe déjà
+      const checkUserSql = 'SELECT * FROM admin WHERE email = ? and password = sha1(?) ';
+      connection.query(checkUserSql, [email,password], (checkErr, checkResults) => {
+          if (checkErr) {
+              console.error(checkErr);
+              return response.status(500).json({ message: 'Erreur checking admin', error: checkErr });
+          } else if (checkResults.length > 0) {
+            return response.status(200).json({ message: 'OK',value:request.body });
+          }
+          else{
+            return response.status(404).json({ message: 'Erreur login' });
+          }
+      });
+    }catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Error during login process', error: err });
+    }
+});
+
+module.exports = router;

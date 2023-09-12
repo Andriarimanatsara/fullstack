@@ -45,7 +45,7 @@ const ListeProduitAdmin = () => {
     const paginationButtons = [];
     for (let i = 1; i <= totalPages; i++) {
         paginationButtons.push(
-            <li class="page-item"><a class="page-link" key={i} onClick={() => handlePageChange(i)} >
+            <li className="page-item"><a className="page-link" key={i} onClick={() => handlePageChange(i)} >
                 {i}
             </a></li>
         );
@@ -85,7 +85,7 @@ const ListeProduitAdmin = () => {
     const handleRemoveItem = async (id) => {
         try {
           // Effectuer une requête pour supprimer l'article du panier
-          await axios.delete(configData.REACT_APP_SERVER+"/ActuCrud/lists_category/"`${id}`);/////////
+          await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/delete_product/"+id);/////////
           // Rafraîchir la liste du panier après la suppression
           fetchAllListe();
         } catch (error) {
@@ -130,30 +130,14 @@ const ListeProduitAdmin = () => {
 
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
-                                <a className="nav-item nav-link active"><Link to="/" style={{color:'white'}} >Home</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'white'}} >Products</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" style={{color:'white'}} >Add Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Add Cat Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
-                                <a className="nav-item nav-link">Checkout</a>
-                                <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
-                                    <div className="dropdown-menu">
-                                        <a className="dropdown-item"><Link to="/register" style={{color:'white'}} >Login & Register</Link></a>
-                                        <a className="dropdown-item">Contact Us</a>
-                                    </div>
-                                </div>
+                                
+                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" style={{color:'white'}} >Produits</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addAdmin" >Ajouter Produit</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeCategory" >Categories</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addCategory" >Ajouter Categorie</Link></a>
+                                
                             </div>
-                            <div className="navbar-nav ml-auto">
-                                <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                                    <div className="dropdown-menu">
-                                        <a href="#" className="dropdown-item">Login</a>
-                                        <a href="#" className="dropdown-item">Register</a>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </nav>
                 </div>
@@ -169,26 +153,13 @@ const ListeProduitAdmin = () => {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-md-6">
-                            <div className="search">
-                                <input type="text" placeholder="Search"/>
-                                <button><i className="fa fa-search"></i></button>
-                            </div>
-                        </div>
+                        
                         
                     </div>
                 </div>
             </div>
             
-            <div className="breadcrumb-wrap">
-                <div className="container-fluid">
-                    <ul className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="#">Home</a></li>
-                        <li className="breadcrumb-item"><a href="#">Products</a></li>
-                        <li className="breadcrumb-item active">Product List</li>
-                    </ul>
-                </div>
-            </div>
+            
             <div className="product-view">
                 <div className="container-fluid">
                     <div className="row">

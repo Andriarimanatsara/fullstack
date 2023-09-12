@@ -59,16 +59,6 @@ router.get('/lists_category', (req, res) => {
   });
 });
 
-router.post('/update_category/:id', (req, res) => {
-  const id=req.params.id;
-  let data={name:req.body.name,decription:req.body.description};
-  let sqlString="UPDATE categorie SET nomCategorie='' , description='"+data.name+"','"+data.description+"')";
-  let query= connection.query(sqlString,(err,results) => {
-    if(err) return res.json(err);
-    return res.json({status:201,data:req.body})
-  });
-});
-
 //listesDescri/:idProduit
 router.get('/lists_by_product/:idProduct', (req, res) => {
   const idProduct=req.params.idProduct;
@@ -114,10 +104,30 @@ router.get('/lists_paging', (req, res) => {
 //listesProdCat/:idCat
 router.get('/lists_by_category/:idCategory', (req, res) => {
   const idCategory=req.params.idCategory;
-  let sqlString="SELECT * FROM produit where idCategorie="+idCategory;
+  const page = parseInt(req.query.page) || 1; // Page par défaut est 1
+  const perPage = parseInt(req.query.perPage) || 10; // Nombre d'éléments par page par défaut est 10
+
+  const startIndex = (page - 1) * perPage;
+  const endIndex = startIndex + perPage;
+
+  let sqlString="SELECT * FROM Produit where idCategorie="+idCategory+" LIMIT "+startIndex+", "+perPage;
   let query= connection.query(sqlString,(err,rows) => {
     if(err) return res.json(err);
-    return res.json(rows);
+    connection.query('SELECT COUNT(*) AS totalCount FROM Produit where idCategorie='+idCategory, (countErr, countRows) => {
+      if (countErr) return res.json(countErr);
+
+      const totalCount = countRows[0].totalCount;
+      const totalPages = Math.ceil(totalCount / perPage);
+
+      const response = {
+        currentPage: page,
+        totalPages: totalPages,
+        itemsPerPage: perPage,
+        totalCount: totalCount,
+        data: rows
+      };
+      return res.json(response);
+    });
   });
 });
 
@@ -159,15 +169,6 @@ router.post('/add_product', upload.single('photo'), (req, res) => {
   }catch(error){
     res.json({status:422,error})
   }
-});
-
-router.post('/add_category', (req, res) => {
-  let data={name:req.body.name,decription:req.body.description};
-  let sqlString="INSERT INTO categorie(nomCategorie, description) values('"+data.name+"','"+data.description+"')";
-  let query= connection.query(sqlString,(err,results) => {
-    if(err) return res.json(err);
-    return res.json({status:201,data:req.body})
-  });
 });
 
 //updateProduit
@@ -216,12 +217,60 @@ router.post('/update_product/:id', upload.single('photo'), (req, res) => {
 });
 ////////////////update\\\\\\\\\\\\\\\\\\\\\\\\
 
-router.delete('/delete_product/:id', (req, res) => {
+router.get('/delete_product/:id', (req, res) => {
   const id=req.params.id;
   let sqlString="DELETE FROM produit where id="+id;
   let query= connection.query(sqlString,(err,results) => {
     if(err) return res.json(err);
     return res.json("delete successfuly");
+  });
+});
+
+router.post('/add_category', (req, res) => {
+  let data={name:req.body.nameCategory,description:req.body.description};
+  let sqlString="INSERT INTO categorie(nomCategorie, description) values('"+data.name+"','"+data.description+"')";
+  let query= connection.query(sqlString,(err,results) => {
+    if(err) return res.json(err);
+    return res.json({status:201,data:req.body})
+  });
+});
+router.put('/update_category/:id', (req, res) => {
+  const id=req.params.id;
+  let data={name:req.body.nameCategory,decription:req.body.description};
+  let sqlString="UPDATE categorie SET nomCategorie='"+data.name+"', description='"+data.description+"' where id="+id;
+  let query= connection.query(sqlString,(err,results) => {
+    if(err) return res.json(err);
+    return res.json({status:201,data:req.body})
+  });
+});
+
+router.get('/delete_category/:id', (req, res) => {
+  const categoryId = req.params.id;
+
+  // Étape 1 : Supprimer les produits associés à la catégorie
+  const deleteProductsQuery ="DELETE FROM Produit WHERE idCategorie ="+categoryId;
+  connection.query(deleteProductsQuery, (err, productDeletionResults) => {
+    if (err) {
+      return res.json(err);
+    }
+
+    // Étape 2 : Supprimer la catégorie
+    const deleteCategoryQuery = "DELETE FROM categorie WHERE id = "+categoryId;
+    connection.query(deleteCategoryQuery, (err, categoryDeletionResults) => {
+      if (err) {
+        return res.json(err);
+      }
+
+      return res.json("Suppression réussie")
+    });
+  });
+});
+
+router.get('/contactUs', (req, res) => {
+  let sqlString="SELECT * FROM Admin ";
+  let query= connection.query(sqlString,(err,rows) => {
+    if(err) return res.json(err);
+    return res.json(rows);
   });
 });
 

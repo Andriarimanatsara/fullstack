@@ -5,11 +5,11 @@ import axios from 'axios'
 
 import configData from '../conf.json';
 
-const AddCategory = () =>{
+const UpdateCategory = () =>{
     const navigate= useNavigate();
     
     const location= useLocation();
-
+    const idUp=location.pathname.split("/")[2]
 
     const[category,setCategory]=useState({
         nameCategory:"",
@@ -21,22 +21,24 @@ const AddCategory = () =>{
     };
     
     const handleInsert= async e=>{
-       
+        e.preventDefault()
         try {
-            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/add_category",category)///////
+            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/update_category/"+idUp,category)
             if(response.data.status===201)
             {
-                navigate("/listeProdAdmin");
+                console.log(response.data.data)
+                navigate("/listeCategory");
             }else{
-                navigate("/addCategory");
+                navigate("/updateCategory");
             }            
         } catch (error) {
-            console.error('Erreur insertion', error);
+            console.log("Erreur insertion=="+error)            
         }
+        console.log(category);
     };
 
     return (
-        <div>
+        <div className='afficheContent'>
             <div className="top-bar">
                 <div className="container-fluid">
                     <div className="row">
@@ -65,8 +67,8 @@ const AddCategory = () =>{
                                 
                                 <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Produits</Link></a>
                                 <a className="nav-item nav-link"><Link to="/addAdmin" >Ajouter Produit</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeCategory" >Categories</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Ajouter Categorie</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeCategory" style={{color:'white'}} >Categories</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addCategory" >Ajouter Categorie</Link></a>
                                 
                             </div>
                             
@@ -130,4 +132,4 @@ const AddCategory = () =>{
     )
 }
 
-export default AddCategory
+export default UpdateCategory

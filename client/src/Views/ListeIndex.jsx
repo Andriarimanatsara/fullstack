@@ -31,6 +31,18 @@ const ListeIndex = () =>{
           .catch(error => {
             console.error(error);
           });
+
+        const handleBeforeUnload = () => {
+            localStorage.removeItem("panier");
+        };
+
+        // Ajoutez l'événement beforeunload au moment du montage du composant
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
     }, []);
 
 ///////////////update\\\\\\\\\\\\\\\\\\\
@@ -123,30 +135,19 @@ const ListeIndex = () =>{
 
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
-                                <a className="nav-item nav-link active"><Link to="/" >Home</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'white'}} >Products</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" style={{color:'white'}} >Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" style={{color:'white'}} >Add Prod Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Add Cat Admin</Link></a>
-                                <a className="nav-item nav-link"><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
-                                <a className="nav-item nav-link">Checkout</a>
+                                <a className="nav-item nav-link active"><Link to="/" style={{color:'white'}} >Home</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProduit" >Produits</Link></a>
+                                
+                                <a className="nav-item nav-link"><Link to="/cart" >Panier</Link></a>
                                 <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
+                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Plus de Pages</a>
                                     <div className="dropdown-menu">
-                                        <a className="dropdown-item"><Link to="/register" style={{color:'white'}} >Login & Register</Link></a>
-                                        <a className="dropdown-item">Contact Us</a>
+                                        <a className="dropdown-item"><Link to="/login" >Login</Link></a>
+                                        <a className="dropdown-item"><Link to="/contact" >Contacter Nous</Link></a>
                                     </div>
                                 </div>
                             </div>
-                            <div className="navbar-nav ml-auto">
-                                <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                                    <div className="dropdown-menu">
-                                        <a href="#" className="dropdown-item">Login</a>
-                                        <a href="#" className="dropdown-item">Register</a>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </nav>
                 </div>
@@ -204,9 +205,9 @@ const ListeIndex = () =>{
                                                     <a onClick={()=>handleClickPan(listeP.idProduit,listeP.prixUnitaire,listeP.photo,listeP.nomProduit)}><i className="fa fa-cart-plus"></i></a>
                                                 </div>
                                             </div>
-                                            <div class="product-price">
+                                            <div className="product-price">
                                                 <h3><span>$</span>{listeP.prixUnitaire}</h3>
-                                                <a class="btn" onClick={()=>handleClickIndex(listeP.idProduit,listeP.prixUnitaire,listeP.photo,listeP.nomProduit)}><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                                <a className="btn" onClick={()=>handleClickIndex(listeP.idProduit,listeP.prixUnitaire,listeP.photo,listeP.nomProduit)}><i className="fa fa-shopping-cart"></i>Buy Now</a>
                                             </div>
                                         </div>
                                     </div>
@@ -243,57 +244,7 @@ const ListeIndex = () =>{
                 </div>
             </div>
 
-            <div className="footer">
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-lg-3 col-md-6">
-                            <div className="footer-widget">
-                                <h2>Get in Touch</h2>
-                                <div className="contact-info">
-                                    <p><i className="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                                    <p><i className="fa fa-envelope"></i>email@example.com</p>
-                                    <p><i className="fa fa-phone"></i>+123-456-7890</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-                    
-                    <div className="row payment align-items-center">
-                        <div className="col-md-6">
-                            <div className="payment-method">
-                                <h2>We Accept:</h2>
-                                <img src="img/payment-method.png" alt="Payment Method" />
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="payment-security">
-                                <h2>Secured By:</h2>
-                                <img src="img/godaddy.svg" alt="Payment Security" />
-                                <img src="img/norton.svg" alt="Payment Security" />
-                                <img src="img/ssl.svg" alt="Payment Security" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="footer-bottom">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 copyright">
-                            <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
-                        </div>
-
-                        <div className="col-md-6 template-by">
-                            <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <a href="#" className="back-to-top"><i className="fa fa-chevron-up"></i></a>
+            
 
         </div>
     )
