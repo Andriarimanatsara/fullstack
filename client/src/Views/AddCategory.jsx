@@ -82,9 +82,9 @@ const AddCategory = () =>{
                     <div className="row align-items-center">
                         <div className="col-md-3">
                             <div className="logo">
-                                <a href="index.html">
+                                
                                     <img src="img/logo-midas.png" alt="Logo"/>
-                                </a>
+                                
                             </div>
                         </div>
                         

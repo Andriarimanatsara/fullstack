@@ -146,18 +146,13 @@ const ListeProduit = () => {
                     <div className="row align-items-center">
                         <div className="col-md-3">
                             <div className="logo">
-                                <a href="index.html">
+                                
                                     <img src="img/logo-midas.png" alt="Logo"/>
-                                </a>
+                                
                             </div>
                         </div>
-                        <div className="col-md-6">
-                            <div className="search">
-                                <input type="text" placeholder="Search"/>
-                                <button><i className="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
+                        
+                        <div className="col-md-9">
                             <div className="user">
                                 
                                 <a href="cart.html" className="btn cart">
