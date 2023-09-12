@@ -166,7 +166,7 @@ const Contact = () =>{
                                     <h2>Contacter Nous</h2>
                                     <h3><i className="fa fa-map-marker"></i>Madagascar antananarivo</h3>
                                     <h3><i className="fa fa-envelope"></i>stonesmidas@gmail.com</h3>
-                                    <h3><i className="fa fa-whatsApp"></i>+261 32 98 869 81</h3>
+                                    <h3><i className="fa fa-whatsapp"></i>+261 32 98 869 81</h3>
                                     <h3><i className="fa fa-phone"></i>+261 34 65 069 82</h3>
                                     <div className="social">
                                         <a href=""><i className="fab fa-twitter"></i></a>
