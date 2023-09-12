@@ -14,8 +14,10 @@ import ListeProdAdmin from "./Views/ListeProdAdmin";
 import UpdateAdmin from "./Views/UpdateAdmin";
 import AddAdmin from "./Views/AddAdmin";
 import AddCategory from "./Views/AddCategory";
-
+import ListeCategory from "./Views/ListeCategory";
+import UpdateCategory from "./Views/UpdateCategory"
 import DetailProd from "./Views/DetailProd";
+import Contact from "./Views/Contact";
 
 import "./style.css";
 import "./bootstrap/css/bootstrap.min.css"
