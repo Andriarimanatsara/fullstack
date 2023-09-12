@@ -146,9 +146,9 @@ const ListeProduit = () => {
                     <div className="row align-items-center">
                         <div className="col-md-3">
                             <div className="logo">
-                                
+                                <a>
                                     <img src="img/logo-midas.png" alt="Logo"/>
-                                
+                                </a>
                             </div>
                         </div>
                         
