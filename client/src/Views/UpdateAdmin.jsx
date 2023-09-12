@@ -74,7 +74,7 @@ const UpdateAdmin = () =>{
     };
 
     return (
-        <div>
+        <div className='afficheContent'>
             <div className="top-bar">
                 <div className="container-fluid">
                     <div className="row">

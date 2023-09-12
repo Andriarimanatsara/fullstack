@@ -23,18 +23,20 @@ const Login = () =>{
         return totalCount;
     };
     const [cartItemCount, setCartItemCount] = useState(countTotalProductsInCart());
-
-    const handleBeforeUnload = () => {
-        localStorage.removeItem("panier");
-    };
-
-    // Ajoutez l'événement beforeunload au moment du montage du composant
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
-    return () => {
-        window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
+    useEffect(()=>{
+        contactUs();
+        const handleBeforeUnload = () => {
+            localStorage.removeItem("panier");
+        };
+    
+        // Ajoutez l'événement beforeunload au moment du montage du composant
+        window.addEventListener("beforeunload", handleBeforeUnload);
+    
+        // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+    },[]);
 
     const[admin,setAdmin]=useState({
         name:"",
@@ -66,7 +68,7 @@ const Login = () =>{
     
 
     return (
-        <div>
+        <div className='afficheContent'>
             <div className="top-bar">
                 <div className="container-fluid">
                     <div className="row">
@@ -97,7 +99,7 @@ const Login = () =>{
                                 
                                 <a className="nav-item nav-link"><Link to="/cart" >Panier</Link></a>
                                 <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Plus de Pages</a>
+                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>Plus de Pages</a>
                                     <div className="dropdown-menu">
                                         <a className="dropdown-item"><Link to="/login" style={{color:'white'}} >Login</Link></a>
                                         <a className="dropdown-item"><Link to="/contact" >Contacter Nous</Link></a>

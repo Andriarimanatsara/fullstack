@@ -254,7 +254,7 @@ h2 {
     margin-top: 0;
     border: 0;
     border-radius: 0;
-    background: #2f8028;
+    background: #51cf46;
 }
 
 .nav .dropdown-menu a.active {
@@ -265,7 +265,7 @@ h2 {
 @media (min-width: 768px) {
     .nav,
     .nav .navbar {
-        background: #2f8028 !important;
+        background:#51cf46 !important;
     }
     
     .nav .navbar-brand {

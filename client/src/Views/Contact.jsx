@@ -32,7 +32,18 @@ const Contact = () =>{
                 console.log(error)
             }
         }
-        contactUs()
+        contactUs();
+        const handleBeforeUnload = () => {
+            localStorage.removeItem("panier");
+        };
+    
+        // Ajoutez l'événement beforeunload au moment du montage du composant
+        window.addEventListener("beforeunload", handleBeforeUnload);
+    
+        // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
     },[]);
 
     const[contact,setContact]=useState({
@@ -46,17 +57,7 @@ const Contact = () =>{
       setContact((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    const handleBeforeUnload = () => {
-        localStorage.removeItem("panier");
-    };
-
-    // Ajoutez l'événement beforeunload au moment du montage du composant
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
-    return () => {
-        window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
+    
     
     const handleInsert= async e=>{
         e.preventDefault()
@@ -108,7 +109,7 @@ const Contact = () =>{
                                 
                                 <a className="nav-item nav-link"><Link to="/cart" >Panier</Link></a>
                                 <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Plus de Pages</a>
+                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>Plus de Pages</a>
                                     <div className="dropdown-menu">
                                         <a className="dropdown-item"><Link to="/login" >Login </Link></a>
                                         <a className="dropdown-item"><Link to="/contact" style={{color:'white'}} >Contacter Nous</Link></a>
