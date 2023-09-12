@@ -146,7 +146,7 @@ const Cart = () =>{
                                 
                                 <a className="nav-item nav-link" ><Link to="/cart" style={{color:'white'}} >Panier</Link></a>
                                 <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Plus de Pages</a>
+                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>Plus de Pages</a>
                                     <div className="dropdown-menu">
                                         <a className="dropdown-item"><Link to="/login" >Login</Link></a>
                                         <a className="dropdown-item"><Link to="/contact" >Contacter Nous</Link></a>
