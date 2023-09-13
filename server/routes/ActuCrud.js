@@ -237,7 +237,7 @@ router.post('/add_category', (req, res) => {
 
 router.post('/update_category/:id', (req, res) => {
   const idCategorie=req.params.id;
-  let data={name:req.body.nameCategory,decription:req.body.description};
+  let data={name:req.body.nameCategory,description:req.body.description};
   let sqlString="UPDATE categorie SET nomCategorie='"+data.name+"', description='"+data.description+"' where id="+idCategorie;
   let query= connection.query(sqlString,(err,results) => {
     if(err) return res.json(err);
