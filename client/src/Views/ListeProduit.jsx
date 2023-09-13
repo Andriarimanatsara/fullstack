@@ -62,7 +62,23 @@ const ListeProduit = () => {
             window.removeEventListener("beforeunload", handleBeforeUnload);
         };
     },[]);
-    // ... (rest of your code)
+
+    const[nameProduct,setnameProduct]=useState({
+        nomProduit:"",
+    });
+
+    const handleChange = (e) => {
+        setnameProduct((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+    
+    const fetchListeSearch=async()=>{
+        try {
+            const res=await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/search",nameProduct)
+            setLists(res.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     // Generate pagination buttons
     const paginationButtons = [];
@@ -224,8 +240,8 @@ const ListeProduit = () => {
                         </div>
                         <div className="col-md-6">
                             <div className="search">
-                                <input type="text" placeholder="Search"/>
-                                <button><i className="fa fa-search"></i></button>
+                                <input type="text" placeholder="Search" onChange={handleChange} name="nomProduit"/>
+                                <button onClick={()=>fetchListeSearch()}><i className="fa fa-search"></i></button>
                             </div>
                         </div>
                         <div className="col-md-3">

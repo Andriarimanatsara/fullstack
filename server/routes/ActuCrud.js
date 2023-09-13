@@ -266,8 +266,17 @@ router.get('/delete_category/:id', (req, res) => {
   });
 });
 
-router.get('/contactUs', (req, res) => {
+router.get('/contact_us', (req, res) => {
   let sqlString="SELECT * FROM admin ";
+  let query= connection.query(sqlString,(err,rows) => {
+    if(err) return res.json(err);
+    return res.json(rows);
+  });
+});
+
+router.post('/search', (req, res) => {
+  let nameProduct=req.body.nomProduit;
+  let sqlString="select * from produit where LOWER(nomProduit) LIKE LOWER('%"+nameProduct+"%')";
   let query= connection.query(sqlString,(err,rows) => {
     if(err) return res.json(err);
     return res.json(rows);
