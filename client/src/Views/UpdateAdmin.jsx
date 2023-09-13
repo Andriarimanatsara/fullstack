@@ -103,9 +103,9 @@ const UpdateAdmin = () =>{
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
                                 
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" style={{color:'white'}} >Produits</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" >Ajouter Produit</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeCategory" >Categories</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" style={{color:'white'}} >Products</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addAdmin" >Add Products</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeCategory" >Category</Link></a>
                                 <a className="nav-item nav-link"><Link to="/addCategory" >Ajouter Categorie</Link></a>
                                 
                             </div>

@@ -67,9 +67,9 @@ const UpdateCategory = () =>{
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
                                 
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Produits</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" >Ajouter Produit</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeCategory" style={{color:'white'}} >Categories</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Products</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addAdmin" >Add Products</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeCategory" style={{color:'white'}} >Category</Link></a>
                                 <a className="nav-item nav-link"><Link to="/addCategory" >Ajouter Categorie</Link></a>
                                 
                             </div>
@@ -97,8 +97,8 @@ const UpdateCategory = () =>{
             <div className="breadcrumb-wrap">
                 <div className="container-fluid">
                     <ul className="breadcrumb">
-                        <li className="breadcrumb-item"><a><Link to="/listeProdAdmin" >Produits</Link></a></li>
-                        <li className="breadcrumb-item"><a><Link to="/listeCategory" >Categories</Link></a></li>
+                        <li className="breadcrumb-item"><a><Link to="/listeProdAdmin" >Products</Link></a></li>
+                        <li className="breadcrumb-item"><a><Link to="/listeCategory" >Category</Link></a></li>
                         <li className="breadcrumb-item active"><Link to="/addCategory" >Ajouter Categorie</Link></li>
                     </ul>
                 </div>

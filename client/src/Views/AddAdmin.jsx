@@ -104,9 +104,9 @@ const AddAdmin = () =>{
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
                                 
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Produits</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" >Ajouter Produit</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeCategory" >Categories</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Products</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addAdmin" >Add Product</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeCategory" >Category</Link></a>
                                 <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Ajouter Categorie</Link></a>
 
                             </div>
@@ -134,9 +134,9 @@ const AddAdmin = () =>{
             <div className="breadcrumb-wrap">
                 <div className="container-fluid">
                     <ul className="breadcrumb">
-                    <li className="breadcrumb-item"><a><Link to="/listeProdAdmin" >Produits</Link></a></li>
-                        <li className="breadcrumb-item"><a><Link to="/listeCategory" >Categories</Link></a></li>
-                        <li className="breadcrumb-item active"><Link to="/addAdmin" >Ajouter Produit</Link></li>
+                    <li className="breadcrumb-item"><a><Link to="/listeProdAdmin" >Products</Link></a></li>
+                        <li className="breadcrumb-item"><a><Link to="/listeCategory" >Category</Link></a></li>
+                        <li className="breadcrumb-item active"><Link to="/addAdmin" >Add Products</Link></li>
                     </ul>
                 </div>
             </div>
@@ -148,7 +148,7 @@ const AddAdmin = () =>{
                             <div className="login-form">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <label>Categorie</label>
+                                    <label>Category</label>
                                     <select onChange={handleChange} name="idCategorie" class="form-control" style={{width: '100%'}}>
                                         {listeCat.map(listeCt=>(
                                             <option key={listeCt.id} value={listeCt.id}>{listeCt.nomCategorie}</option>
@@ -156,7 +156,7 @@ const AddAdmin = () =>{
                                     </select>
                                 </div>
                                 <div className="col-md-6">
-                                    <label>Nom Produit</label>
+                                    <label>Name Product</label>
                                     <input className="form-control" type="text" placeholder="Nom Produit" onChange={handleChange} name="nomProduit" />
                                 </div>
 
@@ -170,11 +170,11 @@ const AddAdmin = () =>{
                                     {errorMessage && <p>{errorMessage}</p>}
                                 </div>
                                 <div className="col-md-6">
-                                    <label>Prix Unitaire</label>
+                                    <label>Price Unitaire</label>
                                     <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" />
                                 </div>
                                 <div className="col-md-12">
-                                    <button className="btn" onClick={handleUpdate}>Ajouter</button>           
+                                    <button className="btn" onClick={handleUpdate}>Add</button>           
                                 </div>
                             </div>
                             </div>

@@ -211,14 +211,14 @@ const ListeProduit = () => {
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
                                 <a className="nav-item nav-link active"><Link to="/" >Home</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'white'}} >Produits</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProduit" style={{color:'white'}} >Products</Link></a>
                                 
-                                <a className="nav-item nav-link"><Link to="/cart" >Panier</Link></a>
+                                <a className="nav-item nav-link"><Link to="/cart" >Cart</Link></a>
                                 <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>Plus de Pages</a>
+                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>More Pages</a>
                                     <div className="dropdown-menu">
                                         <a className="dropdown-item"><Link to="/login" >Login</Link></a>
-                                        <a className="dropdown-item"><Link to="/contact" >Contacter Nous</Link></a>
+                                        <a className="dropdown-item"><Link to="/contact" >Contact Us</Link></a>
                                     </div>
                                 </div>
                             </div>

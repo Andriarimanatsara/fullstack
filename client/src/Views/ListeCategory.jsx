@@ -72,9 +72,9 @@ const ListeCategory = () =>{
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
                                 
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Produits</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" >Ajouter Produit</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeCategory" style={{color:'white'}} >Categories</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Products</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addAdmin" >Add Products</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeCategory" style={{color:'white'}} >Category</Link></a>
                                 <a className="nav-item nav-link"><Link to="/addCategory" >Ajouter Categorie</Link></a>
                                 
                             </div>
@@ -106,7 +106,7 @@ const ListeCategory = () =>{
                                 <thead className="thead-dark">
                                     <tr>
                                         <th>No</th>
-                                        <th>Nom Categorie</th>
+                                        <th>Name Category</th>
                                         <th>Description</th>
                                         <th>Action</th>
                                     </tr>

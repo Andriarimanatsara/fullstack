@@ -107,14 +107,14 @@ const Contact = () =>{
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
                                 <a className="nav-item nav-link active"><Link to="/" >Home</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProduit" >Produits</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProduit" >Products</Link></a>
                                 
-                                <a className="nav-item nav-link"><Link to="/cart" >Panier</Link></a>
+                                <a className="nav-item nav-link"><Link to="/cart" >Cart</Link></a>
                                 <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>Plus de Pages</a>
+                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>More Pages</a>
                                     <div className="dropdown-menu">
                                         <a className="dropdown-item"><Link to="/login" >Login </Link></a>
-                                        <a className="dropdown-item"><Link to="/contact" style={{color:'white'}} >Contacter Nous</Link></a>
+                                        <a className="dropdown-item"><Link to="/contact" style={{color:'white'}} >Contact Us</Link></a>
                                     </div>
                                 </div>
                             </div>
@@ -163,11 +163,11 @@ const Contact = () =>{
                         <div className="col-lg-4">
                             
                                 <div className="contact-info">
-                                    <h2>Contacter Nous</h2>
+                                    <h2>Contact Us</h2>
                                     <h3><i className="fa fa-map-marker"></i>Madagascar antananarivo</h3>
                                     <h3><i className="fa fa-envelope"></i>stonesmidas@gmail.com</h3>
-                                    <h3><i className="fa fa-whatsapp"></i>+261 32 98 869 81</h3>
                                     <h3><i className="fa fa-phone"></i>+261 34 65 069 82</h3>
+                                    <h3><i className="fa fa-whatsapp"></i>+261 32 98 869 81</h3>
                                     <div className="social">
                                         <a href=""><i className="fab fa-twitter"></i></a>
                                         <a href=""><i className="fab fa-facebook-f"></i></a>

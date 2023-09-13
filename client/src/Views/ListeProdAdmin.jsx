@@ -12,7 +12,7 @@ const ListeProduitAdmin = () => {
     const [lists, setLists] = useState([]);
     const[listsCat,setListsCat]=useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 2; // Nombre d'articles par page
+    const itemsPerPage = 6; // Nombre d'articles par page
     const [totalPages, setTotalPages] = useState(1); // Nombre total de pages
 
     useEffect(() => {
@@ -95,12 +95,23 @@ const ListeProduitAdmin = () => {
 
     const handleCat= async(idCat)=>{
         try {
+            const init=1;
+            const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_by_category/"+idCat+"?page="+init+"&perPage="+itemsPerPage);
+            setLists(res.data.data);
+            setTotalPages(res.data.totalPages);
+            setCurrentPage(init);
+        } catch (error) {
+            console.log(error)            
+        }
+    };
+    /*const handleCat= async(idCat)=>{
+        try {
             const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_by_category/"+idCat);
             setLists(res.data);
         } catch (error) {
             console.log(error)            
         }
-    };
+    };*/
 
 
     return (
@@ -133,9 +144,9 @@ const ListeProduitAdmin = () => {
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
                                 
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" style={{color:'white'}} >Produits</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" >Ajouter Produit</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeCategory" >Categories</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" style={{color:'white'}} >Products</Link></a>
+                                <a className="nav-item nav-link"><Link to="/addAdmin" >Add Products</Link></a>
+                                <a className="nav-item nav-link"><Link to="/listeCategory" >Category</Link></a>
                                 <a className="nav-item nav-link"><Link to="/addCategory" >Ajouter Categorie</Link></a>
                                 
                             </div>
