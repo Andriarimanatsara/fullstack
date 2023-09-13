@@ -7,7 +7,6 @@ import configData from '../conf.json';
 
 const ListeCategory = () =>{
     const[listeCat,setListeCat]=useState([]);
-    // [numero, setNumero] = useState(1);
     const navigate= useNavigate();
     
     const location= useLocation();

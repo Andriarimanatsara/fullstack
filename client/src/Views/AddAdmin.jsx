@@ -16,7 +16,7 @@ const AddAdmin = () =>{
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/listesCat")
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category")
                 setListeCat(res.data);
             } catch (error) {
                 console.log(error)
