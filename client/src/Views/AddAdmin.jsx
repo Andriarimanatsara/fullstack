@@ -67,7 +67,7 @@ const AddAdmin = () =>{
                 alert("error");
             }*/
             navigate("/listeProdAdmin");
-            //console.log(response);
+            console.log(response);
         } catch (error) {
             console.error('Erreur lors du téléchargement du fichier', error);
         }

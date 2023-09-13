@@ -194,12 +194,12 @@ router.post('/update_product/:id', upload.single('photo'), (req, res) => {
 
     return res.status(200).json({ message: 'Mise à jour réussie' });
   });*/
-  if(!data.idCategorie || !data.nomProduit || !data.description || !data.photo || !data.prixUnitaire)
+  if(!data.idCategorie || !data.nomProduit || !data.description /*|| !data.photo*/ || !data.prixUnitaire)
   {
     res.json({status:422,message:"fill all the details"})
   }
   try{
-    let sqlString = "UPDATE produit SET idCategorie=" + data.idCategorie + ", nomProduit='" + data.nomProduit + "', description='" + data.description + "', photo='" + data.photo + "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
+    let sqlString = "UPDATE produit SET idCategorie=" + data.idCategorie + ", nomProduit='" + data.nomProduit + "', description='" + data.description + /*"', photo='" + data.photo +*/ "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
     let query = connection.query(sqlString,(err, results) => {
       if (err) {
         res.json(err);
