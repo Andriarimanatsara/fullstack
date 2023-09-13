@@ -8,15 +8,28 @@ import configData from '../conf.json';
 const AddAdmin = () =>{
     const[listeCat,setListeCat]=useState([]);
     const [errorMessage, setErrorMessage] = useState('');
-    const navigate= useNavigate();
     
     const location= useLocation();
     const idUp=location.pathname.split("/")[2]
 
+    const token = localStorage.getItem('jwtToken');
+    const navigate= useNavigate();
+    
+    useEffect(() => {
+        if (!token) {
+          // Redirigez l'utilisateur vers la page de connexion s'il n'y a pas de token
+          navigate('/login');
+        }
+      }, [token, navigate]);
+
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category")
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category", {
+                    headers: {
+                      Authorization: token,
+                    },
+                  });
                 setListeCat(res.data);
             } catch (error) {
                 console.log(error)

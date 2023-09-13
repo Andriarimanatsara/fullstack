@@ -6,15 +6,49 @@ import axios from 'axios'
 import configData from '../conf.json';
 
 const UpdateCategory = () =>{
-    const navigate= useNavigate();
-    
     const location= useLocation();
     const idUp=location.pathname.split("/")[2]
+
+    const token = localStorage.getItem('jwtToken');
+    const navigate= useNavigate();
+    
+    useEffect(() => {
+        if (!token) {
+          // Redirigez l'utilisateur vers la page de connexion s'il n'y a pas de token
+          navigate('/login');
+        }
+      }, [token, navigate]);
+
+    const[listeCat,setListeCat]=useState([]);
+    useEffect(()=>{
+        const fetchAllListe=async()=>{
+            try {
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category_id/"+idUp, {
+                    headers: {
+                      Authorization: token,
+                    },
+                  });
+                setListeCat(res.data);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchAllListe()
+    },[idUp]);
 
     const[category,setCategory]=useState({
         nameCategory:"",
         description:"",
     });
+
+    useEffect(() => {
+        if (listeCat.length > 0) {
+          setCategory({
+            nameCategory: listeCat[0].nomCategorie,
+            description: listeCat[0].description,
+          });
+        }
+      }, [listeCat]);
 
     const handleChange = (e) => {
       setCategory((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -111,15 +145,15 @@ const UpdateCategory = () =>{
                             <div className="login-form">
                                 <div className="col-md-6">
                                     <label>Nom Categorie</label>
-                                    <input className="form-control" type="text" placeholder="Nom Categorie" onChange={handleChange} name="nameCategory" />
+                                    <input className="form-control" type="text" placeholder="Nom Categorie" onChange={handleChange} name="nameCategory" value={category.nameCategory} />
                                 </div>
 
                                 <div className="col-md-6">
                                     <label>Description</label>
-                                    <textarea className="form-control" onChange={handleChange} name="description" rows="3" ></textarea>
+                                    <textarea className="form-control" onChange={handleChange} name="description" rows="3" value={category.description} ></textarea>
                                 </div>
                                 <div className="col-md-12">
-                                    <button className="btn" onClick={handleInsert}>Modifier</button>           
+                                    <button className="btn" onClick={handleInsert}>Update</button>           
                                 </div>
                             </div>
                         </div>

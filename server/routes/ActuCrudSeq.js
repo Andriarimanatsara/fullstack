@@ -5,6 +5,7 @@ const express=require('express')
 const bodyParser= require('body-parser')
 const nodemailer = require('nodemailer');
 const connection=require('../DbConnect.js')
+const jwt = require('jsonwebtoken');
 
 const app=express();
 
@@ -236,7 +237,14 @@ router.post('/loging', async (request, response) => {
               console.error(checkErr);
               return response.status(500).json({ message: 'Erreur checking admin', error: checkErr });
           } else if (checkResults.length > 0) {
-            return response.status(200).json({ message: 'OK',value:request.body });
+            const user = {
+              id: checkResults[0].id,
+              email: email,
+              // Autres données d'utilisateur si nécessaire
+            };
+            const token = jwt.sign(user, 'votre_secret_key', { expiresIn: '1h' }); // Remplacez 'votre_secret_key' par une clé secrète sécurisée
+
+            return response.status(200).json({ message: 'OK',token: token });
           }
           else{
             return response.status(404).json({ message: 'Erreur login' });

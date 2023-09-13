@@ -53,7 +53,7 @@ const Login = () =>{
             console.log(response);
             if(response.status===200)
             {
-                //console.log(response.value)
+                localStorage.setItem('jwtToken', response.data.token);
                 navigate("/listeProdAdmin");
             }else{
                 navigate("/login");

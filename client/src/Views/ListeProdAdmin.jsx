@@ -15,10 +15,24 @@ const ListeProduitAdmin = () => {
     const itemsPerPage = 6; // Nombre d'articles par page
     const [totalPages, setTotalPages] = useState(1); // Nombre total de pages
 
+    const token = localStorage.getItem('jwtToken');
+    const navigate= useNavigate();
+    
+    useEffect(() => {
+        if (!token) {
+          // Redirigez l'utilisateur vers la page de connexion s'il n'y a pas de token
+          navigate('/login');
+        }
+      }, [token, navigate]);
+
     useEffect(() => {
         const fetchAllListe = async () => {
             try {
-                const res = await axios.get(`${configData.REACT_APP_SERVER}/ActuCrud/lists_paging?page=${currentPage}&perPage=${itemsPerPage}`);
+                const res = await axios.get(`${configData.REACT_APP_SERVER}/ActuCrud/lists_paging?page=${currentPage}&perPage=${itemsPerPage}`, {
+                    headers: {
+                      Authorization: token,
+                    },
+                  });
                 setLists(res.data.data);
                 setTotalPages(res.data.totalPages);
             } catch (error) {

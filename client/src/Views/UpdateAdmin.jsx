@@ -7,15 +7,41 @@ import configData from '../conf.json';
 const UpdateAdmin = () =>{
     const[listsCat,setListsCat]=useState([]);
     const [errorMessage, setErrorMessage] = useState('');
-    const navigate= useNavigate();
     
     const location= useLocation();
     const idUp=location.pathname.split("/")[2]
 
+    const token = localStorage.getItem('jwtToken');
+    const navigate= useNavigate();
+    
+    useEffect(() => {
+        if (!token) {
+          // Redirigez l'utilisateur vers la page de connexion s'il n'y a pas de token
+          navigate('/login');
+        }
+      }, [token, navigate]);
+
+    const[liste,setListe]=useState([]);
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category")
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/listesCatId/"+idUp);
+                setListe(res.data);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchAllListe()
+    },[idUp]);
+
+    useEffect(()=>{
+        const fetchAllListe=async()=>{
+            try {
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category", {
+                    headers: {
+                      Authorization: token,
+                    },
+                  })
                 setListsCat(res.data);
             } catch (error) {
                 console.log(error)
@@ -31,6 +57,16 @@ const UpdateAdmin = () =>{
         photo:"",
         prixUnitaire:null,
     });
+    useEffect(() => {
+        if (liste.length > 0) {
+          setProduit({
+            nomProduit: liste[0].nomProduit,
+            description: liste[0].description,
+            photo: liste[0].photo,
+            prixUnitaire: liste[0].prixUnitaire,
+          });
+        }
+      }, [liste]);
 
     const handleChange = (e) => {
         if (e.target.name === 'photo') {
@@ -147,8 +183,8 @@ const UpdateAdmin = () =>{
                                     </select>
                                 </div>
                                 <div className="col-md-6">
-                                    <label>Nom Produit</label>
-                                    <input className="form-control" type="text" placeholder="Nom Produit" onChange={handleChange} name="nomProduit" />
+                                    <label>Name Product</label>
+                                    <input className="form-control" type="text" placeholder="Nom Produit" onChange={handleChange} name="nomProduit" value={produit.nomProduit} />
                                 </div>
 
                                 <div className="col-md-6">
@@ -157,12 +193,12 @@ const UpdateAdmin = () =>{
                                 </div>
                                 <div className="col-md-6">
                                     <label>Photo</label>
-                                    <input className="form-control" type="file" placeholder="Photo" onChange={handleChange} name="photo" />
+                                    <input className="form-control" type="file" placeholder="Photo" onChange={handleChange} name="photo" value={produit.photo} />
                                     {errorMessage && <p>{errorMessage}</p>}
                                 </div>
                                 <div className="col-md-6">
-                                    <label>Prix Unitaire</label>
-                                    <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" />
+                                    <label>Price Unitaire</label>
+                                    <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" value={produit.prixUnitaire} />
                                 </div>
                                 <div className="col-md-12">
                                     <button className="btn" onClick={handleUpdate}>Mofier</button>           

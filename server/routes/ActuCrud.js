@@ -284,4 +284,22 @@ router.post('/search', (req, res) => {
   });
 });
 
+router.get('/lists_product_id/:id', (req, res) => {
+  const id=req.params.id;
+  let sqlString="SELECT * FROM produit where id="+id;
+  let query= connection.query(sqlString,(err,rows) => {
+    if(err) return res.json(err);
+    return res.json(rows);
+  });
+});
+
+router.get('/lists_category_id/:id', (req, res) => {
+  const id=req.params.id;
+  let sqlString="SELECT * FROM categorie where id="+id;
+  let query= connection.query(sqlString,(err,rows) => {
+    if(err) return res.json(err);
+    return res.json(rows);
+  });
+});
+
 module.exports = router;

@@ -7,9 +7,18 @@ import configData from '../conf.json';
 
 const ListeCategory = () =>{
     const[listeCat,setListeCat]=useState([]);
-    const navigate= useNavigate();
     
     const location= useLocation();
+
+    const token = localStorage.getItem('jwtToken');
+    const navigate= useNavigate();
+    
+    useEffect(() => {
+        if (!token) {
+          // Redirigez l'utilisateur vers la page de connexion s'il n'y a pas de token
+          navigate('/login');
+        }
+      }, [token, navigate]);
 
     useEffect(()=>{
         const fetchAllListe=async()=>{

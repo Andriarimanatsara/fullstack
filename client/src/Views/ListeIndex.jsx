@@ -48,7 +48,7 @@ const ListeIndex = () =>{
 ///////////////update\\\\\\\\\\\\\\\\\\\
     const navigate= useNavigate();
 
-    const[nameProduct,setnameProduct]=useState({
+    /*const[nameProduct,setnameProduct]=useState({
         nomProduit:"",
     });
 
@@ -63,7 +63,7 @@ const ListeIndex = () =>{
         } catch (error) {
             console.log(error)
         }
-    }
+    }*/
 
     const handleClickIndex= async(id,prixUnitaire,photo,nomProduit)=>{
         
@@ -182,13 +182,8 @@ const ListeIndex = () =>{
                                 </a>
                             </div>
                         </div>
-                        <div className="col-md-6">
-                            <div className="search">
-                                <input type="text" placeholder="Search" onChange={handleChange} name="nomProduit"/>
-                                <button onClick={()=>fetchListeSearch()}><i className="fa fa-search"></i></button>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
+                        
+                        <div className="col-md-9">
                             <div className="user">
                                 
                                 <a href="cart.html" className="btn cart">
