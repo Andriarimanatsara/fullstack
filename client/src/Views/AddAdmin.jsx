@@ -174,7 +174,7 @@ const AddAdmin = () =>{
                                     <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" />
                                 </div>
                                 <div className="col-md-12">
-                                    <button className="btn" onClick={handleUpdate}>Update</button>           
+                                    <button className="btn" onClick={handleUpdate}>Ajouter</button>           
                                 </div>
                             </div>
                             </div>

@@ -234,10 +234,11 @@ router.post('/add_category', (req, res) => {
     return res.json({status:201,data:req.body})
   });
 });
-router.put('/update_category/:id', (req, res) => {
-  const id=req.params.id;
+
+router.post('/update_category/:id', (req, res) => {
+  const idCategorie=req.params.id;
   let data={name:req.body.nameCategory,decription:req.body.description};
-  let sqlString="UPDATE categorie SET nomCategorie='"+data.name+"', description='"+data.description+"' where id="+id;
+  let sqlString="UPDATE categorie SET nomCategorie='"+data.name+"', description='"+data.description+"' where id="+idCategorie;
   let query= connection.query(sqlString,(err,results) => {
     if(err) return res.json(err);
     return res.json({status:201,data:req.body})

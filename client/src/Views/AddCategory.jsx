@@ -117,7 +117,7 @@ const AddCategory = () =>{
                                     <textarea className="form-control" onChange={handleChange} name="description" rows="3" ></textarea>
                                 </div>
                                 <div className="col-md-12">
-                                    <button className="btn" onClick={handleInsert}>Insert</button>           
+                                    <button className="btn" onClick={handleInsert}>Ajouter</button>           
                                 </div>
                             </div>
                         </div>

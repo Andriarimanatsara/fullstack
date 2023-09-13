@@ -32,7 +32,7 @@ const UpdateCategory = () =>{
                 navigate("/updateCategory");
             }            
         } catch (error) {
-            console.log("Erreur insertion=="+error)            
+            console.log("Erreur update=="+error)            
         }
         console.log(category);
     };
@@ -119,7 +119,7 @@ const UpdateCategory = () =>{
                                     <textarea className="form-control" onChange={handleChange} name="description" rows="3" ></textarea>
                                 </div>
                                 <div className="col-md-12">
-                                    <button className="btn" onClick={handleInsert}>Insert</button>           
+                                    <button className="btn" onClick={handleInsert}>Modifier</button>           
                                 </div>
                             </div>
                         </div>

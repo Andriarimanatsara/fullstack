@@ -163,7 +163,7 @@ const Login = () =>{
                                     </div>
                                     {errorMessage && <p>{errorMessage}</p>}
                                     <div className="col-md-12">
-                                        <button className="btn" onClick={handleInsert}>Login</button>
+                                        <button className="btn" onClick={handleInsert}>Se Connecter</button>
                                     </div>
                                 </div>
                             </div>
