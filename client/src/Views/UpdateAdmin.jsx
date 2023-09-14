@@ -25,7 +25,11 @@ const UpdateAdmin = () =>{
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_product_id/"+idUp);
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_product_id/"+idUp, {
+                    headers: {
+                      Authorization: token,
+                    },
+                  });
                 setListe(res.data);
             } catch (error) {
                 console.log(error)
@@ -37,11 +41,7 @@ const UpdateAdmin = () =>{
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category", {
-                    headers: {
-                      Authorization: token,
-                    },
-                  })
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_category")
                 setListsCat(res.data);
             } catch (error) {
                 console.log(error)
