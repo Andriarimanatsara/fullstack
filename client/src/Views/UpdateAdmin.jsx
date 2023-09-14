@@ -57,7 +57,7 @@ const UpdateAdmin = () =>{
         photo:"",
         prixUnitaire:null,
     });
-    useEffect(() => {
+    /*useEffect(() => {
         if (liste.length > 0) {
           setProduit({
             nomProduit: liste[0].nomProduit,
@@ -66,7 +66,7 @@ const UpdateAdmin = () =>{
             prixUnitaire: liste[0].prixUnitaire,
           });
         }
-      }, [liste]);
+      }, [liste]);*/
 
     const handleChange = (e) => {
         if (e.target.name === 'photo') {
@@ -184,21 +184,21 @@ const UpdateAdmin = () =>{
                                 </div>
                                 <div className="col-md-6">
                                     <label>Name Product</label>
-                                    <input className="form-control" type="text" placeholder="Nom Produit" onChange={handleChange} name="nomProduit" value={produit.nomProduit} />
+                                    <input className="form-control" type="text" placeholder="Nom Produit" onChange={handleChange} name="nomProduit"  />
                                 </div>
 
                                 <div className="col-md-6">
                                     <label>Description</label>
-                                    <textarea className="form-control" onChange={handleChange} name="description" rows="3" value={produit.description} ></textarea>
+                                    <textarea className="form-control" onChange={handleChange} name="description" rows="3"  ></textarea>
                                 </div>
                                 <div className="col-md-6">
                                     <label>Photo</label>
-                                    <input className="form-control" type="file" placeholder="Photo" onChange={handleChange} name="photo" value={produit.photo} />
+                                    <input className="form-control" type="file" placeholder="Photo" onChange={handleChange} name="photo" />
                                     {errorMessage && <p>{errorMessage}</p>}
                                 </div>
                                 <div className="col-md-6">
                                     <label>Price Unitaire</label>
-                                    <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" value={produit.prixUnitaire} />
+                                    <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" />
                                 </div>
                                 <div className="col-md-12">
                                     <button className="btn" onClick={handleUpdate}>Mofier</button>           
