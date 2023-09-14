@@ -136,9 +136,7 @@ const AddAdmin = () =>{
                                 <a className="nav-item nav-link"><Link to="/addAdmin" >Add Product</Link></a>
                                 <a className="nav-item nav-link"><Link to="/listeCategory" >Category</Link></a>
                                 <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Ajouter Categorie</Link></a>
-                                <div className="col-md-12">
-                                    <button className="btn" onClick={fetchDeconnecte}>Log- out</button>
-                                </div>
+                                
                             </div>
                             
                         </div>
