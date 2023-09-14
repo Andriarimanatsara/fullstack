@@ -274,7 +274,7 @@ const Cart = () =>{
                                             </div>
                                             <div className="cart-btn">
                                                 <button onClick={handleUpdateCart}>Update Cart</button>
-                                                <button><Link to="/login" >Checkout</Link></button>
+                                                <button><Link to="/contact" >Checkout</Link></button>
                                             </div>
                                         </div>
                                     </div>
