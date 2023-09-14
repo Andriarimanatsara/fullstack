@@ -21,7 +21,7 @@ const UpdateAdmin = () =>{
         }
       }, [token, navigate]);
 
-    const[liste,setListe]=useState([]);
+    /*const[liste,setListe]=useState([]);
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
@@ -36,7 +36,7 @@ const UpdateAdmin = () =>{
             }
         }
         fetchAllListe()
-    },[idUp]);
+    },[idUp]);*/
 
     useEffect(()=>{
         const fetchAllListe=async()=>{
@@ -60,6 +60,7 @@ const UpdateAdmin = () =>{
     /*useEffect(() => {
         if (liste.length > 0) {
           setProduit({
+            idCategorie: liste[0].idCategorie,
             nomProduit: liste[0].nomProduit,
             description: liste[0].description,
             photo: liste[0].photo,
