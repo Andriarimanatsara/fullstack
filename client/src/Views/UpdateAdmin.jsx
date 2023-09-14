@@ -21,7 +21,7 @@ const UpdateAdmin = () =>{
         }
       }, [token, navigate]);
 
-    /*const[liste,setListe]=useState([]);
+    const[liste,setListe]=useState([]);
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
@@ -36,7 +36,7 @@ const UpdateAdmin = () =>{
             }
         }
         fetchAllListe()
-    },[idUp]);*/
+    },[idUp]);
 
     useEffect(()=>{
         const fetchAllListe=async()=>{
@@ -48,6 +48,17 @@ const UpdateAdmin = () =>{
             }
         }
         fetchAllListe()
+        const handleBeforeUnload = () => {
+            localStorage.removeItem("jwtToken");
+        };
+
+        // Ajoutez l'événement beforeunload au moment du montage du composant
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
     },[]);
 
     const[produit,setProduit]=useState({
@@ -57,7 +68,7 @@ const UpdateAdmin = () =>{
         photo:"",
         prixUnitaire:null,
     });
-    /*useEffect(() => {
+    useEffect(() => {
         if (liste.length > 0) {
           setProduit({
             idCategorie: liste[0].idCategorie,
@@ -67,7 +78,7 @@ const UpdateAdmin = () =>{
             prixUnitaire: liste[0].prixUnitaire,
           });
         }
-      }, [liste]);*/
+      }, [liste]);
 
     const handleChange = (e) => {
         if (e.target.name === 'photo') {
@@ -108,6 +119,11 @@ const UpdateAdmin = () =>{
             console.error('Erreur lors du téléchargement du fichier', error);
         }
         //console.log("tsy maintsy miseo");
+    };
+    const fetchDeconnecte= async e=>{
+        e.preventDefault();
+        localStorage.removeItem("jwtToken");
+        navigate("/listeIndex");
     };
 
     return (
@@ -155,14 +171,13 @@ const UpdateAdmin = () =>{
             <div className="bottom-bar">
                 <div className="container-fluid">
                     <div className="row align-items-center">
-                        <div className="col-md-3">
-                            <div className="logo">
-                                <a>
-                                    <img src="img/logo-midas.png" alt="Logo"/>
-                                </a>
+                        
+                        <div className="col-md-9">
+                            <div className="user">
+                                
+                                <button onClick={()=>fetchDeconnecte()}>Log- out</button>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
@@ -178,6 +193,7 @@ const UpdateAdmin = () =>{
                                 <div className="col-md-6">
                                     <label>Categorie</label>
                                     <select onChange={handleChange} name="idCategorie" className="form-control" style={{width: '100%'}}>
+                                        <option value={0}>-Selected Categorie-</option> 
                                         {listsCat.map(listeCt=>(
                                             <option key={listeCt.id} value={listeCt.id}>{listeCt.nomCategorie}</option>
                                         ))} 
@@ -185,12 +201,12 @@ const UpdateAdmin = () =>{
                                 </div>
                                 <div className="col-md-6">
                                     <label>Name Product</label>
-                                    <input className="form-control" type="text" placeholder="Nom Produit" onChange={handleChange} name="nomProduit"  />
+                                    <input className="form-control" type="text" placeholder="Nom Produit" onChange={handleChange} name="nomProduit" value={produit.nomProduit} />
                                 </div>
 
                                 <div className="col-md-6">
                                     <label>Description</label>
-                                    <textarea className="form-control" onChange={handleChange} name="description" rows="3"  ></textarea>
+                                    <textarea className="form-control" onChange={handleChange} name="description" rows="3" value={produit.description} ></textarea>
                                 </div>
                                 <div className="col-md-6">
                                     <label>Photo</label>
@@ -199,7 +215,7 @@ const UpdateAdmin = () =>{
                                 </div>
                                 <div className="col-md-6">
                                     <label>Price Unitaire</label>
-                                    <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" />
+                                    <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" value={produit.prixUnitaire} />
                                 </div>
                                 <div className="col-md-12">
                                     <button className="btn" onClick={handleUpdate}>Mofier</button>           

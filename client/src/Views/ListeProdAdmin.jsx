@@ -94,6 +94,17 @@ const ListeProduitAdmin = () => {
         } catch (error) {
             console.log(error);
         }
+        const handleBeforeUnload = () => {
+            localStorage.removeItem("jwtToken");
+        };
+
+        // Ajoutez l'événement beforeunload au moment du montage du composant
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
     };
     
     const handleRemoveItem = async (id) => {
@@ -127,6 +138,11 @@ const ListeProduitAdmin = () => {
         }
     };*/
 
+    const fetchDeconnecte= async e=>{
+        e.preventDefault();
+        localStorage.removeItem("jwtToken");
+        navigate("/listeIndex");
+    };
 
     return (
         <div className='afficheContent'>
@@ -181,7 +197,12 @@ const ListeProduitAdmin = () => {
                             </div>
                         </div>
                         
-                        
+                        <div className="col-md-9">
+                            <div className="user">
+                                
+                                <button onClick={()=>fetchDeconnecte()}>Log- out</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

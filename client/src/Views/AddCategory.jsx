@@ -16,6 +16,17 @@ const AddCategory = () =>{
           // Redirigez l'utilisateur vers la page de connexion s'il n'y a pas de token
           navigate('/login');
         }
+        const handleBeforeUnload = () => {
+            localStorage.removeItem("jwtToken");
+        };
+
+        // Ajoutez l'événement beforeunload au moment du montage du composant
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
       }, [token, navigate]);
 
     const[category,setCategory]=useState({
@@ -40,6 +51,12 @@ const AddCategory = () =>{
         } catch (error) {
             console.error('Erreur insertion', error);
         }
+    };
+
+    const fetchDeconnecte= async e=>{
+        e.preventDefault();
+        localStorage.removeItem("jwtToken");
+        navigate("/listeIndex");
     };
 
     return (
@@ -95,6 +112,12 @@ const AddCategory = () =>{
                             </div>
                         </div>
                         
+                        <div className="col-md-9">
+                            <div className="user">
+                                
+                                <button onClick={()=>fetchDeconnecte()}>Log- out</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

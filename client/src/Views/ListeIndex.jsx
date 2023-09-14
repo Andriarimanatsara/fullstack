@@ -11,6 +11,7 @@ import configData from '../conf.json';
 
 const ListeIndex = () =>{
     const[lists,setLists]=useState([]);
+    const token = localStorage.getItem('jwtToken');
     const countTotalProductsInCart = () => {
         const panierExistants = JSON.parse(localStorage.getItem('panier')) || [];
         let totalCount = 0;
@@ -34,6 +35,7 @@ const ListeIndex = () =>{
 
         const handleBeforeUnload = () => {
             localStorage.removeItem("panier");
+            localStorage.removeItem("jwtToken");
         };
 
         // Ajoutez l'événement beforeunload au moment du montage du composant
@@ -186,9 +188,11 @@ const ListeIndex = () =>{
                         <div className="col-md-9">
                             <div className="user">
                                 
-                                <a href="cart.html" className="btn cart">
-                                    <i className="fa fa-shopping-cart"></i>
-                                    <span>({cartItemCount})</span>
+                                <a className="btn cart">
+                                    <Link to="/login" >
+                                        <i className="fa fa-shopping-cart"></i>
+                                        <span>({cartItemCount})</span>
+                                    </Link>
                                 </a>
                             </div>
                         </div>

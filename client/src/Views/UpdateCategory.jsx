@@ -33,7 +33,18 @@ const UpdateCategory = () =>{
                 console.log(error)
             }
         }
-        fetchAllListe()
+        fetchAllListe();
+        const handleBeforeUnload = () => {
+            localStorage.removeItem("jwtToken");
+        };
+
+        // Ajoutez l'événement beforeunload au moment du montage du composant
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
     },[idUp]);
 
     const[category,setCategory]=useState({
@@ -69,6 +80,12 @@ const UpdateCategory = () =>{
             console.log("Erreur update=="+error)            
         }
         console.log(category);
+    };
+
+    const fetchDeconnecte= async e=>{
+        e.preventDefault();
+        localStorage.removeItem("jwtToken");
+        navigate("/listeIndex");
     };
 
     return (
@@ -116,14 +133,12 @@ const UpdateCategory = () =>{
             <div className="bottom-bar">
                 <div className="container-fluid">
                     <div className="row align-items-center">
-                        <div className="col-md-3">
-                            <div className="logo">
-                                <a>
-                                    <img src="img/logo-midas.png" alt="Logo"/>
-                                </a>
+                        <div className="col-md-9">
+                            <div className="user">
+                                
+                                <button onClick={()=>fetchDeconnecte()}>Log- out</button>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>

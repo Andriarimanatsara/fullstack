@@ -29,7 +29,23 @@ const ListeCategory = () =>{
                 console.log(error)
             }
         }
-        fetchAllListe()
+        fetchAllListe();
+        const handleBeforeUnload = () => {
+            localStorage.removeItem("jwtToken");
+        };
+
+        // Ajoutez l'événement beforeunload au moment du montage du composant
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+      }, [token, navigate]);
+
+    const[category,setCategory]=useState({
+        nameCategory:"",
+        description:"",
     },[]);
     
     const fetchAllListe=async()=>{
@@ -49,6 +65,12 @@ const ListeCategory = () =>{
         } catch (error) {
             console.error('Erreur suppresion', error);
         }
+    };
+
+    const fetchDeconnecte= async e=>{
+        e.preventDefault();
+        localStorage.removeItem("jwtToken");
+        navigate("/listeIndex");
     };
 
     return (
@@ -104,6 +126,12 @@ const ListeCategory = () =>{
                             </div>
                         </div>
                         
+                        <div className="col-md-9">
+                            <div className="user">
+                                
+                                <button onClick={()=>fetchDeconnecte()}>Log- out</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

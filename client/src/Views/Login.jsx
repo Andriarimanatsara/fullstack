@@ -12,6 +12,7 @@ const Login = () =>{
     const navigate= useNavigate();
     
     const location= useLocation();
+    const token = localStorage.getItem('jwtToken');
     const countTotalProductsInCart = () => {
         const panierExistants = JSON.parse(localStorage.getItem('panier')) || [];
         let totalCount = 0;
@@ -26,6 +27,7 @@ const Login = () =>{
     useEffect(()=>{
         const handleBeforeUnload = () => {
             localStorage.removeItem("panier");
+            localStorage.removeItem("jwtToken");
         };
     
         // Ajoutez l'événement beforeunload au moment du montage du composant

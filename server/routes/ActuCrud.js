@@ -8,6 +8,7 @@ const bodyParser= require('body-parser')
 const app=express();
 const connection=require('../DbConnect.js')
 const router = express.Router();
+const mysql = require('mysql');
 
 app.set('views', path.join(__dirname, '..', 'views'));
 
@@ -151,15 +152,15 @@ const isImg=(req,file,cb)=>{
 const upload = multer({ storage:storage,fileFilter:isImg });
 
 router.post('/add_product', upload.single('photo'), (req, res) => {
-  const nomProduit = mysql.escape(req.body.nomProduit);
-  const description = mysql.escape(req.body.description);
-  let data={idCategorie:req.body.idCategorie,nomProduit:nomProduit,description:description,photo:req.file ? req.file.originalname : '',prixUnitaire:req.body.prixUnitaire};
-  if(!data.idCategorie || !data.nomProduit || !data.description || !data.photo || !data.prixUnitaire)
+  let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,photo:req.file ? req.file.originalname : '',prixUnitaire:req.body.prixUnitaire};
+  const nomProduit = mysql.escape(data.nomProduit);
+  const description = mysql.escape(data.description);
+  if(!data.idCategorie || !nomProduit || !description || !data.photo || !data.prixUnitaire)
   {
     res.json({status:422,message:"fill all the details"})
   }
   try{
-    let sqlString = "INSERT INTO produit(idCategorie,nomProduit,description,photo,prixUnitaire)values(" + data.idCategorie + ",'" + data.nomProduit + "','" + data.description + "','" + data.photo + "'," + data.prixUnitaire + ")";
+    let sqlString = "INSERT INTO produit(idCategorie,nomProduit,description,photo,prixUnitaire)values(" + data.idCategorie + ",'" + nomProduit + "','" + description + "','" + data.photo + "'," + data.prixUnitaire + ")";
     let query = connection.query(sqlString,(err, results) => {
       if (err) {
         res.json(err);
@@ -176,9 +177,9 @@ router.post('/add_product', upload.single('photo'), (req, res) => {
 //updateProduit
 router.post('/update_product/:id', upload.single('photo'), (req, res) => {
   const id=req.params.id;
-  /*const nomProduit = mysql.escape();
-  const description = mysql.escape();*/
   let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,photo:req.file ? req.file.originalname : '',prixUnitaire:req.body.prixUnitaire};
+  const nomProduit = mysql.escape(data.nomProduit);
+  const description = mysql.escape(data.description);
   /*let sqlString = "UPDATE produit SET idCategorie='" + data.idCategorie + "', nomProduit='" + data.nomProduit + "', description='" + data.description + "', photo='" + data.photo + "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
   
   const filePath = `./client/public/img/${data.photo}`;
@@ -202,7 +203,7 @@ router.post('/update_product/:id', upload.single('photo'), (req, res) => {
     res.json({status:422,message:"fill all the details"})
   }
   try{
-    let sqlString = "UPDATE produit SET idCategorie=" + data.idCategorie + ", nomProduit='" + data.nomProduit + "', description='" + data.description + /*"', photo='" + data.photo +*/ "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
+    let sqlString = "UPDATE produit SET idCategorie=" + data.idCategorie + ", nomProduit='" + nomProduit + "', description='" + description + /*"', photo='" + data.photo +*/ "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
     let query = connection.query(sqlString,(err, results) => {
       if (err) {
         res.json(err);
@@ -230,10 +231,10 @@ router.get('/delete_product/:id', (req, res) => {
 });
 
 router.post('/add_category', (req, res) => {
-  /*const nomCategorie = mysql.escape();
-  const description = mysql.escape();*/
   let data={name:req.body.nameCategory,description:req.body.description};
-  let sqlString="INSERT INTO categorie(nomCategorie, description) values('"+data.name+"','"+data.description+"')";
+  const nomCategorie = mysql.escape(data.name);
+  const description = mysql.escape(data.description);
+  let sqlString="INSERT INTO categorie(nomCategorie, description) values('"+ nomCategorie +"','"+ description  +"')";
   let query= connection.query(sqlString,(err,results) => {
     if(err) return res.json(err);
     return res.json({status:201,data:req.body})
@@ -242,10 +243,10 @@ router.post('/add_category', (req, res) => {
 
 router.post('/update_category/:id', (req, res) => {
   const idCategorie=req.params.id;
-  /*const nomCategorie = mysql.escape();
-  const description = mysql.escape();*/
   let data={name:req.body.nameCategory,description:req.body.description};
-  let sqlString="UPDATE categorie SET nomCategorie='"+data.name+"', description='"+data.description+"' where id="+idCategorie;
+  const nomCategorie = mysql.escape(data.name);
+  const description = mysql.escape(data.description);
+  let sqlString="UPDATE categorie SET nomCategorie='"+ nomCategorie +"', description='"+ description+ "' where id="+idCategorie;
   let query= connection.query(sqlString,(err,results) => {
     if(err) return res.json(err);
     return res.json({status:201,data:req.body})

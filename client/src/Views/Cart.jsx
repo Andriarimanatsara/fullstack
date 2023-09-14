@@ -27,11 +27,13 @@ const Cart = () =>{
         
         ////////////////update\\\\\\\\\\\\\\\\\\\\
         const articlesPanier = JSON.parse(localStorage.getItem("panier")) || [];
+        const token = localStorage.getItem('jwtToken');
         setListePanier(articlesPanier);
 
         // Gestionnaire pour vider le panier lorsque l'utilisateur ferme la fenêtre/onglet
         const handleBeforeUnload = () => {
             localStorage.removeItem("panier");
+            localStorage.removeItem("jwtToken");
         };
 
         // Ajoutez l'événement beforeunload au moment du montage du composant
@@ -175,9 +177,11 @@ const Cart = () =>{
                         <div className="col-md-9">
                             <div className="user">
                                 
-                                <a href="cart.html" className="btn cart">
-                                    <i className="fa fa-shopping-cart"></i>
-                                    <span>({cartItemCount})</span>
+                                <a className="btn cart">
+                                    <Link to="/login" >
+                                        <i className="fa fa-shopping-cart"></i>
+                                        <span>({cartItemCount})</span>
+                                    </Link>
                                 </a>
                             </div>
                         </div>

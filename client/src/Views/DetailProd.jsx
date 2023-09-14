@@ -13,6 +13,7 @@ const ListeProduit = () => {
     const [listes, setListes] = useState([]);
     const [modifieds, setModifieds] = useState([]);
     const idProd=location.pathname.split("/")[2]
+    const token = localStorage.getItem('jwtToken');
 
     const countTotalProductsInCart = () => {
         const panierExistants = JSON.parse(localStorage.getItem('panier')) || [];
@@ -37,6 +38,7 @@ const ListeProduit = () => {
         fetchAllListe();
         const handleBeforeUnload = () => {
             localStorage.removeItem("panier");
+            localStorage.removeItem("jwtToken");
         };
 
         // Ajoutez l'événement beforeunload au moment du montage du composant
@@ -155,9 +157,11 @@ const ListeProduit = () => {
                         <div className="col-md-9">
                             <div className="user">
                                 
-                                <a href="cart.html" className="btn cart">
-                                    <i className="fa fa-shopping-cart"></i>
-                                    <span>({cartItemCount})</span>
+                                <a className="btn cart">
+                                    <Link to="/login" >
+                                        <i className="fa fa-shopping-cart"></i>
+                                        <span>({cartItemCount})</span>
+                                    </Link>
                                 </a>
                             </div>
                         </div>

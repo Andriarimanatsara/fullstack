@@ -35,7 +35,18 @@ const AddAdmin = () =>{
                 console.log(error)
             }
         }
-        fetchAllListe()
+        fetchAllListe();
+        const handleBeforeUnload = () => {
+            localStorage.removeItem("jwtToken");
+        };
+
+        // Ajoutez l'événement beforeunload au moment du montage du composant
+        window.addEventListener("beforeunload", handleBeforeUnload);
+
+        // Nettoyage : Retirez l'événement beforeunload lorsque le composant est démonté
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
     },[]);
 
     const[produit,setProduit]=useState({
@@ -85,6 +96,11 @@ const AddAdmin = () =>{
             console.error('Erreur lors du téléchargement du fichier', error);
         }
         //console.log("tsy maintsy miseo");
+    };
+    const fetchDeconnecte= async e=>{
+        e.preventDefault();
+        localStorage.removeItem("jwtToken");
+        navigate("/listeIndex");
     };
 
     return (
@@ -140,6 +156,12 @@ const AddAdmin = () =>{
                             </div>
                         </div>
                         
+                        <div className="col-md-9">
+                            <div className="user">
+                                
+                                <button onClick={()=>fetchDeconnecte()}>Log- out</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -163,6 +185,7 @@ const AddAdmin = () =>{
                                 <div className="col-md-6">
                                     <label>Category</label>
                                     <select onChange={handleChange} name="idCategorie" class="form-control" style={{width: '100%'}}>
+                                        <option value={0}>-Selected Categorie-</option> 
                                         {listeCat.map(listeCt=>(
                                             <option key={listeCt.id} value={listeCt.id}>{listeCt.nomCategorie}</option>
                                         ))} 
