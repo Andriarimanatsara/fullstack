@@ -25,7 +25,7 @@ const UpdateAdmin = () =>{
     useEffect(()=>{
         const fetchAllListe=async()=>{
             try {
-                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/listesCatId/"+idUp);
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_product_id/"+idUp);
                 setListe(res.data);
             } catch (error) {
                 console.log(error)
