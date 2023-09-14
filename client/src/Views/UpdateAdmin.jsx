@@ -120,8 +120,7 @@ const UpdateAdmin = () =>{
         }
         //console.log("tsy maintsy miseo");
     };
-    const fetchDeconnecte= async e=>{
-        e.preventDefault();
+    const fetchDeconnecte= ()=>{
         localStorage.removeItem("jwtToken");
         navigate("/listeIndex");
     };
@@ -167,21 +166,6 @@ const UpdateAdmin = () =>{
                     </nav>
                 </div>
             </div>
-            
-            <div className="bottom-bar">
-                <div className="container-fluid">
-                    <div className="row align-items-center">
-                        
-                        <div className="col-md-9">
-                            <div className="user">
-                                
-                                <button onClick={()=>fetchDeconnecte()}>Log- out</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
             
             
             <div className="login">

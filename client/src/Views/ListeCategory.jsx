@@ -67,8 +67,7 @@ const ListeCategory = () =>{
         }
     };
 
-    const fetchDeconnecte= async e=>{
-        e.preventDefault();
+    const fetchDeconnecte= ()=>{
         localStorage.removeItem("jwtToken");
         navigate("/listeIndex");
     };
@@ -126,12 +125,7 @@ const ListeCategory = () =>{
                             </div>
                         </div>
                         
-                        <div className="col-md-9">
-                            <div className="user">
-                                
-                                <button onClick={()=>fetchDeconnecte()}>Log- out</button>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

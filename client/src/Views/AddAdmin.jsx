@@ -97,8 +97,7 @@ const AddAdmin = () =>{
         }
         //console.log("tsy maintsy miseo");
     };
-    const fetchDeconnecte= async e=>{
-        e.preventDefault();
+    const fetchDeconnecte= ()=>{
         localStorage.removeItem("jwtToken");
         navigate("/listeIndex");
     };
@@ -137,7 +136,9 @@ const AddAdmin = () =>{
                                 <a className="nav-item nav-link"><Link to="/addAdmin" >Add Product</Link></a>
                                 <a className="nav-item nav-link"><Link to="/listeCategory" >Category</Link></a>
                                 <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Ajouter Categorie</Link></a>
-
+                                <div className="col-md-6">
+                                    <button onClick={()=>fetchDeconnecte()}>Log- out</button>
+                                </div>
                             </div>
                             
                         </div>
@@ -156,12 +157,6 @@ const AddAdmin = () =>{
                             </div>
                         </div>
                         
-                        <div className="col-md-9">
-                            <div className="user">
-                                
-                                <button onClick={()=>fetchDeconnecte()}>Log- out</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
