@@ -106,7 +106,9 @@ const ListeCategory = () =>{
                                 <a className="nav-item nav-link"><Link to="/addAdmin" >Add Products</Link></a>
                                 <a className="nav-item nav-link"><Link to="/listeCategory" style={{color:'white'}} >Category</Link></a>
                                 <a className="nav-item nav-link"><Link to="/addCategory" >Ajouter Categorie</Link></a>
-                                
+                                <div className="col-md-3">
+                                    <button className="btn" onClick={fetchDeconnecte}>Log-Out</button>
+                                </div>
                             </div>
                             
                         </div>
