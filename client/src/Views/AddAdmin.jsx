@@ -131,13 +131,16 @@ const AddAdmin = () =>{
 
                         <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div className="navbar-nav mr-auto">
-                                
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Products</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" >Add Product</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeCategory" >Category</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Ajouter Categorie</Link></a>
-                                <div className="col-md-3">
-                                    <button className="btn" onClick={fetchDeconnecte}>Log-Out</button>
+                                <div className="row">
+                                    <div className="col-sm-6">
+                                        <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Products</Link></a>
+                                        <a className="nav-item nav-link"><Link to="/addAdmin" >Add Product</Link></a>
+                                        <a className="nav-item nav-link"><Link to="/listeCategory" >Category</Link></a>
+                                        <a className="nav-item nav-link"><Link to="/addCategory" style={{color:'white'}} >Ajouter Categorie</Link></a>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <button className="btn" onClick={fetchDeconnecte}>Log-Out</button>
+                                    </div>
                                 </div>
                             </div>
                             
