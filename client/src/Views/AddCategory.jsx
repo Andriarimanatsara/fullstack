@@ -7,6 +7,7 @@ import configData from '../conf.json';
 
 const AddCategory = () =>{
     const location= useLocation();
+    const [errorMessage, setErrorMessage] = useState('');
 
     const token = localStorage.getItem('jwtToken');
     const navigate= useNavigate();
@@ -42,10 +43,12 @@ const AddCategory = () =>{
        
         try {
             const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/add_category",category)///////
-            if(response.data.status===201)
+            if(response.status===201)
             {
+                setErrorMessage('');
                 navigate("/listeProdAdmin");
             }else{
+                setErrorMessage(response.data.message);
                 navigate("/addCategory");
             }            
         } catch (error) {
@@ -142,6 +145,7 @@ const AddCategory = () =>{
                                     <label>Description</label>
                                     <textarea className="form-control" onChange={handleChange} name="description" rows="3" ></textarea>
                                 </div>
+                                {errorMessage && <b><p className="error-message" style={{color:'red'}}>{errorMessage}</p></b>}
                                 <div className="col-md-12">
                                     <button className="btn" onClick={handleInsert}>Ajouter</button>           
                                 </div>

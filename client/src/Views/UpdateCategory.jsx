@@ -11,6 +11,7 @@ const UpdateCategory = () =>{
 
     const token = localStorage.getItem('jwtToken');
     const navigate= useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
     
     useEffect(() => {
         if (!token) {
@@ -69,12 +70,14 @@ const UpdateCategory = () =>{
         e.preventDefault()
         try {
             const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/update_category/"+idUp,category)
-            if(response.data.status===201)
+            if(response.status===201)
             {
                 console.log(response.data.data)
+                setErrorMessage('');
                 navigate("/listeCategory");
             }else{
-                navigate("/updateCategory");
+                setErrorMessage(response.data.message);
+                navigate("/updateCategory/"+idUp);
             }            
         } catch (error) {
             console.log("Erreur update=="+error)            
@@ -157,6 +160,7 @@ const UpdateCategory = () =>{
                                     <label>Description</label>
                                     <textarea className="form-control" onChange={handleChange} name="description" rows="3" value={category.description} ></textarea>
                                 </div>
+                                {errorMessage && <b><p className="error-message" style={{color:'red'}}>{errorMessage}</p></b>}
                                 <div className="col-md-12">
                                     <button className="btn" onClick={handleInsert}>Update</button>           
                                 </div>

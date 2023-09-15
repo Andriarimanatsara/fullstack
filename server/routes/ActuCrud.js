@@ -63,7 +63,7 @@ router.get('/lists_category', (req, res) => {
 //listesDescri/:idProduit
 router.get('/lists_by_product/:idProduct', (req, res) => {
   const idProduct=req.params.idProduct;
-  let sqlString="SELECT * FROM produit where id="+idProduct;
+  let sqlString="select produit.id as id,idCategorie,nomProduit,produit.description as description,photo,prixUnitaire,categorie.nomCategorie,categorie.description as descriptionCat from produit LEFT JOIN categorie ON produit.idCategorie = categorie.id where produit.id="+idProduct;
   let query= connection.query(sqlString,(err,rows) => {
     if(err) return res.json(err);
     return res.json(rows);
@@ -155,22 +155,24 @@ router.post('/add_product', upload.single('photo'), (req, res) => {
   let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,photo:req.file ? req.file.originalname : '',prixUnitaire:req.body.prixUnitaire};
   const nomProduit = mysql.escape(data.nomProduit);
   const description = mysql.escape(data.description);
-  if(!data.idCategorie || !nomProduit || !description || !data.photo || !data.prixUnitaire)
+  if(!data.idCategorie || !nomProduit || !description /*|| !data.photo */|| !data.prixUnitaire)
   {
-    res.json({status:422,message:"fill all the details"})
-  }
-  try{
-    let sqlString = "INSERT INTO produit(idCategorie,nomProduit,description,photo,prixUnitaire)values(" + data.idCategorie + ",'" + nomProduit + "','" + description + "','" + data.photo + "'," + data.prixUnitaire + ")";
-    let query = connection.query(sqlString,(err, results) => {
-      if (err) {
-        res.json(err);
-      }else{
-        console.log("data updated")
-        res.json({status:201,data:req.body})
-      }
-    })
-  }catch(error){
-    res.json({status:422,error})
+    return res.json({status:422,message:"fill all the details"})
+  }else if(data.idCategorie && nomProduit && description && data.prixUnitaire){
+    try{
+      //let sqlString = "INSERT INTO produit(idCategorie,nomProduit,description,photo,prixUnitaire)values(" + data.idCategorie + ",'" + nomProduit + "','" + description + "','" + data.photo + "'," + data.prixUnitaire + ")";
+      let sqlString = "INSERT INTO produit(idCategorie,nomProduit,description,prixUnitaire)values(" + data.idCategorie + ",'" + nomProduit + "','" + description + /*"','" + data.photo + */"'," + data.prixUnitaire + ")";
+      let query = connection.query(sqlString,(err, results) => {
+        if (err) {
+          return res.json({status:500,message:"Une erreur est survenue"});
+        }else{
+          console.log("data added")
+          return res.json({status:201,message:"OK",data:req.body})
+        }
+      })
+    }catch(error){
+      return res.json({status:422,message:"Une erreur lié au serveur"})
+    }
   }
 });
 
@@ -200,22 +202,22 @@ router.post('/update_product/:id', upload.single('photo'), (req, res) => {
   });*/
   if(!data.idCategorie || !data.nomProduit || !data.description /*|| !data.photo*/ || !data.prixUnitaire)
   {
-    res.json({status:422,message:"fill all the details"})
+    return res.json({status:422,message:"fill all the details"})
+  }else if(data.idCategorie && nomProduit && description && data.prixUnitaire){
+    try{
+      let sqlString = "UPDATE produit SET idCategorie=" + data.idCategorie + ", nomProduit='" + nomProduit + "', description='" + description + /*"', photo='" + data.photo +*/ "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
+      let query = connection.query(sqlString,(err, results) => {
+        if (err) {
+          return res.json({status:500,message:"Une erreur est survenue"});
+        }else{
+          console.log("data updated")
+          return res.json({status:201,message:"OK",data:req.body})
+        }
+      })
+    }catch(error){
+      return res.json({status:422,message:"Une erreur lié au serveur"})
+    }
   }
-  try{
-    let sqlString = "UPDATE produit SET idCategorie=" + data.idCategorie + ", nomProduit='" + nomProduit + "', description='" + description + /*"', photo='" + data.photo +*/ "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
-    let query = connection.query(sqlString,(err, results) => {
-      if (err) {
-        res.json(err);
-      }else{
-        console.log("data updated")
-        res.json({status:201,data:req.body})
-      }
-    })
-  }catch(error){
-    res.json({status:422,error})
-  }
-
   // Traitez le fichier téléchargé ici
   //return res.status(200).json({ message: 'Fichier téléchargé avec succès' });
 });
@@ -234,11 +236,16 @@ router.post('/add_category', (req, res) => {
   let data={name:req.body.nameCategory,description:req.body.description};
   const nomCategorie = mysql.escape(data.name);
   const description = mysql.escape(data.description);
-  let sqlString="INSERT INTO categorie(nomCategorie, description) values('"+ nomCategorie +"','"+ description  +"')";
-  let query= connection.query(sqlString,(err,results) => {
-    if(err) return res.json(err);
-    return res.json({status:201,data:req.body})
-  });
+  if(!nomCategorie || !description)
+  {
+    return res.json({status:422,message:"fill all the details"})
+  }else if(nomCategorie && description){
+    let sqlString="INSERT INTO categorie(nomCategorie, description) values('"+ nomCategorie +"','"+ description  +"')";
+    let query= connection.query(sqlString,(err,results) => {
+      if(err) return res.json({status:500,message:"Une erreur est survenue"});
+      return res.json({status:201,message:"OK",data:req.body})
+    });
+  }
 });
 
 router.post('/update_category/:id', (req, res) => {
@@ -246,11 +253,16 @@ router.post('/update_category/:id', (req, res) => {
   let data={name:req.body.nameCategory,description:req.body.description};
   const nomCategorie = mysql.escape(data.name);
   const description = mysql.escape(data.description);
-  let sqlString="UPDATE categorie SET nomCategorie='"+ nomCategorie +"', description='"+ description+ "' where id="+idCategorie;
-  let query= connection.query(sqlString,(err,results) => {
-    if(err) return res.json(err);
-    return res.json({status:201,data:req.body})
-  });
+  if(!nomCategorie || !description)
+  {
+    return res.json({status:422,message:"fill all the details"})
+  }else if(nomCategorie && description){
+    let sqlString="UPDATE categorie SET nomCategorie='"+ nomCategorie +"', description='"+ description+ "' where id="+idCategorie;
+    let query= connection.query(sqlString,(err,results) => {
+      if(err) return res.json({status:500,message:"Une erreur est survenue"});
+      return res.json({status:201,message:"OK",data:req.body})
+    });
+  }
 });
 
 router.get('/delete_category/:id', (req, res) => {

@@ -148,7 +148,7 @@ const ListeProduit = () => {
                     <div className="row align-items-center">
                         
                         
-                        <div className="col-md-9">
+                        <div className="col-md-12">
                             <div className="user">
                                 
                                 <a className="btn cart">
@@ -235,7 +235,7 @@ const ListeProduit = () => {
                                             <a className="nav-link active" data-toggle="pill" href="#description">Description</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" data-toggle="pill" href="#specification">Specification</a>
+                                            <a className="nav-link" data-toggle="pill" href="#specification">Categorie</a>
                                         </li>
                                         
                                     </ul>
@@ -252,14 +252,16 @@ const ListeProduit = () => {
                                             ))}
                                         </div>
                                         <div id="specification" class="container tab-pane fade">
-                                            <h4>Product specification</h4>
-                                            <ul>
-                                                <li>Lorem ipsum dolor sit amet</li>
-                                                <li>Lorem ipsum dolor sit amet</li>
-                                                <li>Lorem ipsum dolor sit amet</li>
-                                                <li>Lorem ipsum dolor sit amet</li>
-                                                <li>Lorem ipsum dolor sit amet</li>
-                                            </ul>
+                                            {listes.map(liste=>(
+                                                <div>
+                                                    <h4>{liste.nomCategorie}</h4>
+                                                    <p>
+                                                        {liste.descriptionCat}
+                                                    </p>
+                                                </div>
+                                            ))}
+                                            
+                                            
                                         </div>
                                         
                                     </div>

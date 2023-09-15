@@ -99,20 +99,16 @@ const UpdateAdmin = () =>{
         //console.log(produit)
         try {
             const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/update_product/"+idUp,produit,config)///////
-            /*if (response.status===200) {
+            if (response.status===201) {
                 // Le fichier a été téléchargé avec succès
                 setErrorMessage('');
                 navigate("/listeProdAdmin");
-            } else if (response.status === 409) {
+            } else{
                 // Le fichier existe déjà
-                setErrorMessage('Le fichier existe déjà');
-            }*/
-            /*if(response.data.status===201)
-            {
-                navigate("/listeProdAdmin");
-            }else{
-                alert("error");
-            }*/
+                setErrorMessage(response.data.message);
+                navigate("/updateAdmin/"+idUp);
+            }
+            
             navigate("/listeProdAdmin");
             //console.log(response);
         } catch (error) {
