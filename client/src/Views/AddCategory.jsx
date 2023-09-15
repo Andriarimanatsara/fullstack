@@ -43,7 +43,7 @@ const AddCategory = () =>{
        
         try {
             const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/add_category",category)///////
-            if(response.status===201)
+            if(response.data.status===201)
             {
                 setErrorMessage('');
                 navigate("/listeProdAdmin");

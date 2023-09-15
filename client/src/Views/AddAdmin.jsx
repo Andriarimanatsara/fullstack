@@ -76,7 +76,7 @@ const AddAdmin = () =>{
         //console.log(produit)
         try {
             const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/add_product",produit,config)///////
-            if (response.status===201) {
+            if (response.data.status===201) {
                 // Le fichier a été téléchargé avec succès
                 setErrorMessage('');
                 navigate("/listeProdAdmin");

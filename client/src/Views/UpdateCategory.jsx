@@ -70,7 +70,7 @@ const UpdateCategory = () =>{
         e.preventDefault()
         try {
             const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/update_category/"+idUp,category)
-            if(response.status===201)
+            if(response.data.status===201)
             {
                 console.log(response.data.data)
                 setErrorMessage('');
