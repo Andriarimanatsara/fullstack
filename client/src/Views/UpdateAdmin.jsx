@@ -122,7 +122,7 @@ const UpdateAdmin = () =>{
     };
     const fetchDeconnecte= ()=>{
         localStorage.removeItem("jwtToken");
-        navigate("/listeIndex");
+        navigate("/");
     };
 
     return (

@@ -67,7 +67,7 @@ const Contact = () =>{
             const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrudSeq/insert_contact",contact)
             if (response.status === 200) {
                 setErrorMessage('');
-                //navigate("/");
+                navigate("/");
             } else {
                 setErrorMessage(response.data.error);
                 //alert(response.data.erreur);

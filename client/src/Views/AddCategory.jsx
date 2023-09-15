@@ -55,7 +55,7 @@ const AddCategory = () =>{
 
     const fetchDeconnecte= ()=>{
         localStorage.removeItem("jwtToken");
-        navigate("/listeIndex");
+        navigate("/");
     };
 
     return (
