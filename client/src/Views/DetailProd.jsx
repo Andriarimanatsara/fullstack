@@ -241,7 +241,7 @@ const ListeProduit = () => {
                                             <a className="nav-link active" data-toggle="pill" href="#description">Description</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link active" data-toggle="pill" href="#description">Specification</a>
+                                            <a className="nav-link active" data-toggle="pill" href="#specification">Specification</a>
                                         </li>
                                         
                                     </ul>
