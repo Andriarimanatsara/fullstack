@@ -183,14 +183,12 @@ const ListeProduit = () => {
                     <div className="row">
                         <div className="col-lg-8">
                             <div className="product-detail-top">
-                                <div className="row align-items-center">
+                                
                                     {listes.map((liste)=>(
-                                        <div>
+                                        <div className="row align-items-center">
                                             <div className="col-md-5">
-                                                <div className="product-slider-single normal-slider">
+                                                
                                                     <img src={`/img/${liste.photo}`} alt="Product Image"/>
-                                                    
-                                                </div>
                                                 
                                             </div>
                                             <div className="col-md-7">
@@ -233,8 +231,7 @@ const ListeProduit = () => {
                                             </div>
                                         </div>
                                     ))}
-                                    
-                                </div>
+                                
                             </div>
                             
                             <div className="row product-detail-bottom">
@@ -243,9 +240,7 @@ const ListeProduit = () => {
                                         <li className="nav-item">
                                             <a className="nav-link active" data-toggle="pill" href="#description">Description</a>
                                         </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" data-toggle="pill" href="#specification">Specification</a>
-                                        </li>
+                                        
                                         
                                     </ul>
 
