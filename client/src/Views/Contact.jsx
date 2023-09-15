@@ -140,7 +140,7 @@ const Contact = () =>{
                             <div className="user">
                                 
                                 <a className="btn cart">
-                                    <Link to="/login" >
+                                    <Link to="/cart" >
                                         <i className="fa fa-shopping-cart"></i>
                                         <span>({cartItemCount})</span>
                                     </Link>
@@ -200,7 +200,7 @@ const Contact = () =>{
                                         <textarea className="form-control" rows="5" placeholder="Message" onChange={handleChange} name="message" ></textarea>
                                     </div>
                                     {errorMessage && <b><p className="error-message" style={{color:'red'}}>{errorMessage}</p></b>}
-                                    <div><button className="btn" type="submit" onClick={handleInsert}>Envoie Email</button></div>
+                                    <div><button className="btn" type="submit" onClick={handleInsert}>Send Mail</button></div>
                                 </form>
                             </div>
                         </div>

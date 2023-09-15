@@ -158,7 +158,7 @@ const ListeProduit = () => {
                             <div className="user">
                                 
                                 <a className="btn cart">
-                                    <Link to="/login" >
+                                    <Link to="/cart" >
                                         <i className="fa fa-shopping-cart"></i>
                                         <span>({cartItemCount})</span>
                                     </Link>
@@ -240,7 +240,9 @@ const ListeProduit = () => {
                                         <li className="nav-item">
                                             <a className="nav-link active" data-toggle="pill" href="#description">Description</a>
                                         </li>
-                                        
+                                        <li className="nav-item">
+                                            <a className="nav-link active" data-toggle="pill" href="#description">Specification</a>
+                                        </li>
                                         
                                     </ul>
 
@@ -255,7 +257,16 @@ const ListeProduit = () => {
                                                 </div>
                                             ))}
                                         </div>
-                                        
+                                        <div id="specification" class="container tab-pane fade">
+                                            <h4>Product specification</h4>
+                                            <ul>
+                                                <li>Lorem ipsum dolor sit amet</li>
+                                                <li>Lorem ipsum dolor sit amet</li>
+                                                <li>Lorem ipsum dolor sit amet</li>
+                                                <li>Lorem ipsum dolor sit amet</li>
+                                                <li>Lorem ipsum dolor sit amet</li>
+                                            </ul>
+                                        </div>
                                         
                                     </div>
                                 </div>

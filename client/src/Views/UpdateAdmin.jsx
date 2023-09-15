@@ -197,7 +197,7 @@ const UpdateAdmin = () =>{
                                 <div className="col-md-6">
                                     <label>Photo</label>
                                     <input className="form-control" type="file" placeholder="Photo" onChange={handleChange} name="photo" />
-                                    {errorMessage && <p>{errorMessage}</p>}
+                                    {errorMessage && <b><p className="error-message" style={{color:'red'}}>{errorMessage}</p></b>}
                                 </div>
                                 <div className="col-md-6">
                                     <label>Price Unitaire</label>

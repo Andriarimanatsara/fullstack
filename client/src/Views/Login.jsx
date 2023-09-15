@@ -129,9 +129,11 @@ const Login = () =>{
                         <div className="col-md-9">
                             <div className="user">
                                 
-                                <a href="cart.html" className="btn cart">
-                                    <i className="fa fa-shopping-cart"></i>
-                                    <span>({cartItemCount})</span>
+                                <a className="btn cart">
+                                    <Link to="/cart" >
+                                        <i className="fa fa-shopping-cart"></i>
+                                        <span>({cartItemCount})</span>
+                                    </Link>
                                 </a>
                             </div>
                         </div>
@@ -163,7 +165,7 @@ const Login = () =>{
                                         <label>Password</label>
                                         <input className="form-control" type="password" placeholder="Password" onChange={handleChange} name="password"/>
                                     </div>
-                                    {errorMessage && <p>{errorMessage}</p>}
+                                    {errorMessage && <b><p className="error-message" style={{color:'red'}}>{errorMessage}</p></b>}
                                     <div className="col-md-12">
                                         <button className="btn" onClick={handleInsert}>Se Connecter</button>
                                     </div>

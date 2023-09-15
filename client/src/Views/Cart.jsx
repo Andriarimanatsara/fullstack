@@ -178,7 +178,7 @@ const Cart = () =>{
                             <div className="user">
                                 
                                 <a className="btn cart">
-                                    <Link to="/login" >
+                                    <Link to="/cart" >
                                         <i className="fa fa-shopping-cart"></i>
                                         <span>({cartItemCount})</span>
                                     </Link>
