@@ -146,13 +146,7 @@ const ListeProduit = () => {
             <div className="bottom-bar">
                 <div className="container-fluid">
                     <div className="row align-items-center">
-                        <div className="col-md-3">
-                            <div className="logo">
-                                <a>
-                                    <img src="img/logo-midas.png" alt="Logo"/>
-                                </a>
-                            </div>
-                        </div>
+                        
                         
                         <div className="col-md-9">
                             <div className="user">
@@ -241,7 +235,7 @@ const ListeProduit = () => {
                                             <a className="nav-link active" data-toggle="pill" href="#description">Description</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link active" data-toggle="pill" href="#specification">Specification</a>
+                                            <a className="nav-link" data-toggle="pill" href="#specification">Specification</a>
                                         </li>
                                         
                                     </ul>
