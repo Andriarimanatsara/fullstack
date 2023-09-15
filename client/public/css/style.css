@@ -6,7 +6,19 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     background:rgb(240, 219, 219);
+
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100vh; /* Hauteur minimale de la vue */
 }
+
+main {
+    flex: 1; /* Ajuste la hauteur pour pousser le footer vers le bas */
+    padding: 2px;
+  }
 
 a {
     color: #FF6F61;
