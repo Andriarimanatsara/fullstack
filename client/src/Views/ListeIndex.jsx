@@ -152,19 +152,19 @@ const ListeIndex = () =>{
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"><Link to="/" >Home</Link></a>
+                            <a class="nav-link active" aria-current="page"><Link to="/" style={{color:'white'}} >Home</Link></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"><Link to="/listeProduit" >Products</Link></a>
+                            <a class="nav-link"><Link to="/listeProduit" style={{color:'white'}} >Products</Link></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"><Link to="/cart" >Cart</Link></a>
+                            <a class="nav-link"><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
                         </li>
                         <div className="nav-item dropdown">
                             <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>More Pages</a>
                             <div className="dropdown-menu">
-                                <a className="dropdown-item"><Link to="/login" >Login</Link></a>
-                                <a className="dropdown-item"><Link to="/contact" >Contact Us</Link></a>
+                                <a className="dropdown-item"><Link to="/login" style={{color:'white'}} >Login</Link></a>
+                                <a className="dropdown-item"><Link to="/contact" style={{color:'white'}} >Contact Us</Link></a>
                             </div>
                         </div>
                     </ul>

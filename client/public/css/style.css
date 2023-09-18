@@ -266,12 +266,12 @@ h2 {
     margin-top: 0;
     border: 0;
     border-radius: 0;
-    background: #51cf46;
+    background: #2c5abe;
 }
 
 .nav .dropdown-menu a.active {
     color: #353535;
-    background: #f8f9fa;
+    background: #2c5abe;
 }
 
 @media (min-width: 768px) {
