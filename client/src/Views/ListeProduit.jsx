@@ -275,7 +275,8 @@ const ListeProduit = () => {
                     <div className="row">
                         <div className="col-lg-8">
                             <div className="row">
-                                {lists.map((liste) => (
+                                { lists.length>0 ? (
+                                    lists.map((liste) => (
                                     <div className="col-md-4">
                                         <div className="product-item" key={liste.id}>
                                             <div className="product-title">
@@ -293,7 +294,11 @@ const ListeProduit = () => {
                                             </div>
                                         </div>
                                     </div>
-                                ))}
+                                ))):(
+                                    <div className="col-md-4">
+                                        <p className="error-message" style={{color:'red'}}>Listes est vides</p>
+                                    </div>
+                                )}
                                 
                             </div>
                             <div className="col-md-12">
