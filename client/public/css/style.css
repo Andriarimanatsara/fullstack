@@ -271,7 +271,7 @@ h2 {
 
 .nav .dropdown-menu a.active {
     color: #353535;
-    background: #2c5abe;
+    background: #f8f9fa;
 }
 
 @media (min-width: 768px) {

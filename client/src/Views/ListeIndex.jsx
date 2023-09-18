@@ -163,8 +163,8 @@ const ListeIndex = () =>{
                         <div className="nav-item dropdown">
                             <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>More Pages</a>
                             <div className="dropdown-menu">
-                                <a className="dropdown-item"><Link to="/login" style={{color:'white'}} >Login</Link></a>
-                                <a className="dropdown-item"><Link to="/contact" style={{color:'white'}} >Contact Us</Link></a>
+                                <a className="dropdown-item"><Link to="/login" >Login</Link></a>
+                                <a className="dropdown-item"><Link to="/contact" >Contact Us</Link></a>
                             </div>
                         </div>
                     </ul>
