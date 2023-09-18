@@ -160,15 +160,13 @@ const ListeIndex = () =>{
                         <li class="nav-item">
                             <a class="nav-link"><Link to="/cart" >Cart</Link></a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            More Pages
-                            </a>
-                            <ul class="dropdown-menu">
-                                <a class="dropdown-item"><Link to="/login" >Login</Link></a>
-                                <a class="dropdown-item"><Link to="/contact" >Contact Us</Link></a>
-                            </ul>
-                        </li>
+                        <div className="nav-item dropdown">
+                            <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>More Pages</a>
+                            <div className="dropdown-menu">
+                                <a className="dropdown-item"><Link to="/login" >Login</Link></a>
+                                <a className="dropdown-item"><Link to="/contact" >Contact Us</Link></a>
+                            </div>
+                        </div>
                     </ul>
                         
                     </div>
