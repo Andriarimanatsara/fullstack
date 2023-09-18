@@ -120,11 +120,22 @@ h2 {
     border: 1px solid #dceb55;
 }
 
+.btn-danger {
+    color: #a81212;
+    background: #ffffff;
+    border: 1px solid #a81212;
+}
+
 .btn:hover,
 .btn:active,
 .btn:focus {
     color: #ffffff;
     background: #dceb55;
+    box-shadow: none;
+}
+.btn-danger:focus {
+    color: #ffffff;
+    background: #a81212;
     box-shadow: none;
 }
 

@@ -155,10 +155,10 @@ const ListeIndex = () =>{
                             <a class="nav-link active" aria-current="page"><Link to="/" style={{color:'white'}} >Home</Link></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"><Link to="/listeProduit" style={{color:'white'}} >Products</Link></a>
+                            <a class="nav-link"><Link to="/listeProduit" style={{color:'blue'}} >Products</Link></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
+                            <a class="nav-link"><Link to="/cart" style={{color:'blue'}} >Cart</Link></a>
                         </li>
                         <div className="nav-item dropdown">
                             <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>More Pages</a>

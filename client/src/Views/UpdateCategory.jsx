@@ -109,30 +109,31 @@ const UpdateCategory = () =>{
                 </div>
             </div>
             
-            <div className="nav">
-                <div className="container-fluid">
-                    <nav className="navbar navbar-expand-md bg-dark navbar-dark">
-                        <a href="#" className="navbar-brand">MENU</a>
-                        <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div className="navbar-nav mr-auto">
-                                
-                                <a className="nav-item nav-link"><Link to="/listeProdAdmin" >Products</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addAdmin" >Add Products</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeCategory" style={{color:'white'}} >Category</Link></a>
-                                <a className="nav-item nav-link"><Link to="/addCategory" >Ajouter Categorie</Link></a>
-                                <a>
-                                    <button className="btn" onClick={fetchDeconnecte}>Log-Out</button>
-                                </a>
-                            </div>
-                            
-                        </div>
-                    </nav>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary" data-bs-theme="dark">
+                <div class="container-fluid">
+                    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page"><Link to="/listeProdAdmin" style={{color:'blue'}} >Products</Link></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link "><Link to="/addAdmin" style={{color:'blue'}} >Add Products</Link></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active"><Link to="/listeCategory" style={{color:'white'}} >Category</Link></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"><Link to="/addCategory" style={{color:'blue'}} >Add Category</Link></a>
+                        </li>
+                        <a>
+                            <button className="btn-danger" onClick={fetchDeconnecte}>Log-Out</button>
+                        </a>
+                    </ul>
+                        
+                    </div>
                 </div>
-            </div>
+            </nav>
             
             
             

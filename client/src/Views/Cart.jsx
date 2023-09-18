@@ -135,33 +135,32 @@ const Cart = () =>{
                 </div>
             </div>
             
-            <div className="nav">
-                <div className="container-fluid">
-                    <nav className="navbar navbar-expand-md bg-dark navbar-dark">
-                        <a href="#" className="navbar-brand">MENU</a>
-                        <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div className="navbar-nav mr-auto">
-                                <a className="nav-item nav-link active"><Link to="/" >Home</Link></a>
-                                <a className="nav-item nav-link"><Link to="/listeProduit" >Products</Link></a>
-                                
-                                <a className="nav-item nav-link" ><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
-                                <div className="nav-item dropdown">
-                                    <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>More Pages</a>
-                                    <div className="dropdown-menu">
-                                        <a className="dropdown-item"><Link to="/login" >Login</Link></a>
-                                        <a className="dropdown-item"><Link to="/contact" >Contact-Us</Link></a>
-                                    </div>
-                                </div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary" data-bs-theme="dark">
+                <div class="container-fluid">
+                    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"><Link to="/" style={{color:'blue'}} >Home</Link></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"><Link to="/listeProduit" style={{color:'blue'}} >Products</Link></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"><Link to="/cart" style={{color:'white'}} >Cart</Link></a>
+                        </li>
+                        <div className="nav-item dropdown">
+                            <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" style={{color:'blue'}}>More Pages</a>
+                            <div className="dropdown-menu">
+                                <a className="dropdown-item"><Link to="/login" >Login</Link></a>
+                                <a className="dropdown-item"><Link to="/contact" >Contact Us</Link></a>
                             </div>
-                            
                         </div>
-                    </nav>
+                    </ul>
+                        
+                    </div>
                 </div>
-            </div>
+            </nav>
             
             <div className="bottom-bar">
                 <div className="container-fluid">
