@@ -93,7 +93,7 @@ const Login = () =>{
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"><Link to="/" style={{color:'bue'}} >Home</Link></a>
+                            <a class="nav-link" aria-current="page"><Link to="/" style={{color:'bue'}} >Home</Link></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"><Link to="/listeProduit" style={{color:'blue'}} >Products</Link></a>
