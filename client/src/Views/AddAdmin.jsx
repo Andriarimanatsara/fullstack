@@ -177,8 +177,8 @@ const AddAdmin = () =>{
                             <div className="row">
                                 <div className="col-md-6">
                                     <label>Category</label>
-                                    <select onChange={handleChange} name="idCategorie" class="form-control" style={{width: '100%'}}>
-                                        <option value={0}>-Selected Categorie-</option> 
+                                    <select onChange={handleChange} name="idCategorie" class="form-control" style={{width: '100%'}} required>
+                                        <option value="">-Selected Categorie-</option> 
                                         {listeCat.map(listeCt=>(
                                             <option key={listeCt.id} value={listeCt.id}>{listeCt.nomCategorie}</option>
                                         ))} 
@@ -186,12 +186,12 @@ const AddAdmin = () =>{
                                 </div>
                                 <div className="col-md-6">
                                     <label>Name Product</label>
-                                    <input className="form-control" type="text" placeholder="Nom Produit" onChange={handleChange} name="nomProduit" />
+                                    <input className="form-control" type="text" placeholder="Nom Produit" onChange={handleChange} name="nomProduit" required />
                                 </div>
 
                                 <div className="col-md-6">
                                     <label>Description</label>
-                                    <textarea class="form-control" onChange={handleChange} name="description" rows="3" value={produit.description} ></textarea>
+                                    <textarea class="form-control" onChange={handleChange} name="description" rows="3" value={produit.description} required ></textarea>
                                 </div>
                                 <div className="col-md-6">
                                     <label>Photo</label>
@@ -200,7 +200,7 @@ const AddAdmin = () =>{
                                 </div>
                                 <div className="col-md-6">
                                     <label>Price Unitaire</label>
-                                    <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" />
+                                    <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" required />
                                 </div>
                                 <div className="col-md-12">
                                     <button className="btn" onClick={handleUpdate}>Add</button>           

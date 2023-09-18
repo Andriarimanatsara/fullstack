@@ -154,12 +154,12 @@ const UpdateCategory = () =>{
                             <div className="login-form">
                                 <div className="col-md-6">
                                     <label>Nom Categorie</label>
-                                    <input className="form-control" type="text" placeholder="Nom Categorie" onChange={handleChange} name="nameCategory" value={category.nameCategory} />
+                                    <input className="form-control" type="text" placeholder="Nom Categorie" onChange={handleChange} name="nameCategory" value={category.nameCategory} required />
                                 </div>
 
                                 <div className="col-md-6">
                                     <label>Description</label>
-                                    <textarea className="form-control" onChange={handleChange} name="description" rows="3" value={category.description} ></textarea>
+                                    <textarea className="form-control" onChange={handleChange} name="description" rows="3" value={category.description} required ></textarea>
                                 </div>
                                 {errorMessage && <b><p className="error-message" style={{color:'red'}}>{errorMessage}</p></b>}
                                 <div className="col-md-12">
