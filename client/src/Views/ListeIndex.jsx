@@ -205,7 +205,7 @@ const ListeIndex = () =>{
                     
                     {lists.map(liste=>(
                         <div key={liste.idCategorie}>
-                            <div className="section-header">
+                            <div className="section-header" style={{ margin: '5%' }}>
                                 <h1>{liste.nomCategorie}</h1>
                             </div>
                             {liste.produits.length >= settings.slidesToShow ? (
@@ -214,7 +214,7 @@ const ListeIndex = () =>{
                                     <div key={listeP.idProduit}>
                                         <div className="product-item" style={{ margin: '5%' }}>
                                             <div className="product-title">
-                                                <a href="#">{listeP.nomProduit}</a>
+                                                <a href="#"><Link to={`/detailProd/${listeP.id}`} >{listeP.nomProduit}</Link></a>
                                             </div>
                                             <div className="product-image">
                                                 <a href="product-detail.html">
@@ -236,9 +236,9 @@ const ListeIndex = () =>{
                                 <div className="row">
                                     {liste.produits.map(listeP => (
                                         <div className="col-md-4">
-                                            <div className="product-item" style={{width: '70%',height: '20%'}} key={liste.idProduit}>
+                                            <div className="product-item" style={{width: '70%',height: '20%',margin: '5%'}} key={liste.idProduit}>
                                                 <div className="product-title">
-                                                    <a href="#">{listeP.nomProduit}</a>
+                                                    <a href="#"><Link to={`/detailProd/${listeP.id}`} >{listeP.nomProduit}</Link></a>
                                                 </div>
                                                 <div className="product-image">
                                                     <a>

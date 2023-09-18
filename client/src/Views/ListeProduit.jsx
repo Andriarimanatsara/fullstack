@@ -279,7 +279,7 @@ const ListeProduit = () => {
                                     <div className="col-md-4">
                                         <div className="product-item" key={liste.id}>
                                             <div className="product-title">
-                                                <a>{liste.nomProduit}</a>
+                                                <a href='#'><Link to={`/detailProd/${liste.id}`} >{liste.nomProduit}</Link></a>
                                             </div>
                                             <div className="product-image">
                                                 <a>
