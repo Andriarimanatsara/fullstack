@@ -6,6 +6,7 @@ import configData from '../conf.json';
 
 const UpdateAdmin = () =>{
     const[listsCat,setListsCat]=useState([]);
+    const[listsUnit,setListsUnit]=useState([]);
     const [errorMessage, setErrorMessage] = useState('');
     
     const location= useLocation();
@@ -59,6 +60,18 @@ const UpdateAdmin = () =>{
         return () => {
             window.removeEventListener("beforeunload", handleBeforeUnload);
         };
+    },[]);
+
+    useEffect(()=>{
+        const fetchAllUnite=async()=>{
+            try {
+                const res=await axios.get(configData.REACT_APP_SERVER+"/ActuCrud/lists_unite");
+                setListsUnit(res.data);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchAllUnite()
     },[]);
 
     const[produit,setProduit]=useState({
@@ -199,6 +212,19 @@ const UpdateAdmin = () =>{
                                 <div className="col-md-6">
                                     <label>Price Unitaire</label>
                                     <input className="form-control" type="text" placeholder="Prix Unitaire" onChange={handleChange} name="prixUnitaire" value={produit.prixUnitaire} required />
+                                </div>
+                                <div className="col-md-6">
+                                    <label>Poids</label>
+                                    <input className="form-control" type="text" placeholder="Poids" onChange={handleChange} name="poids" required />
+                                </div>
+                                <div className="col-md-6">
+                                    <label>Unite</label>
+                                    <select onChange={handleChange} name="idUnite" class="form-control" style={{width: '100%'}} required>
+                                        <option value="">-Selected Unite-</option> 
+                                        {listsUnit.map(listeUt=>(
+                                            <option key={listeUt.id} value={listeUt.id}>{listeUt.unite}</option>
+                                        ))} 
+                                    </select>
                                 </div>
                                 <div className="col-md-12">
                                     <button className="btn" onClick={handleUpdate}>Update</button>           
