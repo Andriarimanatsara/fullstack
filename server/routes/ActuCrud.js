@@ -153,13 +153,13 @@ const upload = multer({ storage:storage,fileFilter:isImg });
 
 router.post('/add_product', upload.single('photo'), (req, res) => {
   let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,photo:req.file ? req.file.originalname : '',prixUnitaire:req.body.prixUnitaire,poids:req.body.poids,idUnite:req.body.idUnite};
-  const nomProduit = mysql.escape(data.nomProduit);
-  const description = mysql.escape(data.description);
-  if(!data.idCategorie || !nomProduit || !description /*|| !data.photo */|| !data.prixUnitaire || !data.poids || !data.idUnite)
+  if(!data.idCategorie || !data.nomProduit || !data.description /*|| !data.photo */|| !data.prixUnitaire || !data.poids || !data.idUnite)
   {
     return res.json({status:422,message:"fill all the details"})
-  }else if(data.idCategorie && nomProduit && description && data.prixUnitaire && data.poids && data.idUnite){
+  }else if(data.idCategorie && data.nomProduit && data.description && data.prixUnitaire && data.poids && data.idUnite){
     try{
+      const nomProduit = mysql.escape(data.nomProduit);
+      const description = mysql.escape(data.description);
       //let sqlString = "INSERT INTO produit(idCategorie,nomProduit,description,photo,prixUnitaire)values(" + data.idCategorie + ",'" + nomProduit + "','" + description + "','" + data.photo + "'," + data.prixUnitaire + ")";
       let sqlString = "INSERT INTO produit(idCategorie,nomProduit,description,prixUnitaire,poids,idUnite)values(" + data.idCategorie + ",'" + nomProduit + "','" + description + /*"','" + data.photo + */"'," + data.prixUnitaire + ","+data.poids+","+data.idUnite+")";
       let query = connection.query(sqlString,(err, results) => {
@@ -180,8 +180,7 @@ router.post('/add_product', upload.single('photo'), (req, res) => {
 router.post('/update_product/:id', upload.single('photo'), (req, res) => {
   const id=req.params.id;
   let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,photo:req.file ? req.file.originalname : '',prixUnitaire:req.body.prixUnitaire,poids:req.body.poids,idUnite:req.body.idUnite};
-  const nomProduit = mysql.escape(data.nomProduit);
-  const description = mysql.escape(data.description);
+  
   /*let sqlString = "UPDATE produit SET idCategorie='" + data.idCategorie + "', nomProduit='" + data.nomProduit + "', description='" + data.description + "', photo='" + data.photo + "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
   
   const filePath = `./client/public/img/${data.photo}`;
@@ -205,6 +204,8 @@ router.post('/update_product/:id', upload.single('photo'), (req, res) => {
     return res.json({status:422,message:"fill all the details"})
   }else if(data.idCategorie && nomProduit && description && data.prixUnitaire && data.poids && data.idUnite){
     try{
+      const nomProduit = mysql.escape(data.nomProduit);
+      const description = mysql.escape(data.description);
       let sqlString = "UPDATE produit SET idCategorie=" + data.idCategorie + ", nomProduit='" + nomProduit + "', description='" + description + /*"', photo='" + data.photo +*/ "', prixUnitaire=" + data.prixUnitaire + ", poids="+data.poids+", idUnite="+ data.idUnite +" WHERE id=" + id;
       let query = connection.query(sqlString,(err, results) => {
         if (err) {
