@@ -189,7 +189,7 @@ const ListeProduit = () => {
                                                     <div className="title"><h2>{liste.nomProduit}</h2></div>
                                                     <div className="price">
                                                         <h4>Price:</h4>
-                                                        <p>${liste.prixUnitaire*quantite}</p>
+                                                        <p>${liste.prixUnitaire*quantite} | {liste.poids}{liste.unite}</p>
                                                     </div>
                                                     <div className="quantity">
                                                         <h4>Quantity:</h4>

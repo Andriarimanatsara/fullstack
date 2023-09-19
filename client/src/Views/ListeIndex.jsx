@@ -249,7 +249,7 @@ const ListeIndex = () =>{
                                                     </div>
                                                 </div>
                                                 <div className="product-price">
-                                                    <h3><span>$</span>{listeP.prixUnitaire}</h3>
+                                                    <h3><span>$</span>{listeP.prixUnitaire} | {listeP.poids}{listeP.unite}</h3>
                                                     <a className="btn" onClick={()=>handleClickIndex(listeP.idProduit,listeP.prixUnitaire,listeP.photo,listeP.nomProduit)}><i className="fa fa-shopping-cart"></i>Buy Now</a>
                                                 </div>
                                             </div>

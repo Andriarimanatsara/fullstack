@@ -212,7 +212,7 @@ const ListeProduitAdmin = () => {
                                     <div className="col-md-4">
                                         <div className="product-item" key={liste.id}>
                                             <div className="product-title">
-                                                <a>{liste.nomProduit}</a>
+                                                <a href='#'>{liste.nomProduit}</a>
                                             </div>
                                             <div className="product-image">
                                                 <a>

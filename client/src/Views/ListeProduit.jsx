@@ -288,7 +288,7 @@ const ListeProduit = () => {
                                                 
                                             </div>
                                             <div className="product-price">
-                                                <h3><span>$</span>{liste.prixUnitaire}</h3>
+                                                <h3><span>$</span>{liste.prixUnitaire} | {liste.poids}{liste.unite}</h3>
                                                 <a className="btn" onClick={()=>handleClickIndex(liste.idProduit,liste.prixUnitaire,liste.photo,liste.nomProduit)}><i className="fa fa-shopping-cart"></i>Buy Now</a>
                                             </div>
                                         </div>
@@ -350,7 +350,7 @@ const ListeProduit = () => {
                                                         </div>
                                                     </div>
                                                     <div className="product-price">
-                                                        <h3><span>$</span>{liste.prixUnitaire}</h3>
+                                                        <h3><span>$</span>{liste.prixUnitaire} | {liste.poids}{liste.unite}</h3>
                                                         <a className="btn" onClick={()=>handleClickIndex(liste.idProduit,liste.prixUnitaire,liste.photo,liste.nomProduit)}><i className="fa fa-shopping-cart"></i>Buy Now</a>
                                                     </div>
                                                 </div>

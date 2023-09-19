@@ -234,12 +234,13 @@ router.get('/delete_product/:id', (req, res) => {
 
 router.post('/add_category', (req, res) => {
   let data={name:req.body.nameCategory,description:req.body.description};
-  const nomCategorie = mysql.escape(data.name);
-  const description = mysql.escape(data.description);
-  if(!nomCategorie || !description)
+ 
+  if(!data.name || !data.description)
   {
     return res.json({status:422,message:"fill all the details"})
   }else if(nomCategorie && description){
+    const nomCategorie = mysql.escape(data.name);
+    const description = mysql.escape(data.description);
     let sqlString="INSERT INTO categorie(nomCategorie, description) values('"+ nomCategorie +"','"+ description  +"')";
     let query= connection.query(sqlString,(err,results) => {
       if(err) return res.json({status:500,message:"Une erreur est survenue"});
@@ -251,12 +252,12 @@ router.post('/add_category', (req, res) => {
 router.post('/update_category/:id', (req, res) => {
   const idCategorie=req.params.id;
   let data={name:req.body.nameCategory,description:req.body.description};
-  const nomCategorie = mysql.escape(data.name);
-  const description = mysql.escape(data.description);
-  if(!nomCategorie || !description)
+  if(!data.name || !data.description)
   {
     return res.json({status:422,message:"fill all the details"})
   }else if(nomCategorie && description){
+    const nomCategorie = mysql.escape(data.name);
+    const description = mysql.escape(data.description);
     let sqlString="UPDATE categorie SET nomCategorie='"+ nomCategorie +"', description='"+ description+ "' where id="+idCategorie;
     let query= connection.query(sqlString,(err,results) => {
       if(err) return res.json({status:500,message:"Une erreur est survenue"});

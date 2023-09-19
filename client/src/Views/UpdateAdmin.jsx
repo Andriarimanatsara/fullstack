@@ -191,7 +191,7 @@ const UpdateAdmin = () =>{
                                     <select onChange={handleChange} name="idCategorie" className="form-control" style={{width: '100%'}} required>
                                         <option value="">-Selected Categorie-</option> 
                                         {listsCat.map(listeCt=>(
-                                            <option key={listeCt.id} value={listeCt.id}>{listeCt.nomCategorie}</option>
+                                            <option key={listeCt.id} value={produit.idCategorie}>{listeCt.nomCategorie}</option>
                                         ))} 
                                     </select>
                                 </div>
