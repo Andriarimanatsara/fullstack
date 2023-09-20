@@ -153,7 +153,7 @@ const isImg=(req,file,cb)=>{
 
 const upload = multer({ storage:storage,fileFilter:isImg });
 
-router.post('/add_product', (req, res) => {
+router.post('/add_product', upload.single('photo'), (req, res) => {
   let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,/*photo:req.file ? req.file.originalname : '',*/prixUnitaire:req.body.prixUnitaire,poids:req.body.poids,idUnite:req.body.idUnite};
   if(!data.idCategorie || !data.nomProduit || !data.description /*|| !data.photo */|| !data.prixUnitaire || !data.poids || !data.idUnite)
   {
@@ -179,7 +179,7 @@ router.post('/add_product', (req, res) => {
 });
 
 //updateProduit
-router.post('/update_product/:id', (req, res) => {
+router.post('/update_product/:id', upload.single('photo'), (req, res) => {
   const id=req.params.id;
   let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,/*photo:req.file ? req.file.originalname : '',*/prixUnitaire:req.body.prixUnitaire,poids:req.body.poids,idUnite:req.body.idUnite};
   
@@ -217,7 +217,7 @@ router.post('/update_product/:id', (req, res) => {
           return res.json({status:201,message:"OK",data:req.body})
         }
       });
-      return res.json({sqlStr:sqlString});
+      //return res.json({sqlStr:sqlString});
     }catch(error){
       return res.json({status:422,message:"Une erreur lié au serveur"})
     }

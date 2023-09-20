@@ -115,7 +115,7 @@ const UpdateAdmin = () =>{
         }
         //console.log(produit)
         try {
-            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/update_product/"+idUp,produit)///////
+            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/update_product/"+idUp,produit,config)///////
             if (response.data.status===201) {
                 // Le fichier a été téléchargé avec succès
                 setErrorMessage('');
