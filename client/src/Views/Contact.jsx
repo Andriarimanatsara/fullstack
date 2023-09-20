@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {useLocation, useNavigate} from "react-router-dom"
 import axios from 'axios'
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 import configData from '../conf.json';
 

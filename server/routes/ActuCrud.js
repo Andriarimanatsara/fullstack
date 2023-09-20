@@ -152,7 +152,7 @@ const isImg=(req,file,cb)=>{
 const upload = multer({ storage:storage,fileFilter:isImg });
 
 router.post('/add_product', upload.single('photo'), (req, res) => {
-  let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,photo:req.file ? req.file.originalname : '',prixUnitaire:req.body.prixUnitaire,poids:req.body.poids,idUnite:req.body.idUnite};
+  let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,/*photo:req.file ? req.file.originalname : '',*/prixUnitaire:req.body.prixUnitaire,poids:req.body.poids,idUnite:req.body.idUnite};
   if(!data.idCategorie || !data.nomProduit || !data.description /*|| !data.photo */|| !data.prixUnitaire || !data.poids || !data.idUnite)
   {
     return res.json({status:422,message:"fill all the details"})
@@ -179,7 +179,7 @@ router.post('/add_product', upload.single('photo'), (req, res) => {
 //updateProduit
 router.post('/update_product/:id', upload.single('photo'), (req, res) => {
   const id=req.params.id;
-  let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,photo:req.file ? req.file.originalname : '',prixUnitaire:req.body.prixUnitaire,poids:req.body.poids,idUnite:req.body.idUnite};
+  let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,/*photo:req.file ? req.file.originalname : '',*/prixUnitaire:req.body.prixUnitaire,poids:req.body.poids,idUnite:req.body.idUnite};
   
   /*let sqlString = "UPDATE produit SET idCategorie='" + data.idCategorie + "', nomProduit='" + data.nomProduit + "', description='" + data.description + "', photo='" + data.photo + "', prixUnitaire=" + data.prixUnitaire + " WHERE id=" + id;
   
