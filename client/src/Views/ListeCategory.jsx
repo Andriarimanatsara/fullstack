@@ -108,9 +108,9 @@ const ListeCategory = () =>{
                         <li className="nav-item">
                             <a className="nav-link"><Link to="/addCategory" style={{color:'blue'}} >Add Category</Link></a>
                         </li>
-                        <a>
-                            <button className="btn-danger" onClick={fetchDeconnecte}>Log-Out</button>
-                        </a>
+                        <form className="d-flex" role="search">
+                            <button className="btn btn-outline-danger" type="submit" onClick={fetchDeconnecte}>Log-Out</button>
+                        </form>
                     </ul>
                         
                     </div>
