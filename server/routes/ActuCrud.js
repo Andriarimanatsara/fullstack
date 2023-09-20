@@ -204,7 +204,7 @@ router.post('/update_product/:id', (req, res) => {
   if(!data.idCategorie || !data.nomProduit || !data.description /*|| !data.photo*/ || !data.prixUnitaire || !data.poids || !data.idUnite)
   {
     return res.json({status:422,message:"fill all the details"})
-  }else if(data.idCategorie && nomProduit && description && data.prixUnitaire && data.poids && data.idUnite){
+  }else if(data.idCategorie && data.nomProduit && data.description && data.prixUnitaire && data.poids && data.idUnite){
     try{
       const nomProduit = mysql.escape(data.nomProduit);
       const description = mysql.escape(data.description);
@@ -216,7 +216,8 @@ router.post('/update_product/:id', (req, res) => {
           console.log("data updated")
           return res.json({status:201,message:"OK",data:req.body})
         }
-      })
+      });
+      return res.json({sqlStr:sqlString});
     }catch(error){
       return res.json({status:422,message:"Une erreur lié au serveur"})
     }
