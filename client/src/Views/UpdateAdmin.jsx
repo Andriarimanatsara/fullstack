@@ -127,7 +127,7 @@ const UpdateAdmin = () =>{
             }
             
             navigate("/listeProdAdmin");
-            //console.log(response);
+            console.log(response);
         } catch (error) {
             console.error('Erreur lors du téléchargement du fichier', error);
         }
@@ -219,7 +219,7 @@ const UpdateAdmin = () =>{
                                 </div>
                                 <div className="col-md-6">
                                     <label>Poids</label>
-                                    <input className="form-control" type="text" placeholder="Poids" onChange={handleChange} name="poids" required />
+                                    <input className="form-control" type="text" placeholder="Poids" onChange={handleChange} value={produit.poids} name="poids" required />
                                 </div>
                                 <div className="col-md-6">
                                     <label>Unite</label>
