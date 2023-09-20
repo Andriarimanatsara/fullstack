@@ -163,7 +163,7 @@ router.post('/add_product', (req, res) => {
       const nomProduit = mysql.escape(data.nomProduit);
       const description = mysql.escape(data.description);
       //let sqlString = "INSERT INTO produit(idCategorie,nomProduit,description,photo,prixUnitaire)values(" + data.idCategorie + ",'" + nomProduit + "','" + description + "','" + data.photo + "'," + data.prixUnitaire + ")";
-      let sqlString = "INSERT INTO produit(idCategorie,nomProduit,description,prixUnitaire,poids,idUnite)values(" + data.idCategorie + ",'" + nomProduit + "','" + description + /*"','" + data.photo + */"'," + data.prixUnitaire + ","+data.poids+","+data.idUnite+")";
+      let sqlString = "INSERT INTO produit(idCategorie,nomProduit,description,prixUnitaire,poids,idUnite)values(" + data.idCategorie + "," + nomProduit + "," + description + /*"','" + data.photo + */"," + data.prixUnitaire + ","+data.poids+","+data.idUnite+")";
       let query = connection.query(sqlString,(err, results) => {
         if (err) {
           return res.json({status:500,message:"Une erreur est survenue"});
@@ -208,7 +208,7 @@ router.post('/update_product/:id', (req, res) => {
     try{
       const nomProduit = mysql.escape(data.nomProduit);
       const description = mysql.escape(data.description);
-      let sqlString = "UPDATE produit SET idCategorie=" + data.idCategorie + ", nomProduit='" + nomProduit + "', description='" + description + /*"', photo='" + data.photo +*/ "', prixUnitaire=" + data.prixUnitaire + ", poids="+data.poids+", idUnite="+ data.idUnite +" WHERE id=" + id;
+      let sqlString = "UPDATE produit SET idCategorie=" + data.idCategorie + ", nomProduit=" + nomProduit + ", description=" + description + /*"', photo='" + data.photo +*/ ", prixUnitaire=" + data.prixUnitaire + ", poids="+data.poids+", idUnite="+ data.idUnite +" WHERE id=" + id;
       let query = connection.query(sqlString,(err, results) => {
         if (err) {
           return res.json({status:500,message:"Une erreur est survenue"});
