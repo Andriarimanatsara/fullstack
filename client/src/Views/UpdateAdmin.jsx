@@ -80,6 +80,8 @@ const UpdateAdmin = () =>{
         description:"",
         photo:"",
         prixUnitaire:null,
+        poids:null,
+        idUnite:"",
     });
     useEffect(() => {
         if (liste.length > 0) {
@@ -89,6 +91,8 @@ const UpdateAdmin = () =>{
             description: liste[0].description,
             photo: liste[0].photo,
             prixUnitaire: liste[0].prixUnitaire,
+            poids: liste[0].poids,
+            idUnite: liste[0].idUnite,
           });
         }
       }, [liste]);
@@ -111,7 +115,7 @@ const UpdateAdmin = () =>{
         }
         //console.log(produit)
         try {
-            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/update_product/"+idUp,produit,config)///////
+            const response = await axios.post(configData.REACT_APP_SERVER+"/ActuCrud/update_product/"+idUp,produit)///////
             if (response.data.status===201) {
                 // Le fichier a été téléchargé avec succès
                 setErrorMessage('');

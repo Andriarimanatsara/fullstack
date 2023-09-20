@@ -43,6 +43,8 @@ router.get('/lists_product', (req, res) => {
             nomProduit: row.nomProduit,
             prixUnitaire: row.prixUnitaire,
             photo: row.photo,
+            poids: row.poids,
+            unite: row.unite,
           });
         }
       });
@@ -151,7 +153,7 @@ const isImg=(req,file,cb)=>{
 
 const upload = multer({ storage:storage,fileFilter:isImg });
 
-router.post('/add_product', upload.single('photo'), (req, res) => {
+router.post('/add_product', (req, res) => {
   let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,/*photo:req.file ? req.file.originalname : '',*/prixUnitaire:req.body.prixUnitaire,poids:req.body.poids,idUnite:req.body.idUnite};
   if(!data.idCategorie || !data.nomProduit || !data.description /*|| !data.photo */|| !data.prixUnitaire || !data.poids || !data.idUnite)
   {
@@ -177,7 +179,7 @@ router.post('/add_product', upload.single('photo'), (req, res) => {
 });
 
 //updateProduit
-router.post('/update_product/:id', upload.single('photo'), (req, res) => {
+router.post('/update_product/:id', (req, res) => {
   const id=req.params.id;
   let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,/*photo:req.file ? req.file.originalname : '',*/prixUnitaire:req.body.prixUnitaire,poids:req.body.poids,idUnite:req.body.idUnite};
   
