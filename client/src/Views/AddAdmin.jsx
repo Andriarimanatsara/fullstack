@@ -193,7 +193,7 @@ const AddAdmin = () =>{
                                 <div className="col-md-6">
                                     <label>Category</label>
                                     <select onChange={handleChange} name="idCategorie" class="form-control" style={{width: '100%'}} required>
-                                        <option value="">-Selected Categorie-</option> 
+                                        <option value={0}>-Selected Categorie-</option> 
                                         {listeCat.map(listeCt=>(
                                             <option key={listeCt.id} value={listeCt.id}>{listeCt.nomCategorie}</option>
                                         ))} 
@@ -224,7 +224,7 @@ const AddAdmin = () =>{
                                 <div className="col-md-6">
                                     <label>Unite</label>
                                     <select onChange={handleChange} name="idUnite" class="form-control" style={{width: '100%'}} required>
-                                        <option value="">-Selected Unite-</option> 
+                                        <option value={0}>-Selected Unite-</option> 
                                         {listsUnit.map(listeUt=>(
                                             <option key={listeUt.id} value={listeUt.id}>{listeUt.unite}</option>
                                         ))} 

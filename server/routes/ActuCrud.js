@@ -155,10 +155,10 @@ const upload = multer({ storage:storage,fileFilter:isImg });
 
 router.post('/add_product', upload.single('photo'), (req, res) => {
   let data={idCategorie:req.body.idCategorie,nomProduit:req.body.nomProduit,description:req.body.description,/*photo:req.file ? req.file.originalname : '',*/prixUnitaire:req.body.prixUnitaire,poids:req.body.poids,idUnite:req.body.idUnite};
-  if(!data.idCategorie || !data.nomProduit || !data.description /*|| !data.photo */|| !data.prixUnitaire || !data.poids || !data.idUnite)
+  if(data.idCategorie<1 || !data.nomProduit || !data.description /*|| !data.photo */|| !data.prixUnitaire || !data.poids || data.idUnite<1)
   {
     return res.json({status:422,message:"fill all the details"})
-  }else if(data.idCategorie && data.nomProduit && data.description && data.prixUnitaire && data.poids && data.idUnite){
+  }else if(data.idCategorie>=1 && data.nomProduit && data.description && data.prixUnitaire && data.poids && data.idUnite>=1){
     try{
       const nomProduit = mysql.escape(data.nomProduit);
       const description = mysql.escape(data.description);

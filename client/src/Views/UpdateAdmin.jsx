@@ -212,7 +212,7 @@ const UpdateAdmin = () =>{
                                 <div className="col-md-6">
                                     <label>Photo</label>
                                     <input className="form-control" type="file" placeholder="Photo" onChange={handleChange} name="photo" />
-                                    {errorMessage && <b><p className="error-message" style={{color:'red'}}>{errorMessage}</p></b>}
+                                    
                                 </div>
                                 <div className="col-md-6">
                                     <label>Price Unitaire</label>
@@ -231,6 +231,7 @@ const UpdateAdmin = () =>{
                                         ))} 
                                     </select>
                                 </div>
+                                {errorMessage && <b><p className="error-message" style={{color:'red'}}>{errorMessage}</p></b>}
                                 <div className="col-md-12">
                                     <button className="btn" onClick={handleUpdate}>Update</button>           
                                 </div>
