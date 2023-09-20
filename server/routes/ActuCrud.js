@@ -201,7 +201,7 @@ router.post('/update_product/:id', upload.single('photo'), (req, res) => {
 
     return res.status(200).json({ message: 'Mise à jour réussie' });
   });*/
-  if(data.idCategorie != "" || !data.nomProduit || !data.description /*|| !data.photo*/ || !data.prixUnitaire || !data.poids || data.idUnite!="")
+  if(data.idCategorie <1 || !data.nomProduit || !data.description /*|| !data.photo*/ || !data.prixUnitaire || !data.poids || data.idUnite<1)
   {
     return res.json({status:422,message:"fill all the details"})
   }else if(data.idCategorie>=1 && data.nomProduit && data.description && data.prixUnitaire && data.poids && data.idUnite>=1){
