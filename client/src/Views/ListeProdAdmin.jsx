@@ -161,26 +161,27 @@ const ListeProduitAdmin = () => {
                     </div>
                 </div>
             </div>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary" data-bs-theme="dark">
-                <div class="container-fluid">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-primary" data-bs-theme="dark">
+                <div className="container-fluid">
                     
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"><Link to="/listeProdAdmin" style={{color:'white'}} >Products</Link></a>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <a className="nav-link active" aria-current="page"><Link to="/listeProdAdmin" style={{color:'white'}} >Products</Link></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link"><Link to="/addAdmin" style={{color:'blue'}} >Add Products</Link></a>
+                        <li className="nav-item">
+                            <a className="nav-link"><Link to="/addAdmin" style={{color:'blue'}} >Add Products</Link></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link"><Link to="/listeCategory" style={{color:'blue'}} >Category</Link></a>
+                        <li className="nav-item">
+                            <a className="nav-link"><Link to="/listeCategory" style={{color:'blue'}} >Category</Link></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link"><Link to="/addCategory" style={{color:'blue'}} >Add Category</Link></a>
+                        <li className="nav-item">
+                            <a className="nav-link"><Link to="/addCategory" style={{color:'blue'}} >Add Category</Link></a>
                         </li>
-                        <a>
-                            <button className="btn-danger" onClick={fetchDeconnecte}>Log-Out</button>
-                        </a>
+                        <form className="d-flex" role="search">
+                            <button className="btn btn-outline-danger" type="submit" onClick={fetchDeconnecte}>Log-Out</button>
+                        </form>
+                        
                     </ul>
                         
                     </div>
