@@ -64,7 +64,6 @@ const Login = () =>{
         } catch (error) {
             console.log("Erreur insertion=="+error)            
         }
-        console.log(admin);
     };
     
 

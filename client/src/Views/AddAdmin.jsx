@@ -63,13 +63,13 @@ const AddAdmin = () =>{
     },[]);
 
     const[produit,setProduit]=useState({
-        idCategorie:"",
+        idCategorie:null,
         nomProduit:"",
         description:"",
         photo:"",
         prixUnitaire:null,
         poids:null,
-        idUnite:"",
+        idUnite:null,
     });
 
     const handleChange = (e) => {

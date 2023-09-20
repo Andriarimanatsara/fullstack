@@ -75,13 +75,13 @@ const UpdateAdmin = () =>{
     },[]);
 
     const[produit,setProduit]=useState({
-        idCategorie:"",
+        idCategorie:null,
         nomProduit:"",
         description:"",
         photo:"",
         prixUnitaire:null,
         poids:null,
-        idUnite:"",
+        idUnite:null,
     });
     useEffect(() => {
         if (liste.length > 0) {
@@ -131,6 +131,7 @@ const UpdateAdmin = () =>{
         } catch (error) {
             console.error('Erreur lors du téléchargement du fichier', error);
         }
+        console.log(produit);
         //console.log("tsy maintsy miseo");
     };
     const fetchDeconnecte= ()=>{
